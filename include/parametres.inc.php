@@ -74,7 +74,7 @@
 		//création de l'objet 
 		$oConnectUser = new User($aUserData);
 
-		$iDroit = $oConnectUser->getActif();
+		$iDroit = $oConnectUser->getDroit();
 	}else{
 		//Si la personne n'est pas connecté, je force ses droits à 0
 		$iDroit = 0;
