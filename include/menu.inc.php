@@ -31,6 +31,7 @@
 						<li><a href="OffresModerateur.html"> Offres M</a></li>
 						<li><a href="RestaurantsModerateur.html"> Restaurants M</a></li>
 						<li><a href="RestaurateursModerateur.html"> Restaurateurs M</a></li>
+						<li><a href="index.php?category=1"> Inscrire un membre</a></li>
 					<?php break;
 					
 					default:
