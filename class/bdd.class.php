@@ -85,7 +85,7 @@ class Bdd{
 	public function user_checkData ($sEmail, $sMdp) {
 		// Vérification des identifiants
 		$bdd = $this->bdd;
-			$req = $bdd->prepare('SELECT prenom, nom, droit FROM MEMBRE WHERE email = :email AND mdp = :mdp');
+			$req = $bdd->prepare('SELECT id_user, prenom, nom, droit FROM MEMBRE WHERE email = :email AND mdp = :mdp');
 				
 			$req->execute(array(
 				'email' => $sEmail,
