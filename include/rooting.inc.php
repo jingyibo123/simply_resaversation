@@ -7,17 +7,11 @@
 	vues.
 
 / ------------------------------------------------------------------------- */
-	$iCategory = isset($_GET['offre']) ? 3 : 0;
-	if($iCategory!=3){$iCategory = isset($_GET['category']) && $_GET['category'] > 0 ? $_GET['category'] : 0;}
-	
+
+	$iCategory = isset($_GET['category']) && $_GET['category'] > 0 ? $_GET['category'] : 0;
+
 	switch($iCategory){
-		case 3:
-			define('ROOTING', 'view/reservation.view.php');
-			
-			
-		break;
-		
-		case 0:
+		case 1:
 			define('ROOTING', 'view/inscription.view.php');
 
 			if(isset($_POST['inscription']) && !empty($_POST['inscription'])){
@@ -45,14 +39,44 @@
 
 					if($iReturnIdent > 0){
 						$_SESSION['id_user'] = $iReturnIdent;
-						header('Location: index.php');
+						header('Location: view/message.view.php');
 					}
 				}
 			}
 		break;
-		case 1:
-			//define('ROOTING', 'view/connexion.view.php');
-			echo'connexion';
+		case 0:
+			define('ROOTING', 'view/connexion.view.php');
+			
+			if (isset($_POST['connexion']) && !empty($_POST['connexion'])){
+				
+				
+				$sEmail = $_POST['connexion']['email'];
+				$sMdp = md5($_POST['connexion']['mdp']);
+				
+				if(empty($oUser->aError)){
+				require_once 'class/bdd.class.php';
+				
+				
+				$oBdd = new Bdd();
+				$aUserdata = $oBdd->user_checkData($sEmail,$sMdp);
+				
+				if (!empty($aUserdata)){
+					 $_SESSION['id_user'] = $aUserdata['id_user'];
+					 echo 'les droits de l utilisateur sont ' . $oConnectUser->getDroit();
+					// $_SESSION['prenom'] = $oBdd->user_checkData($sEmail,$sMdp)['prenom'];
+					// $_SESSION['nom'] = $oBdd->user_checkData($sEmail,$sMdp)['nom'];
+					$_SESSION['droit'] = $aUserdata['droit'];
+					//require_once 'include/parametres.inc.php';
+					header('Location: index.php?category=4');
+				}
+				else{
+					
+					echo 'error_log';
+					define('ROOTING', 'view/connexion.view.php');
+				}
+				}
+			}
+			
 		break;
 		case 2:
 			//define('ROOTING', 'view/calendrier.view.php');
@@ -61,6 +85,15 @@
 				header('Location: index.php');
 			}*/
 
+		break;
+		case 3:
+			define('ROOTING', 'view/bienvenue.view.php');
+			
+		break;
+		
+		case 4:
+			define('ROOTING', 'include/menu.inc.php');
+			
 		break;
 	}
 
