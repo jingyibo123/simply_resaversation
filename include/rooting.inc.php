@@ -30,13 +30,22 @@
 				$oUser->setDroit($_POST['inscription']['droit']);
 
 				$oUser->validation();
+				
+				require_once 'class/bdd.class.php';
 
+					$oBdd = new Bdd();
+				
+				//Si l'email n'existe pas déjà dans la base de donnée
+				if($oBdd->user_checkEmail($oUser->getEmail())>0){
+					?>
+					<script>alert("<?php echo htmlspecialchars('L adresse email indiquée est déjà associée à un compte existant', ENT_QUOTES); ?>")</script>
+					<?php
+					
+				}
 				//S'il n'y a aucun retour d'erreur
 				if(empty($oUser->aError)){
 
-					require_once 'class/bdd.class.php';
-
-					$oBdd = new Bdd();
+					
 
 					$iReturnIdent = $oBdd->user_insert($oUser);
 

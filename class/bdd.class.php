@@ -94,6 +94,18 @@ class Bdd{
 			$resultat = $req->fetch();	
 			return $resultat;
 	}
+	
+	public function user_checkEmail ($sEmail){
+		$bdd = $this->bdd;
+		$req = $bdd->prepare('SELECT id_user FROM MEMBRE WHERE MEMBRE.EMAIL = :email');
+		$req->execute(array(
+				'email' => $sEmail));
+				
+			$resultat = $req->fetch();
+			$req->closeCursor();
+			
+			return $resultat;	
+	}
 
 	public function user_getId($sEmail) {
 		$bdd = $this->bdd;
