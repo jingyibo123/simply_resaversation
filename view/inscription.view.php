@@ -19,12 +19,12 @@
 
 ?>
 
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF'].'?category=1'; ?>" method="post">
 
     <h1>Inscription</h1>
 
     <div>
-        <label for="type">* Type utilisateur :</label>
+        <label for="type">Type utilisateur :</label>
         <select name="inscription[droit]">
             <option value='1'>Administrateur</option>
             <option value='2'>Restaurateur</option>
@@ -32,25 +32,30 @@
     </div>
 
     <div>
-        <label for="nom">* Nom :</label><input type="text" name="inscription[nom]" /><?php if(isset($oUser->aError['nom'])){echo $oUser->aError['nom'];} ?>
+        <label for="nom">Nom :</label><input type="text" name="inscription[nom]" /><?php if(isset($oUser->aError['nom'])){echo $oUser->aError['nom'];} ?>
     </div>
     <div>
-        <label for="prenom">* Prénom :</label><input type="text" name="inscription[prenom]" /><?php if(isset($oUser->aError['prenom'])){echo $oUser->aError['prenom'];} ?>
+        <label for="prenom">Prénom :</label><input type="text" name="inscription[prenom]" /><?php if(isset($oUser->aError['prenom'])){echo $oUser->aError['prenom'];} ?>
     </div>
     <div>
-        <label for="email">* Email :</label> <input type="text" name="inscription[email]" /><?php if(isset($oUser->aError['email'])){echo $oUser->aError['email'];} ?>
+        <label for="email">Email :</label> <input type="text" name="inscription[email]" /><?php if(isset($oUser->aError['email'])){echo $oUser->aError['email'];} ?>
     </div>
     <div>
-        <label for="password">* Mot de Passe :</label><input type="password" name="inscription[mdp]" id="mdp" /><?php if(isset($oUser->aError['mdp'])){echo $oUser->aError['mdp'];} ?>
+        <label for="password">Mot de Passe :</label><input type="password" name="inscription[mdp]" id="mdp" /><?php if(isset($oUser->aError['mdp'])){echo $oUser->aError['mdp'];} ?>
     </div>
     <div>
-        <label for="confirm">* Confirmer le mot de passe :</label><input type="password" name="inscription[confirm]" id="confirm" />
+        <label for="confirm">Confirmer le mot de passe :</label><input type="password" name="inscription[confirm]" id="confirm" />
     </div>
 
-    <p>Les champs précédés d'un * sont obligatoires</p>
+    <p>Tous les champs sont obligatoires</p>
 
     <p><input type="submit" value="Valider" />
 </form>
+
+<body>
+	<p><a href="index.php?category=4">Retour au menu</a></p>
+</body>
+
 
 <?php
 

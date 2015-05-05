@@ -9,6 +9,9 @@ include 'include/header.inc.php';
 		<meta charset="utf-8" /> 
 		<title>Details Restaurant</title> 
 	</head> 
+	<body>
+		<p><a href="index.php?category=4"> Retour au menu</a></p>
+	</body>
 </html>
 
 <?php

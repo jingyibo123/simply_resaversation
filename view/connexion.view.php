@@ -21,19 +21,18 @@
 
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
-    <h1>Connexion</h1>
+    <h1>Bienvenue sur le site de réservation SimplyCE</h1>
+	
+	<h2>Connexion</h2>
 
 
   
     <div>
-        <label for="email">* Email :</label> <input type="text" name="connexion[email]" /><?php /* if(isset($oUser->aError['email'])){echo $oUser->aError['email'];} */ ?>
+        <label for="email">Email :</label> <input type="text" name="connexion[email]" /><?php /* if(isset($oUser->aError['email'])){echo $oUser->aError['email'];} */ ?>
     </div>
     <div>
-        <label for="password">* Mot de Passe :</label><input type="password" name="connexion[mdp]" id="mdp" /><?php  /* if(isset($oUser->aError['mdp'])){echo $oUser->aError['mdp'];} */  ?>
+        <label for="password">Mot de Passe :</label><input type="password" name="connexion[mdp]" id="mdp" /><?php  /* if(isset($oUser->aError['mdp'])){echo $oUser->aError['mdp'];} */  ?>
     </div>
-
-
-    <p>Les champs précédés d'un * sont obligatoires</p>
 
     <p><input type="submit" value="Connexion" />
 </form>

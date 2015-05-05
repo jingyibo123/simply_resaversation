@@ -7,10 +7,13 @@
 	vues.
 
 / ------------------------------------------------------------------------- */
+
 	$iCategory = isset($_GET['offre']) ? 31 : 0;
 	if($iCategory!=31){$iCategory = isset($_GET['category']) && $_GET['category'] > 0 ? $_GET['category'] : 0;}
 
+
 	switch($iCategory){
+		
 		case 1:
 			define('ROOTING', 'view/inscription.view.php');
 
@@ -48,6 +51,7 @@
 				}
 			}
 		break;
+		
 		case 0:
 			define('ROOTING', 'view/connexion.view.php');
 			
@@ -58,25 +62,25 @@
 				$sMdp = md5($_POST['connexion']['mdp']);
 				
 				if(empty($oUser->aError)){
-				require_once 'class/bdd.class.php';
-				
-				
-				$oBdd = new Bdd();
-				$aUserdata = $oBdd->user_checkData($sEmail,$sMdp);
-				
-				if (!empty($aUserdata)){
-					$_SESSION['id_user'] = $aUserdata['id_user'];
-					$_SESSION['prenom'] = $aUserdata['prenom'];
-					$_SESSION['nom'] = $aUserdata['nom'];
-					$_SESSION['droit'] = $aUserdata['droit'];
-
-					header('Location: index.php?category=4');
-				}
-				else{
+					require_once 'class/bdd.class.php';
 					
-					echo 'error_log';
-					define('ROOTING', 'view/connexion.view.php');
-				}
+					
+					$oBdd = new Bdd();
+					$aUserdata = $oBdd->user_checkData($sEmail,$sMdp);
+					
+					if (!empty($aUserdata)){
+						$_SESSION['id_user'] = $aUserdata['id_user'];
+						$_SESSION['prenom'] = $aUserdata['prenom'];
+						$_SESSION['nom'] = $aUserdata['nom'];
+						$_SESSION['droit'] = $aUserdata['droit'];
+
+						header('Location: index.php?category=4');
+					}
+					else{
+						
+						echo 'error_log';
+						define('ROOTING', 'view/connexion.view.php');
+					}
 				}
 			}
 			
@@ -164,8 +168,7 @@
 			$aListeRestaurants = $oBdd->getReservations($iId);
 		break;
 		case 31:
-			define('ROOTING', 'view/client.reserver.view.php');
-			$_SESSION['id_offre'] = $_GET['offre'];
+			define('ROOTING', 'view/calendrier.view.php');
 		break;
 	}
 
