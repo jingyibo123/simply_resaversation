@@ -282,6 +282,22 @@ class Bdd{
 	    	return $bReturn;
 	    }
 	}
+	public function reservation_putdata($iId){
+		$bdd = $this->bdd;
+
+		$req=$bdd->prepare('SELECT * FROM reservation WHERE id=?');
+
+	    $bReturn = $req->execute(array($iId));
+
+	    if($bReturn == true){
+	    	$aRetour = $req->fetch();
+	    	$req->CloseCursor();
+	    	return $aRetour;
+	    }else{
+	    	$req->CloseCursor();
+	    	return $bReturn;
+	    }
+	}
 	public function calendar_getAvailability($iIdresto, $sStartDate, $sEndDate){
 		$bdd = $this->bdd;
 		$calendrier = Array ();

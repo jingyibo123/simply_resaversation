@@ -10,9 +10,15 @@
 	include '../include/parametres.inc.php';
 	require_once '../class/bdd.class.php';
 	$oBdd = new Bdd();
-
-			$calendrier = $oBdd->calendar_getAvailability($_SESSION['id_offre'], $_POST['start'], $_POST['end']);
-			echo json_encode($calendrier);
+	
+	$calendrier = 
+	 : $('#OrderDetailDateTime').val(), 
+				  : $('#OrderDetailNbTable').val(), 
+				 NOM : $('#OrderDetailNom').val(), 
+				 PRENOM : $('#OrderDetailPrenom').val(), 
+				 EMAIL_CLIENT : $('#OrderDetailEmail').val()
+	$oBdd->reservation_putdata($_SESSION['id_offre'], $_POST['DATE_RESA'], $_POST['NB_TABLES']);
+	echo json_encode($calendrier);
 
 		
 
