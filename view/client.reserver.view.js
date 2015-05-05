@@ -127,6 +127,7 @@ $(document).ready(function() {
 			data: {
 				 DATE_RESA : $('#OrderDetailDateTime').val(), 
 				 NB_TABLES : $('#OrderDetailNbTable').val(), 
+				 NB_PERSONNE : $('#OrderDetailNbPrs').val(), 
 				 NOM : $('#OrderDetailNom').val(), 
 				 PRENOM : $('#OrderDetailPrenom').val(), 
 				 EMAIL_CLIENT : $('#OrderDetailEmail').val()

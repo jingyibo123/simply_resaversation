@@ -43,6 +43,9 @@
 		<td><label for='OrderDetailNbTable'>Nombre de Tables</label></td>
 		<td><input name='reservation[NB_TABLES]' type='text' id='OrderDetailNbTable' /></td></tr>
 	<tr>
+		<td><label for='OrderDetailNbPrs'>Nombre de Personnes</label></td>
+		<td><input name='reservation[NB_PERSONNE]' type='text' id='OrderDetailNbPrs' /></td></tr>
+	<tr>
 		<td><label for='OrderDetailNom'>Nom</label></td>
 		<td><input name='reservation[NOM]' type='text' id='OrderDetailNom' /></td></tr>
 	<tr>
