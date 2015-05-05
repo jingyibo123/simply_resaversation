@@ -327,7 +327,7 @@ class Bdd{
 	}
 	public function reservation_putdata($iIdoffre, $sEmail, $sNom, $sPrenom, $dDate_resa, $iNbtables, $iNbPrs ){
 		$bdd = $this->bdd;
-		$dDate_cree = 
+		//$dDate_cree = 
 		$req=$bdd->prepare('SELECT * FROM reservation WHERE id=?');
 
 	    $bReturn = $req->execute(array($iId));
