@@ -3,6 +3,7 @@
 	//Afin d'afficher les erreurs php
 	error_reporting(E_ALL); 
 	ini_set('display_errors', 1);
+	
 
 /* ------------------------------------------------------------------------- /
                         
@@ -80,6 +81,8 @@
 		$iDroit = 0;
 	}
 	
+	//////////////////////////MODIFICATION MARIN ////////////////////////////
+	
 	switch($iDroit){
 		case 0 : //visiteur
 			$aPermission['site'] = LIRE;
@@ -88,6 +91,10 @@
 		case 1: //administrateur
 			$aPermission['site'] = LIRE;
 			$aPermission['admin'] = LIRE + CREER + MODIFIER + SUPPRIMER;
+		break;
+		case 2: //restaurateur
+			$aPermission['site'] = LIRE + MODIFIER;
+			$aPermission['admin'] = 0;
 		break;
 	}
 

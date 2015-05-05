@@ -67,11 +67,11 @@ class Bdd{
 	    $bReturn = $req->execute();
 	    $req->CloseCursor();
 
-	    if($bReturn == true){
-	    	return $bdd->lastInsertId();
-	    }else{
+	    // if($bReturn == true){
+	    	// return $bdd->lastInsertId();
+	    // }else{
 	    	return $bReturn;
-	    }
+	    
 	}
 
 	public function user_update($oUser){
@@ -106,6 +106,130 @@ class Bdd{
 		//Techniquement une adresse email est associée à un unique ID. A vérifier !
 		return $iId;
 	}
+	
+	public function getRestaurants(){
+		$bdd = $this->bdd;
+		
+		$req = $bdd->prepare('SELECT NOM, ID_RESTO FROM RESTAURANT WHERE ACTIF = 2');
+		$aListe = $req->execute(array());
+		
+		echo "Liste des restaurants </br></br>";
+		while ($donnees = $req->fetch()) {
+			echo  $donnees['NOM'].' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>">Détails</a><?php 
+			echo'<br />'; 
+		}
+		
+		$req->closeCursor();
+		
+	}
+	
+	// Liste des restaurateurs
+	public function getRestaurateurs() {
+		$bdd = $this->bdd;
+		
+		$req = $bdd->prepare('SELECT ID_USER, NOM, PRENOM FROM MEMBRE WHERE MEMBRE.DROIT = 2 GROUP BY NOM');
+		$aListe = $req->execute(array());
+		
+		echo "Liste des restaurateurs </br></br>";
+		while ($donnees = $req->fetch()) {
+			echo  $donnees['NOM'].' '.$donnees['PRENOM'] ?> <a href="index.php?category=8&&id=<?php echo $donnees['ID_USER'];?>">Restaurants</a><?php 
+			echo'<br />'; 
+		}
+		
+		$req->closeCursor();
+
+	}
+	
+	
+	// Liste des restaurants par restaurateurs
+	public function getRestaurantParRestaurateur($iId) {
+		$bdd1 = $this->bdd;
+
+		$req1 = $bdd1->prepare("SELECT NOM, PRENOM FROM MEMBRE WHERE MEMBRE.ID_USER = $iId");
+		$aListe1 = $req1->execute(array());
+		
+		$donnees1 = $req1->fetch();
+		echo 'Liste des restaurants de '.$donnees1['PRENOM'].' '.$donnees1['NOM'].' : <br /><br />'; 
+
+		$req1->closeCursor();
+		
+		$bdd2 = $this->bdd;
+
+		$req2 = $bdd2->prepare("SELECT NOM, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = $iId AND ACTIF=2");
+		$aListe2 = $req2->execute(array());
+
+		
+		while ($donnees2 = $req2->fetch()) {
+			echo  $donnees2['NOM'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees2['ID_RESTO'];?>">Details</a><?php
+			echo '<br/>';
+		}
+		
+		$req2->closeCursor();
+	
+	}
+	
+	
+	// Détails d'un restaurants
+	public function getDetailRestaurant($iId) {
+		$bdd = $this->bdd;
+
+		$req = $bdd->prepare("SELECT NOM, ADRESSE, TELEPHONE,DESCRIPTIF, IMAGE, ACTIF FROM RESTAURANT WHERE RESTAURANT.ID_RESTO = $iId AND ACTIF=2");
+		$aListe = $req->execute(array());
+		
+		$donnees = $req->fetch();
+		echo 'Restaurant : '.$donnees['NOM'].' <br /><br />'; 
+		echo 'ADRESSE : '.$donnees['ADRESSE'].'<br/>';
+		echo 'TELEPHONE : '.$donnees['TELEPHONE'].'<br/>';
+		echo 'DESCRIPTIF : '.$donnees['DESCRIPTIF'].'<br/>';
+		echo 'IMAGE : '.$donnees['IMAGE'].'<br/>';
+		echo 'ACTIF : '.$donnees['ACTIF'].'<br/>';
+
+		$req->closeCursor();
+	
+	}
+	
+	
+	// Liste des restaurants d'un restaurateur
+	public function getRestaurantsRestaurateur($iId) {
+		$bdd = $this->bdd;
+
+		$req = $bdd->prepare("SELECT NOM, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = $iId");
+		$aListe = $req->execute(array());
+		
+		echo "La liste de mes restaurants <br/><br/>";
+		
+		while ($donnees = $req->fetch()) {
+			echo  $donnees['NOM'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">Details</a><?php
+			echo '<br/>';
+		}
+		
+		$req->closeCursor();
+	
+	}
+	
+	
+	// Liste des réservations par restaurateur
+	public function getReservations($iId) {
+		$bdd = $this->bdd;
+
+		$req = $bdd->prepare("SELECT NOM, PRENOM, DATE_RESA, NB_TABLES, NB_PRS, EMAIL_CLIENT FROM RESERVATION WHERE RESERVATION.ID_USER = $iId");
+		$aListe = $req->execute(array());
+		
+		echo "La liste de mes reservations : <br/><br/>";
+		
+		while ($donnees = $req->fetch()) {
+			echo  'Le '.$donnees['DATE_RESA'].' : '.$donnees['NB_TABLES'].' table(s) pour '.$donnees['NB_PRS'].' personne(s) au nom de ';
+			echo $donnees['PRENOM'].' '.$donnees['NOM'].' (Email : '.$donnees['EMAIL_CLIENT'].')';
+			echo '<br/><br/>';
+		}
+		
+		$req->closeCursor();
+	
+	}
+
+
+
+	
 	
 	// RESTAURATEURS 
 	public function user_getListeRestaurants($iId_user) {

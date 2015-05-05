@@ -37,10 +37,14 @@
 
 					$iReturnIdent = $oBdd->user_insert($oUser);
 
-					if($iReturnIdent > 0){
-						$_SESSION['id_user'] = $iReturnIdent;
-						header('Location: view/message.view.php');
+					if($iReturnIdent ){
+						//$_SESSION['id_user'] = $iReturnIdent;
+						header('Location: index.php?category=6');
 					}
+					else{
+						echo 'erreur inscription';
+						header('Location: index.php?category=1');
+					}	
 				}
 			}
 		break;
@@ -61,12 +65,11 @@
 				$aUserdata = $oBdd->user_checkData($sEmail,$sMdp);
 				
 				if (!empty($aUserdata)){
-					 $_SESSION['id_user'] = $aUserdata['id_user'];
-					 echo 'les droits de l utilisateur sont ' . $oConnectUser->getDroit();
-					// $_SESSION['prenom'] = $oBdd->user_checkData($sEmail,$sMdp)['prenom'];
-					// $_SESSION['nom'] = $oBdd->user_checkData($sEmail,$sMdp)['nom'];
+					$_SESSION['id_user'] = $aUserdata['id_user'];
+					$_SESSION['prenom'] = $aUserdata['prenom'];
+					$_SESSION['nom'] = $aUserdata['nom'];
 					$_SESSION['droit'] = $aUserdata['droit'];
-					//require_once 'include/parametres.inc.php';
+
 					header('Location: index.php?category=4');
 				}
 				else{
@@ -95,6 +98,72 @@
 			define('ROOTING', 'include/menu.inc.php');
 			
 		break;
+		
+		case 5:
+			define('ROOTING', 'view/restaurants.view.php');
+			require_once 'class/bdd.class.php';
+			$oBdd = new Bdd();
+			
+				$aListeRestaurants = $oBdd->getRestaurants();
+				
+		break;
+		
+		case 6:
+			define('ROOTING', 'view/message.view.php');
+			
+				
+		break;
+		
+		case 7:
+			define('ROOTING', 'view/restaurateurs.view.php');
+			
+			require_once 'class/bdd.class.php';
+
+			$oBdd = new Bdd();
+			
+			$aListeRestaurateurs = $oBdd->getRestaurateurs();
+		break;
+		
+		case 8:
+			define('ROOTING', 'view/restoParRestaurateur.view.php');
+			
+			require_once 'class/bdd.class.php';
+
+			$oBdd = new Bdd();
+			$iId = $_GET['id'];
+			$aListeRestaurants = $oBdd->getRestaurantParRestaurateur($iId);
+		break;
+		
+		case 9:
+			define('ROOTING', 'view/detailRestaurant.view.php');
+			
+			require_once 'class/bdd.class.php';
+
+			$oBdd = new Bdd();
+			$iId = $_GET['id'];
+			$aListeRestaurants = $oBdd->getDetailRestaurant($iId);
+		break;
+		
+		case 10:
+			define('ROOTING', 'view/restaurantsRestaurateur.view.php');
+			
+			require_once 'class/bdd.class.php';
+			
+			$oBdd = new Bdd();
+			$iId = $_SESSION['id_user'];
+			$aListeRestaurants = $oBdd->getRestaurantsRestaurateur($iId);
+		break;
+		
+		case 11:
+			define('ROOTING', 'view/reservations.view.php');
+			
+			require_once 'class/bdd.class.php';
+			
+			$oBdd = new Bdd();
+			$iId = $_SESSION['id_user'];
+			$aListeRestaurants = $oBdd->getReservations($iId);
+		break;
+
 	}
 
 ?>

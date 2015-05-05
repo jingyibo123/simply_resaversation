@@ -1,4 +1,4 @@
-<?php include ('parametres.php'); ?>
+
 <!DOCTYPE html>
 <html>
 	<nav id="menu">
@@ -6,8 +6,8 @@
 			<ul id="onglets">
 				<?php
 				
-				if (!empty($iTypeUtilisateur)){
-				switch ($iTypeUtilisateur)
+				if (!empty($_SESSION['droit'])){
+				switch ($_SESSION['droit'])
 				{ 
 					case null:
 					break;
@@ -20,17 +20,17 @@
 					case "2": // Restaurateur : A créer
 					?>
 						<li><a href="CompteRestaurateur.html"> Mon Compte R</a></li>
-						<li><a href="RestaurantsRestaurateur.html"> Mes Restaurants R</a></li>
+						<li><a href="index.php?category=10"> Mes Restaurants R</a></li>
 						<li><a href="OffresRestaurateur.html"> Mes Offres R</a></li>
-						<li><a href="ReservationsRestaurateur.html"> Mes Réservations R</a></li>
+						<li><a href="index.php?category=11"> Mes Reservations R</a></li>
 					<?php break;
 					
-					case "4" OR "6": // Moderateur ou Administrateur : A créer
+					case "1": // Administrateur : A créer
 					?>
-						<li><a href="CompteModerateur.html"> Mon Compte M</a></li>
-						<li><a href="OffresModerateur.html"> Offres M</a></li>
-						<li><a href="RestaurantsModerateur.html"> Restaurants M</a></li>
-						<li><a href="RestaurateursModerateur.html"> Restaurateurs M</a></li>
+						<li><a href="CompteModerateur.html"> Mon Compte </a></li>
+						<li><a href="OffresModerateur.html"> Offres </a></li>
+						<li><a href="index.php?category=7"> Restaurateurs </a></li>
+						<li><a href="index.php?category=5"> Restaurants </a></li>
 						<li><a href="index.php?category=1"> Inscrire un membre</a></li>
 					<?php break;
 					

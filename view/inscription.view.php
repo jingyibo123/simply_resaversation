@@ -27,8 +27,7 @@
         <label for="type">* Type utilisateur :</label>
         <select name="inscription[droit]">
             <option value='1'>Administrateur</option>
-            <option value='2'>Modérateur</option>
-            <option value='3'>Restaurateur</option>
+            <option value='2'>Restaurateur</option>
         </select>
     </div>
 

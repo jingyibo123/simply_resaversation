@@ -135,7 +135,23 @@ class User
 			$this->aError['email'] = 'error_vide';
 		}elseif(strlen($this->sEmail) > 50){
 			$this->aError['email'] = 'error_trop_long';
+		}elseif(!preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$#",$this->sEmail)){
+			$this->aError['email'] = 'error_invalide';
 		}
+		
+		
+		///////////////// MODIFICATION MARIN ////////////////////////////////////////////////////////
+		
+		
+		//On vérifie la forme maintenant
+		/* if (!preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$#",$this->sEmail))
+		{
+			$this->aError['email'] = 'error_invalide';
+		} */
+		
+		
+		/////////////////FIN MODIFICATION///////////////////////////////////////////////////////////
+		
 
 		if($this->sMdp == ''){
 			$this->aError['mdp'] = 'error_vide';
