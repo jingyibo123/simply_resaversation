@@ -21,7 +21,7 @@
 					?>
 						<li><a href="CompteRestaurateur.html"> Mon Compte R</a></li>
 						<li><a href="index.php?category=10"> Mes Restaurants R</a></li>
-						<li><a href="OffresRestaurateur.html"> Mes Offres R</a></li>
+						<li><a href="index.php?category=12"> Mes Offres R</a></li>
 						<li><a href="index.php?category=11"> Mes Reservations R</a></li>
 					<?php break;
 					
