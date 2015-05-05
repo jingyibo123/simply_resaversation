@@ -12,6 +12,6 @@
 / ------------------------------------------------------------------------- */
 
 	include 'include/parametres.inc.php';
-	
+	include 'include/rooting.inc.php';
 	include ROOTING;
 ?>

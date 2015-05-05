@@ -282,5 +282,74 @@ class Bdd{
 	    	return $bReturn;
 	    }
 	}
+	public function calendar_getAvailability($iIdresto, $sStartDate, $sEndDate){
+		$bdd = $this->bdd;
+		$calendrier = Array ();
+		for($date = strtotime($sStartDate); $date <= strtotime($sEndDate); $date = strtotime("+1days",$date)){
+			$req = $bdd->prepare('SELECT * FROM `calendrier_hebdo`  WHERE `id_resto` = ? and `jour` = ?');
+			$jour = date("w",$date);
+			if($bReturn = $req->execute(array($iIdresto,$jour))){
+				while($row = $req -> fetch()){
+					$calendrier[date("Y-m-d",$date)][$row['HORAIRE']] = $row['NB_TABLES'];
+				}
+				$req->CloseCursor();
+			}else{
+				$req->CloseCursor();
+				return $bReturn;
+			}
+		}
+		$req = $bdd->prepare('SELECT * FROM `calendrier_exception`  WHERE `id_resto` = ?');
+		if($bReturn = $req->execute(array($iIdresto))){
+			while($row = $req -> fetch()){
+				if(strtotime($sStartDate) <= strtotime($row['DATE_EXCEPTION']) && strtotime($row['DATE_EXCEPTION']) <= strtotime($sEndDate)){
+					if($row['NB_TABLES']!=0)
+						$calendrier[$row['DATE_EXCEPTION']][$row['HORAIRE']] = $row['NB_TABLES'];
+					else
+						unset($calendrier[$row['DATE_EXCEPTION']][$row['HORAIRE']]);
+				}
+			}
+		}else{
+			$req->CloseCursor();
+			return $bReturn;
+		}
+		
+		//定义空闲时间减去已订数量
+		// $req = $bdd->prepare('SELECT * FROM `reservation`   WHERE `ID_OFFRE` = ? and `DATE_RESA` Between ? And ?');
+		// if($bReturn = $req->execute(array($iIdoffre,$sStartDate,$sEndDate))){
+			// while($row = $req -> fetch()){
+				// array_push($calendrier, $row);
+			// }
+			// $req->CloseCursor();
+		// }else{
+			// $req->CloseCursor();
+			// return $bReturn;
+		// }
+		
+		
+		foreach ($calendrier as $date => $calendrier_jour){
+			if(empty($calendrier[$date]))
+				unset($calendrier[$date]);
+		}
+		$db = null;
+		return $calendrier;
+	}
+	public function reservation_get_month($iIdoffre, $sStartDate, $sEndDate){
+		$bdd = $this->bdd;
+		$calendrier = Array ();
+		$req = $bdd->prepare('SELECT * FROM `reservation`   WHERE `ID_OFFRE` = ? and `DATE_RESA` Between ? And ?');
+		if($bReturn = $req->execute(array($iIdoffre,$sStartDate,$sEndDate))){
+			while($row = $req -> fetch()){
+				array_push($calendrier, $row);
+			}
+			$req->CloseCursor();
+		}else{
+			$req->CloseCursor();
+			return $bReturn;
+		}
+		
+		
+		$db = null;
+		return $calendrier;
+	}
 }
 ?>

@@ -7,8 +7,8 @@
 	vues.
 
 / ------------------------------------------------------------------------- */
-
-	$iCategory = isset($_GET['category']) && $_GET['category'] > 0 ? $_GET['category'] : 0;
+	$iCategory = isset($_GET['offre']) ? 31 : 0;
+	if($iCategory!=31){$iCategory = isset($_GET['category']) && $_GET['category'] > 0 ? $_GET['category'] : 0;}
 
 	switch($iCategory){
 		case 1:
@@ -163,7 +163,9 @@
 			$iId = $_SESSION['id_user'];
 			$aListeRestaurants = $oBdd->getReservations($iId);
 		break;
-
+		case 31:
+			define('ROOTING', 'view/calendrier.view.php');
+		break;
 	}
 
 ?>

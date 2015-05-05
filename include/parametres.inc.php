@@ -99,6 +99,6 @@
 	}
 
 
-//je définis le rooting de l'application
-include 'include/rooting.inc.php';
+
+
 ?>
