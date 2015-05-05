@@ -43,7 +43,7 @@
 					
 				}
 				//S'il n'y a aucun retour d'erreur
-				if(empty($oUser->aError)){
+				elseif(empty($oUser->aError)){
 
 					
 
