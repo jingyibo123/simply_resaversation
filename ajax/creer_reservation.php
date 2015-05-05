@@ -14,10 +14,10 @@
 	$calendrier = 
 	 : $('#OrderDetailDateTime').val(), 
 				  : $('#OrderDetailNbTable').val(), 
-				 NOM : $('#OrderDetailNom').val(), 
+				  : $('#OrderDetailNom').val(), 
 				 PRENOM : $('#OrderDetailPrenom').val(), 
-				 EMAIL_CLIENT : $('#OrderDetailEmail').val()
-	$oBdd->reservation_putdata($_SESSION['id_offre'], $_POST['DATE_RESA'], $_POST['NB_TABLES']);
+				  : $('#OrderDetailEmail').val()
+	$oBdd->reservation_putdata($_SESSION['id_offre'], $_POST['reservation']['EMAIL_CLIENT'], $_POST['NOM'], $_POST['reservation']['PRENOM'], $_POST['reservation']['DATE_RESA'], $_POST['reservation']['NB_TABLES'], $_POST['reservation']['NB_PERSONNE'] );
 	echo json_encode($calendrier);
 
 		
