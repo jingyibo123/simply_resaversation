@@ -42,8 +42,8 @@ $(document).ready(function() {
 				url: 'ajax/lire_calendrier_dispo.php',
 				type: 'POST',
 				dataType: 'json',
+				cache: false,
 				data: {
-					idresto: 1,
 					start: start.format('YYYY-MM-DD'),
 					end: end.format('YYYY-MM-DD'),
 				},
@@ -122,7 +122,8 @@ $(document).ready(function() {
 	$('#VldBtn').click(function(){
 		$.ajax({
 			type: 'POST',
-			url: 'classe_calendrier2.php?o=2',
+			cache: false,
+			url: 'ajax/creer_reservation.php',
 			data: {
 				 DATE_RESA : $('#OrderDetailDateTime').val(), 
 				 NB_TABLES : $('#OrderDetailNbTable').val(), 

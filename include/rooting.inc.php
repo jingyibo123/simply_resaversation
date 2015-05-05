@@ -164,7 +164,8 @@
 			$aListeRestaurants = $oBdd->getReservations($iId);
 		break;
 		case 31:
-			define('ROOTING', 'view/calendrier.view.php');
+			define('ROOTING', 'view/client.reserver.view.php');
+			$_SESSION['id_offre'] = $_GET['offre'];
 		break;
 	}
 

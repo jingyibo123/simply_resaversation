@@ -8,7 +8,7 @@
         <script src='//fullcalendar.io/js/fullcalendar-2.3.1/fullcalendar.min.js'></script>
         <script src='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/lang/fr.js'></script>
 		<script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
-		<script src='view/calendrier.view.js'></script>
+		<script src='view/client.reserver.view.js'></script>
     ";
     include 'include/header.inc.php';
 ?>

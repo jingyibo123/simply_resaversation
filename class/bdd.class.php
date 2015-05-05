@@ -282,9 +282,13 @@ class Bdd{
 	    	return $bReturn;
 	    }
 	}
-	public function calendar_getAvailability($iIdresto, $sStartDate, $sEndDate){
+	public function calendar_getAvailability($iIdoffre, $sStartDate, $sEndDate){
 		$bdd = $this->bdd;
 		$calendrier = Array ();
+		//chercher idresto selon idoffre
+		$iIdresto = 
+		
+		
 		for($date = strtotime($sStartDate); $date <= strtotime($sEndDate); $date = strtotime("+1days",$date)){
 			$req = $bdd->prepare('SELECT * FROM `calendrier_hebdo`  WHERE `id_resto` = ? and `jour` = ?');
 			$jour = date("w",$date);
