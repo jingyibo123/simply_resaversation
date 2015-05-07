@@ -27,9 +27,9 @@ $aRestaurant = $oBdd->restaurant_getData("$iId");
         <p>Descriptif : </p><textarea name="modification[descriptif]" rows="7" cols="100"><?php echo ''.$aRestaurant['DESCRIPTIF']; ?></textarea>
     </div>
 	
-<!--    <div>
+    <div>
         <p>Image : </p><input type="file" name="modification[image]" />
-    </div>-->
+    </div>
 
     <p></br><input name="Modifier" value="Modifier" type="submit" /></p>
 </form>

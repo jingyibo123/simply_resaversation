@@ -6,7 +6,7 @@ class Restaurant {
     private $sAdresse;
 	private $sTelephone;
 	private $sDescriptif; 
-   	private $fImage; 
+   	private $sImage; 
 
 	public $aError;
 
@@ -28,7 +28,7 @@ class Restaurant {
    						$this->sDescriptif = $v;
    					break;
    					case 'image':
-   						$this->fImage = $v;
+   						$this->sImage = $v;
    					break;
    				}
    			}
@@ -54,7 +54,7 @@ class Restaurant {
 	}
 	
 	public function getImage(){
-		return $this->fImage;
+		return $this->sImage;
 	}
 
 	
@@ -76,8 +76,8 @@ class Restaurant {
 		$this->sDescriptif = $sNewDescriptif;
 	}
 	
-	public function setImage($fNewImage){
-		$this->fImage = $fNewImage;
+	public function setImage($sNewImage){
+		$this->sImage = $sNewImage;
 	}
 
 
@@ -109,7 +109,7 @@ class Restaurant {
 			$this->aError['descriptif'] = 'error_trop_long';
 		}
 
-		if($this->fImage == ''){
+		if($this->sImage == ''){
 			$this->aError['image'] = 'error_vide';
 		}
 	}

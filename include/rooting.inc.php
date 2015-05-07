@@ -190,38 +190,40 @@
 		case 13: 
 			define('ROOTING', 'view\modificationRestaurant.view.php');
 			
-			$iId = $_GET['id'];
+			require_once 'class/bdd.class.php';
+			require_once 'class/restaurant.class.php';
 			
 			if(isset($_POST['modification']) && !empty($_POST['modification'])){
 
-				require_once 'class/restaurant.class.php';
-
+				$sNom = $_POST['modification']['nom'];
+				$sAdresse = $_POST['modification']['adresse'];
+				$sTelephone = $_POST['modification']['telephone'];
+				$sDescriptif = $_POST['modification']['descriptif'];
+				$sImage = $_POST['modification']['image'];
+				$iId = $_GET['id'];
+				
 				$oRestaurant = new Restaurant();
-
-				$oRestaurant->setNom($_POST['modification']['nom']);
-				$oRestaurant->setAdresse($_POST['modification']['adresse']);
-				$oRestaurant->setTelephone($_POST['modification']['telephone']);
-				$oRestaurant->setDescriptif($_POST['modification']['descriptif']);
-//				$oRestaurant->setImage($_POST['modification']['image']);
-
+				$oRestaurant->setNom($sNom);
+				$oRestaurant->setAdresse($sAdresse);
+				$oRestaurant->setTelephone($sTelephone);
+				$oRestaurant->setDescriptif($sDescriptif);
+				$oRestaurant->setImage($sImage);
+				
 				$oRestaurant->validation();
+				
+//				if (empty($oRestaurant->aError)) {
+					$oBdd = new Bdd();
 					
-				require_once 'class/bdd.class.php';
-
-				$oBdd = new Bdd();
-					
-				//S'il n'y a aucun retour d'erreur
-				if(empty($oRestaurant->aError)){
-					$bModifResto = $oBdd->updateRestaurant($iId);
-
+					$aModifResto = $oBdd->updateRestaurant($iId, $sNom, $sAdresse, $sTelephone, $sDescriptif, $sImage);
+						
 					if($bModifResto ){
 						header('Location: index.php?category=14');
 					}
 					else{
-						echo 'erreur inscription';
+						echo 'Erreur modification : Merci de remplir à nouveau le formulaire';
 						header('Location: index.php?category=13&&id='.$iId);
-					}	
-				}
+					}
+//				}
 			}
 		break;
 		

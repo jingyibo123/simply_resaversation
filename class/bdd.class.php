@@ -291,21 +291,13 @@ class Bdd{
 	
 	
 	// Modification restaurant
-	public function updateRestaurant($iId) {
+	public function updateRestaurant($iId, $sNom, $sAdresse, $sTelephone, $sDescriptif, $sImage) {
 		$bdd = $this->bdd;
 
-		$req=$bdd->prepare("UPDATE RESTAURANT SET NOM = :nom, ADRESSE = :adresse, TELEPHONE = :telephone, DESCRIPTIF = :descriptif WHERE ID_RESTO = $iId");
-
-	    $req->bindValue(':nom',$oRestaurant->getNom(), PDO::PARAM_STR);
-	    $req->bindValue(':adresse',$oRestaurant->getAdresse(), PDO::PARAM_STR);
-	    $req->bindValue(':telephone',$oRestaurant->getTelephone(), PDO::PARAM_STR);
-	    $req->bindValue(':descriptif',$oRestaurant->getDescriptif(), PDO::PARAM_STR);
-//	    $req->bindValue(':image',$oRestaurant->getImage(), PDO::PARAM_STR);
+		$req=$bdd->prepare("UPDATE RESTAURANT SET NOM = '$sNom', ADRESSE = '$sAdresse', TELEPHONE = '$sTelephone', DESCRIPTIF = '$sDescriptif', IMAGE = '$sImage' WHERE ID_RESTO = '$iId'");
 
 	    $bReturn = $req->execute();
 	    $req->CloseCursor();
-
-    	return $bReturn;
 	}
 	
 	
