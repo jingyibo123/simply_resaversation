@@ -108,10 +108,6 @@ class Restaurant {
 		}elseif(strlen($this->sDescriptif) > 1000){
 			$this->aError['descriptif'] = 'error_trop_long';
 		}
-
-		if($this->sImage == ''){
-			$this->aError['image'] = 'error_vide';
-		}
 	}
 }
 

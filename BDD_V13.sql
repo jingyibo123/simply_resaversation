@@ -97,8 +97,8 @@ INSERT INTO `MEMBRE`(`ID_USER`, `EMAIL`, `NOM`, `PRENOM`, `MDP`, `DROIT`, `ACTIF
  ('','baptisterobert@gmail.com','Baptiste','ROBERT','482c811da5d5b4bc6d497ffa98491e38',1,1);  /*MDP: password123 */
 
 INSERT INTO `RESTAURANT`(`ID_RESTO`, `ID_USER`,`NOM_RESTO`, `ADRESSE`, `TELEPHONE`, `DESCRIPTIF`, `IMAGE`, `ACTIF`) VALUES
- ('',1,'La Bonne franquette','4 Allée Jean 44400 Nantes','+33 02 51 92 37 22','Très bonne','..\images\01\001.jpg',2),
- ('',1,'Le ventre plein','7 Place Royal 44400 Nantes','+33 02 19 64 87 34','Moyenne ...','..\images\01\002.jpg',2);
+ ('',1,'La Bonne franquette','4 Allée Jean 44400 Nantes','+33 02 51 92 37 22','Très bonne','images/pomme.jpg',2),
+ ('',1,'Le ventre plein','7 Place Royal 44400 Nantes','+33 02 19 64 87 34','Moyenne ...','images/gateau.jpg',2);
 
 INSERT INTO `CALENDRIER_HEBDO`(`ID_RESTO`, `JOUR`, `HORAIRE`, `NB_TABLES`, `ACTIF`) VALUES
  (1,1,'11:00:00',2,2),

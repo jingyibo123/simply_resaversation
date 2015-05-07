@@ -17,6 +17,7 @@ class Bdd{
 	private $bdd = '';
 	//public
 	public $aError;
+	
 
 	//Constructeur
 	//Si aucun paramètre ne lui est passé, il charge la base de données à partir des constantes
@@ -223,9 +224,14 @@ class Bdd{
 		echo 'Restaurant : '.$donnees['NOM_RESTO'].' <br /><br />'; 
 		echo 'ADRESSE : '.$donnees['ADRESSE'].'<br/>';
 		echo 'TELEPHONE : '.$donnees['TELEPHONE'].'<br/>';
-		echo 'DESCRIPTIF : '.$donnees['DESCRIPTIF'].'<br/>';
-		echo 'IMAGE : '.$donnees['IMAGE'].'<br/></br>';
-		?> <a href="index.php?category=13&&id=<?php echo $donnees['ID_RESTO'];?>">Modifier</a><?php
+		echo 'DESCRIPTIF : '.$donnees['DESCRIPTIF'].'<br/><br/>';
+		?> 
+		<a href="index.php?category=13&&id=<?php echo $donnees['ID_RESTO'];?>">Modifier</a>
+		<br><br>
+		<img src="images/<?php echo $donnees['IMAGE'];?>.JPG">
+		<a href="index.php?category=13&&id=<?php echo $donnees['ID_RESTO'];?>">Modifier Image</a>
+		<?php
+		echo '<br/><br/>'; 
 
 		$req->closeCursor();
 	
@@ -293,7 +299,7 @@ class Bdd{
 	public function updateRestaurant($iId, $sNom, $sAdresse, $sTelephone, $sDescriptif, $sImage) {
 		$bdd = $this->bdd;
 
-		$req=$bdd->prepare("UPDATE RESTAURANT SET NOM_RESTO = '$sNom', ADRESSE = '$sAdresse', TELEPHONE = '$sTelephone', DESCRIPTIF = '$sDescriptif', IMAGE = '$sImage' WHERE ID_RESTO = '$iId'");
+		$req=$bdd->prepare("UPDATE RESTAURANT SET NOM_RESTO = '$sNom', ADRESSE = '$sAdresse', TELEPHONE = '$sTelephone', DESCRIPTIF = '$sDescriptif' WHERE ID_RESTO = '$iId'");
 
 	    $bReturn = $req->execute();
 	    $req->CloseCursor();

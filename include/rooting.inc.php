@@ -199,7 +199,6 @@
 				$sAdresse = $_POST['modification']['adresse'];
 				$sTelephone = $_POST['modification']['telephone'];
 				$sDescriptif = $_POST['modification']['descriptif'];
-				$sImage = $_POST['modification']['image'];
 				$iId = $_GET['id'];
 				
 				$oRestaurant = new Restaurant();
@@ -207,14 +206,13 @@
 				$oRestaurant->setAdresse($sAdresse);
 				$oRestaurant->setTelephone($sTelephone);
 				$oRestaurant->setDescriptif($sDescriptif);
-				$oRestaurant->setImage($sImage);
 				
 				$oRestaurant->validation();
 				
 				if (empty($oRestaurant->aError)) {
 					$oBdd = new Bdd();
 					
-					$aModifResto = $oBdd->updateRestaurant($iId, $sNom, $sAdresse, $sTelephone, $sDescriptif, $sImage);
+					$aModifResto = $oBdd->updateRestaurant($iId, $sNom, $sAdresse, $sTelephone, $sDescriptif);
 						
 					if(!empty($aModifResto) ){
 						header('Location: index.php?category=14');
