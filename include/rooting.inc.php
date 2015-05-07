@@ -194,7 +194,7 @@
 			
 			$oBdd = new Bdd();
 			$iId = $_GET['id'];
-			$aModifRestaurants = $oBdd->updateRestaurant($iId);
+			$aDetailRestaurant = $oBdd->restaurant_getData($iId);
 		break;
 		
 		case 31:

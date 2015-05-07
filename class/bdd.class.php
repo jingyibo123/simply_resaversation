@@ -273,7 +273,7 @@ class Bdd{
 	
 	
 	// Modification restaurant
-	public function updateRestaurant($iId) {
+	public function restaurant_getData($iId) {
 		$bdd = $this->bdd;
 		
 		$req = $bdd->prepare("SELECT * FROM RESTAURANT WHERE RESTAURANT.ID_RESTO = $iId");
