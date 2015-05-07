@@ -277,7 +277,16 @@ class Bdd{
 		$bdd = $this->bdd;
 		
 		$req = $bdd->prepare("SELECT * FROM RESTAURANT WHERE RESTAURANT.ID_RESTO = $iId");
-		$aListe = $req->execute(array());
+	    $bReturn = $req->execute(array($iId));
+
+	    if($bReturn == true){
+	    	$aRetour = $req->fetch();
+	    	$req->CloseCursor();
+	    	return $aRetour;
+	    }else{
+	    	$req->CloseCursor();
+	    	return $bReturn;
+	    }
 	
 	}
 

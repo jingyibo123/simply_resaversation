@@ -2,30 +2,36 @@
 
 <?php
 include 'include/header.inc.php';
+
+require_once 'class/bdd.class.php';
+
+$oBdd = new Bdd();
+$iId = $_GET['id'];
+$aRestaurant = $oBdd->restaurant_getData("$iId");
 ?>
 
 <form action="<?php echo $_SERVER['PHP_SELF'].'?category=13'; ?>" method="post">
 
-    <h1>Modification du restaurant</h1>
+    <h1>Modification restaurant</h1>
 
     <div>
-        <label for="nom">Nom : </label><input type="text" name="modification[nom]" />
+        <p>Nom :</p><input type="text" name="modification[nom]" size="50" value="<?php echo ''.$aRestaurant['NOM']; ?>" />
     </div>
     <div>
-        <label for="adresse">Adresse : </label><input type="text" name="modification[adresse]" />
+        <p>Adresse : </p><input type="text" name="modification[adresse]" size="70" value="<?php echo ''.$aRestaurant['ADRESSE']; ?>" />
     </div>
     <div>
-        <label for="telephone">Téléphone : </label> <input type="text" name="modification[telephone]" />
+        <p>Téléphone : </p> <input type="text" name="modification[telephone]" value="<?php echo ''.$aRestaurant['TELEPHONE']; ?>" />
     </div>
     <div>
-        <label for="descriptif">Descriptif : </label><input type="text" name="modification[descriptif]" />
+        <p>Descriptif : </p><textarea name="modification[descriptif]" rows="7" cols="100"><?php echo ''.$aRestaurant['DESCRIPTIF']; ?></textarea>
     </div>
 	
     <div>
-        <label for="image">Image : </label><input type="file" name="modification[image]" />
+        <p>Image : </p><input type="file" name="modification[image]" />
     </div>
 
-    <p><input name="Modifier" value="Modifier" type="submit" />
+    <p><input name="Modifier" value="Modifier" type="submit" /></p>
 </form>
 
 
