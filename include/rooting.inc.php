@@ -190,11 +190,43 @@
 		case 13: 
 			define('ROOTING', 'view\modificationRestaurant.view.php');
 			
-			require_once 'class/bdd.class.php';
-			
-			$oBdd = new Bdd();
 			$iId = $_GET['id'];
-			$aDetailRestaurant = $oBdd->restaurant_getData($iId);
+			
+			if(isset($_POST['modification']) && !empty($_POST['modification'])){
+
+				require_once 'class/restaurant.class.php';
+
+				$oRestaurant = new Restaurant();
+
+				$oRestaurant->setNom($_POST['modification']['nom']);
+				$oRestaurant->setAdresse($_POST['modification']['adresse']);
+				$oRestaurant->setTelephone($_POST['modification']['telephone']);
+				$oRestaurant->setDescriptif($_POST['modification']['descriptif']);
+//				$oRestaurant->setImage($_POST['modification']['image']);
+
+				$oRestaurant->validation();
+					
+				require_once 'class/bdd.class.php';
+
+				$oBdd = new Bdd();
+					
+				//S'il n'y a aucun retour d'erreur
+				if(empty($oRestaurant->aError)){
+					$bModifResto = $oBdd->updateRestaurant($iId);
+
+					if($bModifResto ){
+						header('Location: index.php?category=14');
+					}
+					else{
+						echo 'erreur inscription';
+						header('Location: index.php?category=13&&id='.$iId);
+					}	
+				}
+			}
+		break;
+		
+		case 14:
+			define('ROOTING', 'view/messageModifResto.view.php');
 		break;
 		
 		case 31:
