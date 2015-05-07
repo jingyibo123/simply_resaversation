@@ -122,12 +122,12 @@ class Bdd{
 	public function getRestaurants(){
 		$bdd = $this->bdd;
 		
-		$req = $bdd->prepare('SELECT NOM, ID_RESTO FROM RESTAURANT WHERE ACTIF = 2');
+		$req = $bdd->prepare('SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE ACTIF = 2');
 		$aListe = $req->execute(array());
 		
 		echo "Liste des restaurants </br></br>";
 		while ($donnees = $req->fetch()) {
-			echo  $donnees['NOM'].' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>">Détails</a><?php 
+			echo  $donnees['NOM_RESTO'].' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>">Détails</a><?php 
 			echo'<br />'; 
 		}
 		
@@ -156,14 +156,14 @@ class Bdd{
 	public function getOffresParRestaurateur($iId){
 		$bdd1 = $this->bdd;
 
-		$req1 = $bdd1->prepare("SELECT NOM, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = :id_user AND RESTAURANT.ACTIF=2");
+		$req1 = $bdd1->prepare("SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = :id_user AND RESTAURANT.ACTIF=2");
 		$aListe1 = $req1->execute(array(
 					'id_user' => $iId));
 		
 
 		
 		while ($donnees1 = $req1->fetch()) {
-			echo 'Liste des offres du restaurant '.$donnees1['NOM'].' : <br /><br />'; 
+			echo 'Liste des offres du restaurant '.$donnees1['NOM_RESTO'].' : <br /><br />'; 
 			
 			$bdd2 = $this->bdd;
 			$req2 = $bdd2->prepare("SELECT ID_OFFRE, DESCRIPTIF FROM OFFRE WHERE OFFRE.ID_RESTO = :id AND ACTIF=2");
@@ -197,12 +197,12 @@ class Bdd{
 		
 		$bdd2 = $this->bdd;
 
-		$req2 = $bdd2->prepare("SELECT NOM, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = $iId AND ACTIF=2");
+		$req2 = $bdd2->prepare("SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = $iId AND ACTIF=2");
 		$aListe2 = $req2->execute(array());
 
 		
 		while ($donnees2 = $req2->fetch()) {
-			echo  $donnees2['NOM'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees2['ID_RESTO'];?>">Details</a><?php
+			echo  $donnees2['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees2['ID_RESTO'];?>">Details</a><?php
 			echo '<br/>';
 		}
 		
@@ -216,11 +216,11 @@ class Bdd{
 	public function getDetailRestaurant($iId) {
 		$bdd = $this->bdd;
 
-		$req = $bdd->prepare("SELECT ID_RESTO, NOM, ADRESSE, TELEPHONE,DESCRIPTIF, IMAGE, ACTIF FROM RESTAURANT WHERE RESTAURANT.ID_RESTO = $iId AND ACTIF=2");
+		$req = $bdd->prepare("SELECT ID_RESTO, NOM_RESTO, ADRESSE, TELEPHONE,DESCRIPTIF, IMAGE, ACTIF FROM RESTAURANT WHERE RESTAURANT.ID_RESTO = $iId AND ACTIF=2");
 		$aListe = $req->execute(array());
 		
 		$donnees = $req->fetch();
-		echo 'Restaurant : '.$donnees['NOM'].' <br /><br />'; 
+		echo 'Restaurant : '.$donnees['NOM_RESTO'].' <br /><br />'; 
 		echo 'ADRESSE : '.$donnees['ADRESSE'].'<br/>';
 		echo 'TELEPHONE : '.$donnees['TELEPHONE'].'<br/>';
 		echo 'DESCRIPTIF : '.$donnees['DESCRIPTIF'].'<br/>';
@@ -237,13 +237,13 @@ class Bdd{
 	public function getRestaurantsRestaurateur($iId) {
 		$bdd = $this->bdd;
 
-		$req = $bdd->prepare("SELECT NOM, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = $iId");
+		$req = $bdd->prepare("SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = $iId");
 		$aListe = $req->execute(array());
 		
 		echo "La liste de mes restaurants <br/><br/>";
 		
 		while ($donnees = $req->fetch()) {
-			echo  $donnees['NOM'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">Details</a><?php
+			echo  $donnees['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">Details</a><?php
 			echo '<br/>';
 		}
 		
@@ -256,7 +256,8 @@ class Bdd{
 	public function getReservations($iId) {
 		$bdd = $this->bdd;
 
-		$req = $bdd->prepare("SELECT NOM, PRENOM, DATE_RESA, NB_TABLES, NB_PRS, EMAIL_CLIENT FROM RESERVATION WHERE RESERVATION.ID_USER = $iId");
+//		$req = $bdd->prepare("SELECT * FROM RESERVATION WHERE RESERVATION.ID_USER = $iId");
+		$req = $bdd->prepare("SELECT * FROM RESERVATION INNER JOIN OFFRE ON RESERVATION.ID_OFFRE = OFFRE.ID_OFFRE INNER JOIN RESTAURANT ON OFFRE.ID_RESTO = RESTAURANT.ID_RESTO WHERE RESTAURANT.ID_USER = $iId");
 		$aListe = $req->execute(array());
 		
 		echo "La liste de mes reservations : <br/><br/>";
@@ -294,7 +295,7 @@ class Bdd{
 	public function updateRestaurant($iId, $sNom, $sAdresse, $sTelephone, $sDescriptif, $sImage) {
 		$bdd = $this->bdd;
 
-		$req=$bdd->prepare("UPDATE RESTAURANT SET NOM = '$sNom', ADRESSE = '$sAdresse', TELEPHONE = '$sTelephone', DESCRIPTIF = '$sDescriptif', IMAGE = '$sImage' WHERE ID_RESTO = '$iId'");
+		$req=$bdd->prepare("UPDATE RESTAURANT SET NOM_RESTO = '$sNom', ADRESSE = '$sAdresse', TELEPHONE = '$sTelephone', DESCRIPTIF = '$sDescriptif', IMAGE = '$sImage' WHERE ID_RESTO = '$iId'");
 
 	    $bReturn = $req->execute();
 	    $req->CloseCursor();
@@ -339,7 +340,7 @@ class Bdd{
 	public function reservation_getData($iId){
 		$bdd = $this->bdd;
 
-		$req=$bdd->prepare('SELECT * FROM reservation WHERE id=?');
+		$req=$bdd->prepare('SELECT * FROM RESERVATION WHERE id=?');
 
 	    $bReturn = $req->execute(array($iId));
 
@@ -355,7 +356,7 @@ class Bdd{
 	public function reservation_putdata($iIdoffre, $sEmail, $sNom, $sPrenom, $dDate_resa, $iNbtables, $iNbPrs ){
 		$bdd = $this->bdd;
 		//$dDate_cree = 
-		$req=$bdd->prepare('SELECT * FROM reservation WHERE id=?');
+		$req=$bdd->prepare('SELECT * FROM RESERVATION WHERE id=?');
 
 	    $bReturn = $req->execute(array($iId));
 
