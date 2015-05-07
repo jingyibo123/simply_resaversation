@@ -211,19 +211,19 @@
 				
 				$oRestaurant->validation();
 				
-//				if (empty($oRestaurant->aError)) {
+				if (empty($oRestaurant->aError)) {
 					$oBdd = new Bdd();
 					
 					$aModifResto = $oBdd->updateRestaurant($iId, $sNom, $sAdresse, $sTelephone, $sDescriptif, $sImage);
 						
-					if($bModifResto ){
+					if(!empty($aModifResto) ){
 						header('Location: index.php?category=14');
 					}
 					else{
 						echo 'Erreur modification : Merci de remplir à nouveau le formulaire';
 						header('Location: index.php?category=13&&id='.$iId);
 					}
-//				}
+				}
 			}
 		break;
 		

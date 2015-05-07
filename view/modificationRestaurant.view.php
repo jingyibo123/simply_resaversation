@@ -15,7 +15,7 @@ $aRestaurant = $oBdd->restaurant_getData("$iId");
     <h1>Modification restaurant</h1>
 
     <div>
-        <p>Nom :</p><input type="text" name="modification[nom]" size="50" value="<?php echo ''.$aRestaurant['NOM']; ?>" />
+        <p>Nom :</p><input type="text" name="modification[nom]" size="50" value="<?php echo ''.$aRestaurant['NOM_RESTO']; ?>" />
     </div>
     <div>
         <p>Adresse : </p><input type="text" name="modification[adresse]" size="70" value="<?php echo ''.$aRestaurant['ADRESSE']; ?>" />

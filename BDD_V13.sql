@@ -11,7 +11,7 @@ CREATE TABLE MEMBRE (
 CREATE TABLE RESTAURANT (
 	ID_RESTO INT(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	ID_USER INT(10) unsigned NOT NULL,
-	NOM VARCHAR(100),
+	NOM_RESTO VARCHAR(100),
 	ADRESSE VARCHAR(100),
 	TELEPHONE VARCHAR(20),
 	DESCRIPTIF VARCHAR(1000),
@@ -69,7 +69,6 @@ CREATE TABLE CONNEXION_ERRONEE (
 CREATE TABLE RESERVATION (
 	ID_RESA INT(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	ID_OFFRE INT(10)unsigned NOT NULL,
-	ID_USER INT(10) unsigned NOT NULL,
 	EMAIL_CLIENT VARCHAR(50),
 	NOM VARCHAR(50),
 	PRENOM VARCHAR(50),
@@ -78,8 +77,7 @@ CREATE TABLE RESERVATION (
 	NB_PRS INT(3),
 	DATE_CREER DATETIME,
 	ACTIF INT(1) unsigned,
-	FOREIGN KEY (ID_OFFRE) REFERENCES OFFRE(ID_OFFRE) ON DELETE RESTRICT,
-	FOREIGN KEY (ID_USER) REFERENCES MEMBRE(ID_USER) ON DELETE RESTRICT
+	FOREIGN KEY (ID_OFFRE) REFERENCES OFFRE(ID_OFFRE) ON DELETE RESTRICT
 );
 
 /*Enregistrement des annulations des réservations*/
@@ -98,7 +96,7 @@ INSERT INTO `MEMBRE`(`ID_USER`, `EMAIL`, `NOM`, `PRENOM`, `MDP`, `DROIT`, `ACTIF
  ('','paul19830611@hotmail.com','Paul','DUVAL','ddb2ae308bb0d4bb02d778516d215c18', 1,1), /*MDP: simpleCE */
  ('','baptisterobert@gmail.com','Baptiste','ROBERT','482c811da5d5b4bc6d497ffa98491e38',1,1);  /*MDP: password123 */
 
-INSERT INTO `RESTAURANT`(`ID_RESTO`, `ID_USER`,`NOM`, `ADRESSE`, `TELEPHONE`, `DESCRIPTIF`, `IMAGE`, `ACTIF`) VALUES
+INSERT INTO `RESTAURANT`(`ID_RESTO`, `ID_USER`,`NOM_RESTO`, `ADRESSE`, `TELEPHONE`, `DESCRIPTIF`, `IMAGE`, `ACTIF`) VALUES
  ('',1,'La Bonne franquette','4 Allée Jean 44400 Nantes','+33 02 51 92 37 22','Très bonne','..\images\01\001.jpg',2),
  ('',1,'Le ventre plein','7 Place Royal 44400 Nantes','+33 02 19 64 87 34','Moyenne ...','..\images\01\002.jpg',2);
 
@@ -144,10 +142,10 @@ INSERT INTO `CONNEXION_ERRONEE`(`IP`, `URL`, `VISITE`) VALUES
  ('202.106.196.115', '' ,'2015-4-16 11:15:29'),
  ('202.106.196.115', '' ,'2015-4-16 11:15:44');
 
-INSERT INTO `RESERVATION`(`ID_RESA`, `ID_OFFRE`, `ID_USER`, `EMAIL_CLIENT`, `NOM`, `PRENOM`, `DATE_RESA`, `NB_TABLES`, `NB_PRS` , `DATE_CREER`,`ACTIF`) VALUES
- ('',1,1,'johndoe@webmail.com','Doe','JOHN','2015-6-11 12:00:00', 1,2, '2015-6-11 12:00:00',2),
- ('',2,1,'julie1442@yahoo.fr','Julie','DGL','2015-5-09 19:00:00', 1,3, '2015-4-4 19:00:00',2),
- ('',3,1,'clementespaze@webmail.com','Clement','ESPAZE','2015-4-11 17:00:00', 2,6,'2015-6-13 17:00:00',2);
+INSERT INTO `RESERVATION`(`ID_RESA`, `ID_OFFRE`, `EMAIL_CLIENT`, `NOM`, `PRENOM`, `DATE_RESA`, `NB_TABLES`, `NB_PRS` , `DATE_CREER`,`ACTIF`) VALUES
+ ('',1,'johndoe@webmail.com','Doe','JOHN','2015-6-11 12:00:00', 1,2, '2015-6-11 12:00:00',2),
+ ('',2,'julie1442@yahoo.fr','Julie','DGL','2015-5-09 19:00:00', 1,3, '2015-4-4 19:00:00',2),
+ ('',3,'clementespaze@webmail.com','Clement','ESPAZE','2015-4-11 17:00:00', 2,6,'2015-6-13 17:00:00',2);
 
 
 /*Est-ce qu'un offre est liée à un client? si oui, pas la peine le'avoir reservation. sinon, comment savoir le nombre de personne limitée pour un offre?'*/

@@ -216,7 +216,7 @@ class Bdd{
 	public function getDetailRestaurant($iId) {
 		$bdd = $this->bdd;
 
-		$req = $bdd->prepare("SELECT ID_RESTO, NOM_RESTO, ADRESSE, TELEPHONE,DESCRIPTIF, IMAGE, ACTIF FROM RESTAURANT WHERE RESTAURANT.ID_RESTO = $iId AND ACTIF=2");
+		$req = $bdd->prepare("SELECT * FROM RESTAURANT WHERE RESTAURANT.ID_RESTO = $iId AND ACTIF=2");
 		$aListe = $req->execute(array());
 		
 		$donnees = $req->fetch();
@@ -224,8 +224,7 @@ class Bdd{
 		echo 'ADRESSE : '.$donnees['ADRESSE'].'<br/>';
 		echo 'TELEPHONE : '.$donnees['TELEPHONE'].'<br/>';
 		echo 'DESCRIPTIF : '.$donnees['DESCRIPTIF'].'<br/>';
-		echo 'IMAGE : '.$donnees['IMAGE'].'<br/>';
-		echo 'ACTIF : '.$donnees['ACTIF'].'<br/>';
+		echo 'IMAGE : '.$donnees['IMAGE'].'<br/></br>';
 		?> <a href="index.php?category=13&&id=<?php echo $donnees['ID_RESTO'];?>">Modifier</a><?php
 
 		$req->closeCursor();
@@ -256,7 +255,6 @@ class Bdd{
 	public function getReservations($iId) {
 		$bdd = $this->bdd;
 
-//		$req = $bdd->prepare("SELECT * FROM RESERVATION WHERE RESERVATION.ID_USER = $iId");
 		$req = $bdd->prepare("SELECT * FROM RESERVATION INNER JOIN OFFRE ON RESERVATION.ID_OFFRE = OFFRE.ID_OFFRE INNER JOIN RESTAURANT ON OFFRE.ID_RESTO = RESTAURANT.ID_RESTO WHERE RESTAURANT.ID_USER = $iId");
 		$aListe = $req->execute(array());
 		
@@ -299,6 +297,8 @@ class Bdd{
 
 	    $bReturn = $req->execute();
 	    $req->CloseCursor();
+		
+		return $bReturn;
 	}
 	
 	
