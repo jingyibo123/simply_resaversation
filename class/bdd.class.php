@@ -216,7 +216,7 @@ class Bdd{
 	public function getDetailRestaurant($iId) {
 		$bdd = $this->bdd;
 
-		$req = $bdd->prepare("SELECT NOM, ADRESSE, TELEPHONE,DESCRIPTIF, IMAGE, ACTIF FROM RESTAURANT WHERE RESTAURANT.ID_RESTO = $iId AND ACTIF=2");
+		$req = $bdd->prepare("SELECT ID_RESTO, NOM, ADRESSE, TELEPHONE,DESCRIPTIF, IMAGE, ACTIF FROM RESTAURANT WHERE RESTAURANT.ID_RESTO = $iId AND ACTIF=2");
 		$aListe = $req->execute(array());
 		
 		$donnees = $req->fetch();
@@ -226,6 +226,7 @@ class Bdd{
 		echo 'DESCRIPTIF : '.$donnees['DESCRIPTIF'].'<br/>';
 		echo 'IMAGE : '.$donnees['IMAGE'].'<br/>';
 		echo 'ACTIF : '.$donnees['ACTIF'].'<br/>';
+		?> <a href="index.php?category=13&&id=<?php echo $donnees['ID_RESTO'];?>">Modifier</a><?php
 
 		$req->closeCursor();
 	
@@ -269,8 +270,16 @@ class Bdd{
 		$req->closeCursor();
 	
 	}
-
-
+	
+	
+	// Modification restaurant
+	public function updateRestaurant($iId) {
+		$bdd = $this->bdd;
+		
+		$req = $bdd->prepare("SELECT * FROM RESTAURANT WHERE RESTAURANT.ID_RESTO = $iId");
+		$aListe = $req->execute(array());
+	
+	}
 
 	
 	

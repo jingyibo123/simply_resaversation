@@ -176,6 +176,7 @@
 			$iId = $_SESSION['id_user'];
 			$aListeRestaurants = $oBdd->getReservations($iId);
 		break;
+		
 		case 12:
 			define('ROOTING', 'view/offres.view.php');
 			
@@ -185,6 +186,17 @@
 			$iId = $_SESSION['id_user'];
 			$aListeOffres = $oBdd->getOffresParRestaurateur($iId);
 		break;
+		
+		case 13: 
+			define('ROOTING', 'view\modificationRestaurant.view.php');
+			
+			require_once 'class/bdd.class.php';
+			
+			$oBdd = new Bdd();
+			$iId = $_GET['id'];
+			$aModifRestaurants = $oBdd->updateRestaurant($iId);
+		break;
+		
 		case 31:
 			define('ROOTING', 'view/client.reserver.view.php');
 		break;
