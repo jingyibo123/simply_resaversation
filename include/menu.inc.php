@@ -1,5 +1,12 @@
 
 <!DOCTYPE html>
+<?php
+require_once 'class/bdd.class.php';
+$oBdd = new Bdd();
+$aMembre = $oBdd->user_getData($_SESSION['id_user']);
+$sNom = $aMembre['NOM'];
+$sPrenom = $aMembre['PRENOM'];
+?>
 <html>
 	<nav id="menu">
 		<div class="element_menu">
@@ -19,16 +26,18 @@
 					
 					case "2": // Restaurateur : A créer
 					?>
-						<li><a href="CompteRestaurateur.html"> Mon Compte R</a></li>
-						<li><a href="index.php?category=10"> Mes Restaurants R</a></li>
-						<li><a href="index.php?category=12"> Mes Offres R</a></li>
-						<li><a href="index.php?category=11"> Mes Reservations R</a></li>
+						<h2>Compte restaurateur : Bienvenue <?php echo $sPrenom.' '.$sNom;?> ! </h2>
+						<li><a href="CompteRestaurateur.html"> Mon Compte </a></li>
+						<li><a href="index.php?category=10"> Mes Restaurants </a></li>
+						<li><a href="index.php?category=12"> Mes Offres </a></li>
+						<li><a href="index.php?category=11"> Mes Reservations </a></li>
 					<?php break;
 					
 					case "1": // Administrateur : A créer
 					?>
+						<h2>Compte administrateur : Bienvenue <?php echo $sPrenom.' '.$sNom;?> ! </h2>
 						<li><a href="CompteModerateur.html"> Mon Compte </a></li>
-						<li><a href="index.php?category=17""> Offres </a></li>
+						<li><a href="index.php?category=17"> Offres </a></li>
 						<li><a href="index.php?category=7"> Restaurateurs </a></li>
 						<li><a href="index.php?category=5"> Restaurants </a></li>
 						<li><a href="index.php?category=1"> Inscrire un membre</a></li>

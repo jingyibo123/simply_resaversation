@@ -39,7 +39,7 @@ class Bdd{
 	public function user_getData($iId){
 		$bdd = $this->bdd;
 
-		$req=$bdd->prepare('SELECT * FROM user WHERE id=?');
+		$req=$bdd->prepare("SELECT * FROM MEMBRE WHERE ID_USER = $iId");
 
 	    $bReturn = $req->execute(array($iId));
 
@@ -228,8 +228,21 @@ class Bdd{
 		}
 	
 		$req1->closeCursor();
-		
 	}
+	
+	
+	// Modification offre
+	public function updateOffre($iId, $sDescriptif) {
+		$bdd = $this->bdd;
+
+		$req = $bdd->prepare("UPDATE OFFRE SET DESCRIPTIF = '$sDescriptif' WHERE ID_OFFRE = '$iId'");
+
+	    $bReturn = $req->execute();
+	    $req->CloseCursor();
+		
+		return $bReturn;
+	}
+
 	
 	// Liste des restaurants par restaurateurs
 	public function getRestaurantParRestaurateur($iId) {
