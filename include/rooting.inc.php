@@ -235,6 +235,12 @@
 		
 		case 16:
 			define('ROOTING', 'class/upload.php');
+			$iId = $_GET['id'];
+			if (!isset($_FILES['image']) OR $_FILES['image']['error'] != 0) {
+				echo 'Erreur téléchargement : Merci de télécharger à nouveau votre image';
+				header('Location: index.php?category=15&&id='.$iId);
+			}
+
 		break;
 		
 		case 17:
