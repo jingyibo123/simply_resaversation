@@ -10,7 +10,7 @@ $iId = $_GET['id'];
 $aOffre = $oBdd->offre_getData("$iId");
 ?>
 
-<form action="<?php echo $_SERVER['PHP_SELF'].'?category=13&&id='.$iId; ?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF'].'?category=21&&id='.$iId; ?>" method="post">
 
     <h1>Modification de l'offre</h1>
 

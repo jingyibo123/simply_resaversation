@@ -128,8 +128,9 @@ class Bdd{
 		
 		echo "Liste des restaurants </br></br>";
 		while ($donnees = $req->fetch()) {
-			echo  $donnees['NOM_RESTO'].' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>">Détails</a><?php 
-												?><a href="index.php?category=18&&id=<?php echo $donnees['ID_RESTO']; ?>">Ajouter une offre</a><?php
+			echo  $donnees['NOM_RESTO'].' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>"> Détails </a>
+						<a href="index.php?category=20&&id=<?php echo $donnees['ID_RESTO']; ?>"> Offres </a>
+						<a href="index.php?category=18&&id=<?php echo $donnees['ID_RESTO']; ?>"> Ajouter une offre </a><?php
 			echo'<br />'; 
 		}
 		
@@ -146,14 +147,32 @@ class Bdd{
 		
 		echo "Liste des restaurateurs </br></br>";
 		while ($donnees = $req->fetch()) {
-			echo  $donnees['NOM'].' '.$donnees['PRENOM'] ?> <a href="index.php?category=8&&id=<?php echo $donnees['ID_USER'];?>">Restaurants</a><?php 
+			echo  $donnees['NOM'].' '.$donnees['PRENOM'] ?> <a href="index.php?category=8&&id=<?php echo $donnees['ID_USER'];?>">Restaurants</a>
+									<a href="index.php?category=19&&id=<?php echo $donnees['ID_USER'];?>">Offres</a><?php
 			echo'<br />'; 
 		}
 		
 		$req->closeCursor();
-
 	}
 	
+
+	public function offre_getData($iId){
+		$bdd = $this->bdd;
+
+		$req=$bdd->prepare("SELECT * FROM OFFRE WHERE ID_OFFRE = $iId");
+
+	    $bReturn = $req->execute(array($iId));
+
+	    if($bReturn == true){
+	    	$aRetour = $req->fetch();
+	    	$req->CloseCursor();
+	    	
+	    	return $aRetour;
+	    }else{
+	    	$req->CloseCursor();
+	    	return $bReturn;
+	    }
+	}
 
 	
 	//Liste des offres vu par le restaurateur
@@ -176,6 +195,8 @@ class Bdd{
 		
 			while ($donnees2 = $req2->fetch()) {
 				echo $donnees2['DESCRIPTIF'];
+				if ($_SESSION['droit']==1) {
+					?> <a href="index.php?category=21&&id=<?php echo $donnees2['ID_OFFRE'];?>">Modifier Offre</a><?php }
 				echo '<br/>';
 			}
 			echo '<br /><br />';
@@ -187,15 +208,29 @@ class Bdd{
 		
 	}
 	
+	
+	public function getOffresParRestaurant($iId) {
+		$bdd = $this->bdd;
+		
+		$req = $bdd->prepare("SELECT * FROM OFFRE WHERE ID_RESTO = $iId");
+		$aListe = $req->execute(array());
+		
+		echo "Liste des offres <br/><br/>";
+		while ($donnees = $req->fetch()) {
+			echo $donnees['DESCRIPTIF']; 
+			if ($_SESSION['droit']==1) {
+				?> <a href="index.php?category=21&&id=<?php echo $donnees['ID_OFFRE'];?>">Modifier Offre</a><?php }
+			echo '<br/>';
+		}
+	}
+	
+	
 	//Liste des offres vu par l'administrateur
 	public function getOffresParAdministrateur(){
 		$bdd1 = $this->bdd;
 		
-
 		$req1 = $bdd1->prepare("SELECT NOM_RESTO, ID_RESTO, ID_USER FROM RESTAURANT WHERE RESTAURANT.ACTIF=2");
 		$aListe1 = $req1->execute(array());
-		
-		
 		
 		while ($donnees1 = $req1->fetch()) {
 			

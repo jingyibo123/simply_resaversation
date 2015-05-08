@@ -285,6 +285,73 @@
 			}
 		break;
 		
+		case 19:
+			define('ROOTING', 'view/offres.view.php');
+			
+			require_once 'class/bdd.class.php';
+			
+			$oBdd = new Bdd();
+			$iId = $_GET['id'];
+			$aListeOffres = $oBdd->getOffresParRestaurateur($iId);
+		break;
+		
+		case 20:
+			define('ROOTING', 'view/offres.view.php');
+			
+			require_once 'class/bdd.class.php';
+			
+			$oBdd = new Bdd();
+			$iId = $_GET['id'];
+			$aListeOffres = $oBdd->getOffresParRestaurant($iId);
+		break;
+		
+		case 21:
+			define('ROOTING', 'view\modificationOffre.view.php');
+			
+			require_once 'class/bdd.class.php';
+			require_once 'class/offres.class.php';
+			
+			if(isset($_POST['modification']) && !empty($_POST['modification'])){
+
+				$sDescriptif = $_POST['modification']['descriptif'];
+				$iId = $_GET['id'];
+				
+				$oOffre = new Offre();
+				$oOffre->setDescriptif($sDescriptif);
+				
+				$oOffre->validation();
+				
+				if (empty($oOffre->aError)) {
+					$oBdd = new Bdd();
+					
+					$aModifOffre = $oBdd->updateOffre($iId, $sDescriptif);
+						
+					if(!empty($aModifOffre) ){
+						header('Location: index.php?category=22');
+					}
+					else{
+						echo 'Erreur modification : Merci de remplir à nouveau le formulaire';
+						header('Location: index.php?category=21&&id='.$iId);
+					}
+				}
+			}
+		break;
+		
+		case 22:
+			define('ROOTING', 'view/messageModifOffre.view.php');
+		break;
+		
+		case 23:
+			define('ROOTING', 'view/offres.view.php');
+			
+			require_once 'class/bdd.class.php';
+			
+			$oBdd = new Bdd();
+			$iId = $_GET['id'];
+			$aListeOffres = $oBdd->getOffresParRestaurateur($iId);
+		break;
+
+		
 		case 31:
 			define('ROOTING', 'view/client.reserver.view.php');
 		break;
