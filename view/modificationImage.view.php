@@ -3,15 +3,14 @@
 <?php
 include 'include/header.inc.php';
 
-require_once 'class/bdd.class.php';
+require_once 'class/upload.php';
 
-$oBdd = new Bdd();
 $iId = $_GET['id'];
-$aRestaurant = $oBdd->restaurant_getData("$iId");
 ?>
 
-<form method="post" action="upload.php" enctype="multipart/form-data">
-     <label for="image">Modification de l'image (Formats autorisés : jpeg) :</label><br />
+<form method="post" action="<?php echo $_SERVER['PHP_SELF'].'?category=16&&id='.$iId; ?>" enctype="multipart/form-data">
+     <label for="image">Modification de l'image (Formats autorisés : jpeg / Taille maximale : 10Mo) :</label><br />
+	 <input type="hidden" name=\"max_file_size" value="500000">
      <input type="file" name="image" /><br />
      <input type="submit" name="submit" value="Modifier" />
 </form>

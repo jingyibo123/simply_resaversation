@@ -228,8 +228,8 @@ class Bdd{
 		?> 
 		<a href="index.php?category=13&&id=<?php echo $donnees['ID_RESTO'];?>">Modifier</a>
 		<br><br>
-		<img src="images/<?php echo $donnees['IMAGE'];?>.JPG">
-		<a href="index.php?category=13&&id=<?php echo $donnees['ID_RESTO'];?>">Modifier Image</a>
+		<img src="images/<?php echo $donnees['IMAGE'];?>">
+		<a href="index.php?category=15&&id=<?php echo $donnees['ID_RESTO'];?>">Modifier Image</a>
 		<?php
 		echo '<br/><br/>'; 
 
@@ -299,12 +299,23 @@ class Bdd{
 	public function updateRestaurant($iId, $sNom, $sAdresse, $sTelephone, $sDescriptif, $sImage) {
 		$bdd = $this->bdd;
 
-		$req=$bdd->prepare("UPDATE RESTAURANT SET NOM_RESTO = '$sNom', ADRESSE = '$sAdresse', TELEPHONE = '$sTelephone', DESCRIPTIF = '$sDescriptif' WHERE ID_RESTO = '$iId'");
+		$req = $bdd->prepare("UPDATE RESTAURANT SET NOM_RESTO = '$sNom', ADRESSE = '$sAdresse', TELEPHONE = '$sTelephone', DESCRIPTIF = '$sDescriptif' WHERE ID_RESTO = '$iId'");
 
 	    $bReturn = $req->execute();
 	    $req->CloseCursor();
 		
 		return $bReturn;
+	}
+	
+	
+	// Modification image restaurant
+	public function updateImage($iId, $sNomImage) {
+		$bdd = $this->bdd;
+		
+		$req = $bdd->prepare("UPDATE RESTAURANT SET IMAGE = '$sNomImage' WHERE ID_RESTO = '$iId'");
+		
+		$bReturn = $req->execute();
+		$req->CloseCursor();
 	}
 	
 	

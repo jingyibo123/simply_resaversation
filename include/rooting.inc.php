@@ -229,6 +229,14 @@
 			define('ROOTING', 'view/messageModifResto.view.php');
 		break;
 		
+		case 15:
+			define('ROOTING', 'view/modificationImage.view.php');
+		break;
+		
+		case 16:
+			define('ROOTING', 'class/upload.php');
+		break;
+		
 		case 31:
 			define('ROOTING', 'view/client.reserver.view.php');
 		break;
