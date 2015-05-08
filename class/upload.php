@@ -33,8 +33,8 @@ if (isset($_FILES['image']) AND $_FILES['image']['error'] == 0) {
 			}
 		}
 		else {
-			echo "Nom de fichier déjà existant sur notre serveur <br/>";
-			echo "Veuillez modifier le nom de votre image"; ?>
+			echo "Nom de fichier déjà existant sur notre serveur. <br/><br/>";
+			echo "Veuillez renommer votre image avant de la charger à nouveau."; ?>
 			<html>
 				<body>
 					<p><a href="index.php?category=15&&id=<?php echo $iId;?>">Modifier à nouveau</a></p><br/>
