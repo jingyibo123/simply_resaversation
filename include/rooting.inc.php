@@ -252,6 +252,39 @@
 			$aListeOffres = $oBdd->getOffresParAdministrateur();
 		break;
 		
+		case 18: 
+			define('ROOTING', 'view\modificationRestaurant.view.php');
+			
+			require_once 'class/bdd.class.php';
+			require_once 'class/offres.class.php';
+			
+			if(isset($_POST['ajout']) && !empty($_POST['ajout'])){
+
+				
+				$sDescriptif = $_POST['ajout']['descriptif'];
+				$iId = $_GET['id'];
+				
+				$oOffre = new Offre();
+				$oOffre->setDescriptif($sDescriptif);
+				
+				$oOffre->validation();
+				
+				if (empty($oOffre->aError)) {
+					$oBdd = new Bdd();
+					
+					$aModifOffre = $oBdd->ajoutOffre($iId, $sNom, $sAdresse, $sTelephone, $sDescriptif);
+						
+					if(!empty($aModifResto) ){
+						header('Location: index.php?category=14');
+					}
+					else{
+						echo 'Erreur modification : Merci de remplir à nouveau le formulaire';
+						header('Location: index.php?category=13&&id='.$iId);
+					}
+				}
+			}
+		break;
+		
 		case 31:
 			define('ROOTING', 'view/client.reserver.view.php');
 		break;

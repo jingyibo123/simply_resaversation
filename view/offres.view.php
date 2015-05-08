@@ -10,9 +10,16 @@ include 'include/header.inc.php';
 		<title>Mes offres</title> 
 	</head> 
 	<body>
+		<?php if($_SESSION['droit']==1){
+			?><p><a href="index.php?category=7"> Ajouter une offre</a></p><?php
+		}
+		?>
 		<p><a href="index.php?category=4"> Retour au menu</a></p>
+		
 	</body>
 
+	
+	
 </html>
 
 <?php

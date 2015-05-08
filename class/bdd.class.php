@@ -129,6 +129,7 @@ class Bdd{
 		echo "Liste des restaurants </br></br>";
 		while ($donnees = $req->fetch()) {
 			echo  $donnees['NOM_RESTO'].' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>">Détails</a><?php 
+												?><a href="index.php?category=18&&id=<?php echo $donnees['ID_RESTO']; ?>">Ajouter une offre</a><?php
 			echo'<br />'; 
 		}
 		
@@ -152,6 +153,8 @@ class Bdd{
 		$req->closeCursor();
 
 	}
+	
+
 	
 	//Liste des offres vu par le restaurateur
 	public function getOffresParRestaurateur($iId){
