@@ -28,7 +28,7 @@
 					case "1": // Administrateur : A créer
 					?>
 						<li><a href="CompteModerateur.html"> Mon Compte </a></li>
-						<li><a href="OffresModerateur.html"> Offres </a></li>
+						<li><a href="index.php?category=17""> Offres </a></li>
 						<li><a href="index.php?category=7"> Restaurateurs </a></li>
 						<li><a href="index.php?category=5"> Restaurants </a></li>
 						<li><a href="index.php?category=1"> Inscrire un membre</a></li>

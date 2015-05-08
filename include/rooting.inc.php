@@ -237,6 +237,15 @@
 			define('ROOTING', 'class/upload.php');
 		break;
 		
+		case 17:
+			define('ROOTING', 'view/offres.view.php');
+			
+			require_once 'class/bdd.class.php';
+			
+			$oBdd = new Bdd();
+			$aListeOffres = $oBdd->getOffresParAdministrateur();
+		break;
+		
 		case 31:
 			define('ROOTING', 'view/client.reserver.view.php');
 		break;

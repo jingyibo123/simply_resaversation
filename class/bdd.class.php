@@ -184,6 +184,50 @@ class Bdd{
 		
 	}
 	
+	//Liste des offres vu par l'administrateur
+	public function getOffresParAdministrateur(){
+		$bdd1 = $this->bdd;
+		
+
+		$req1 = $bdd1->prepare("SELECT NOM_RESTO, ID_RESTO, ID_USER FROM RESTAURANT WHERE RESTAURANT.ACTIF=2");
+		$aListe1 = $req1->execute(array());
+		
+		
+		
+		while ($donnees1 = $req1->fetch()) {
+			
+			$bdd = $this->bdd;
+			$req = $bdd->prepare("SELECT PRENOM, NOM FROM MEMBRE WHERE MEMBRE.ID_USER= :id");
+			$aListe = $req->execute(array(
+				'id' => $donnees1['ID_USER']));
+				
+				
+				while ($donnees = $req->fetch()) {
+			
+					echo 'Liste des offres du restaurant '.$donnees1['NOM_RESTO'].' dont le propriétaire est '.$donnees['PRENOM'].' '.$donnees['NOM'].' : <br /><br />'; 
+			
+					$bdd2 = $this->bdd;
+					$req2 = $bdd2->prepare("SELECT ID_OFFRE, DESCRIPTIF FROM OFFRE WHERE OFFRE.ID_RESTO = :id AND ACTIF=2");
+					$aListe2 = $req2->execute(array(
+							'id' => $donnees1['ID_RESTO'] ));
+		
+					while ($donnees2 = $req2->fetch()) {
+						echo $donnees2['DESCRIPTIF'];
+						echo '<br/>';
+					}
+					
+					echo '<br /><br />';
+			
+					
+					$req2->closeCursor();
+				}
+				$req->closeCursor();				
+		}
+	
+		$req1->closeCursor();
+		
+	}
+	
 	// Liste des restaurants par restaurateurs
 	public function getRestaurantParRestaurateur($iId) {
 		$bdd1 = $this->bdd;
