@@ -33,7 +33,7 @@
 </style>
 
 <!--  la dialogue de inscription  -->
-<div id='DialogResa'  class='dialog' title='Finir votre réservation'>
+<div id='DialogResa'  class='dialog' title='Finir votre réservation' style='display:none'>
 	<div id='OrderDetailDisplay' >Veuillez compléter votre réservation </div>
 	<form action="<?php echo $_SERVER['PHP_SELF'].'?category=33'; ?>" method="post">
 	<table id='HoraireList' ><tbody>
@@ -61,7 +61,8 @@
 	</tbody></table></form>
 	<!-- <button id='VldBtn'class='btn'  action='' >Valider la réservation</button> -->
 </div>
-	
+
+<div ><p>Sélectionner votre date de consommation</p></div>
 <div id='calendar'></div>
 
 <div id='OrderDetailInput' >
