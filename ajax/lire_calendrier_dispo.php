@@ -11,7 +11,7 @@
 	require_once '../class/bdd.class.php';
 	$oBdd = new Bdd();
 
-			$calendrier = $oBdd->calendar_getAvailability($_POST['idresto'], $_POST['start'], $_POST['end']);
+			$calendrier = $oBdd->calendar_getAvailability($_SESSION['ID_RESTO'], $_POST['start'], $_POST['end']);
 			echo json_encode($calendrier);
 
 		

@@ -353,7 +353,22 @@
 
 		
 		case 31:
-			define('ROOTING', 'view/client.reserver.view.php');
+			
+			require_once 'class/bdd.class.php';
+			$oBdd = new Bdd();
+			$_SESSION['ID_RESTO'] = $oBdd->getIdrestoParIdoffre($_GET['offre']);
+			if($_SESSION['ID_RESTO']!=0){
+				define('ROOTING', 'view/client.reserver.view.php');
+			}
+			else{
+				/* Enrigistrer IP errone 
+				
+				
+				*/
+				define('ROOTING', 'view/client.offre_error.view.php');
+			}
+			
+			
 		break;
 	}
 

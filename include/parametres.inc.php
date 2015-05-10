@@ -25,6 +25,8 @@
 
 	//Pour basculer le code de local à en ligne, il suffit de changer
 	//le paramètre online à true pour en ligne, false pour hors ligne.
+
+
 	define('ONLINE', false);
 
 
@@ -59,7 +61,9 @@
 	define('DEBUG', 		16);
 
 //	************** tableau des droits **************
-
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
+}
+else{ //exécuter pas les codes en-desous si ce fichier est appellé dans un appelle AJAX
 	if(isset($_SESSION['id_user'])){
 
 		//Si la personne est connecté, je créé un objet
@@ -97,7 +101,7 @@
 			$aPermission['admin'] = 0;
 		break;
 	}
-
+}
 
 //je définis le rooting de l'application
 

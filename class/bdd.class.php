@@ -306,7 +306,24 @@ class Bdd{
 		$req2->closeCursor();
 	
 	}
+	//chercher idresto par idoffre 
+	public function getIdrestoParIdoffre($iIdoffre) {
+		$bdd = $this->bdd;
+
+		$req = $bdd->prepare("SELECT ID_RESTO FROM `OFFRE` WHERE ID_OFFRE = $iIdoffre");
+		$aListe = $req->execute(array());
+		
+		if($donnees = $req->fetch()){
+			return $donnees['ID_RESTO']; 
+		}
+		else{
+			return 0;
+		}
+		
+		$req->closeCursor();
+		
 	
+	}
 	
 	// Détails d'un restaurants
 	public function getDetailRestaurant($iId) {
