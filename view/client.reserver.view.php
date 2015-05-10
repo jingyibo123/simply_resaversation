@@ -35,27 +35,31 @@
 <!--  la dialogue de inscription  -->
 <div id='DialogResa'  class='dialog' title='Finir votre réservation'>
 	<div id='OrderDetailDisplay' >Veuillez compléter votre réservation </div>
+	<form action="<?php echo $_SERVER['PHP_SELF'].'?category=33'; ?>" method="post">
 	<table id='HoraireList' ><tbody>
 	<tr>
 		<td><label for='OrderDetailDateTime'>Date</label></td>
-		<td><input name='reservation[DATE_RESA]' type='text' id='OrderDetailDateTime' /></td></tr>
+		<td><input name="reservation[DATE_RESA]" type='text' id='OrderDetailDateTime' /></td></tr>
 	<tr>
 		<td><label for='OrderDetailNbTable'>Nombre de Tables</label></td>
-		<td><input name='reservation[NB_TABLES]' type='text' id='OrderDetailNbTable' /></td></tr>
+		<td><input name="reservation[NB_TABLES]" type='text' id='OrderDetailNbTable' /></td></tr>
 	<tr>
 		<td><label for='OrderDetailNbPrs'>Nombre de Personnes</label></td>
-		<td><input name='reservation[NB_PERSONNE]' type='text' id='OrderDetailNbPrs' /></td></tr>
+		<td><input name="reservation[NB_PERSONNE]" type='text' id='OrderDetailNbPrs' /></td></tr>
 	<tr>
 		<td><label for='OrderDetailNom'>Nom</label></td>
-		<td><input name='reservation[NOM]' type='text' id='OrderDetailNom' /></td></tr>
+		<td><input name="reservation[NOM]" type='text' id='OrderDetailNom' /></td></tr>
 	<tr>
 		<td><label for='OrderDetailPrenom'>Prénom</label>
-		<td><input name='reservation[PRENOM]' type='text' id='OrderDetailPrenom' /></td></tr>
+		<td><input name="reservation[PRENOM]" type='text' id='OrderDetailPrenom' /></td></tr>
 	<tr>
 		<td><label for='OrderDetailEmail'>Adresse mail</label>
-		<td><input name='reservation[EMAIL_CLIENT]' type='text' id='OrderDetailEmail' /></td></tr>
-	</tbody></table>
-	<button id='VldBtn'class='btn'  action='' >Valider la réservation</button>
+		<td><input name="reservation[EMAIL_CLIENT]" type='text' id='OrderDetailEmail' /></td></tr>
+	<tr>
+		<td><input type="submit" value="Valider votre réservation" /></td></tr>
+		
+	</tbody></table></form>
+	<!-- <button id='VldBtn'class='btn'  action='' >Valider la réservation</button> -->
 </div>
 	
 <div id='calendar'></div>

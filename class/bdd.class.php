@@ -306,10 +306,22 @@ class Bdd{
 		$req2->closeCursor();
 	
 	}
+	//vérifier si l'offre a déjà été réservé
+	public function if_offre_reserved($iIdoffre) {
+		$bdd = $this->bdd;
+		$req = $bdd->prepare("SELECT ID_RESA FROM `RESERVATION` WHERE ID_OFFRE = $iIdoffre");
+		$aListe = $req->execute(array());
+		if($donnees = $req->fetch()){
+			return true; 
+		}
+		else{
+			return false;
+		}
+		$req->closeCursor();
+	}
 	//chercher idresto par idoffre 
 	public function getIdrestoParIdoffre($iIdoffre) {
 		$bdd = $this->bdd;
-
 		$req = $bdd->prepare("SELECT ID_RESTO FROM `OFFRE` WHERE ID_OFFRE = $iIdoffre");
 		$aListe = $req->execute(array());
 		
@@ -319,10 +331,7 @@ class Bdd{
 		else{
 			return 0;
 		}
-		
 		$req->closeCursor();
-		
-	
 	}
 	
 	// Détails d'un restaurants
@@ -482,14 +491,12 @@ class Bdd{
 	    	return $bReturn;
 	    }
 	}
-	public function reservation_putdata($iIdoffre, $sEmail, $sNom, $sPrenom, $dDate_resa, $iNbtables, $iNbPrs ){
+	public function reservation_putdata($iIdoffre, $sEmail, $sNom, $sPrenom, $sDate_resa, $iNbtables, $iNbPrs ){
 		$bdd = $this->bdd;
-		//$dDate_cree = 
-		$req=$bdd->prepare('SELECT * FROM RESERVATION WHERE id=?');
+		$req=$bdd->prepare('INSERT INTO `reservation`(`ID_RESA`, `ID_OFFRE`, `EMAIL_CLIENT`, `NOM`, `PRENOM`, `DATE_RESA`, `NB_TABLES`, `NB_PRS`, `DATE_CREER`, `ACTIF`) VALUES (\'\',?,?,?,?,?,?,?,?,1)');
 
-	    $bReturn = $req->execute(array($iId));
 
-	    if($bReturn == true){
+	    if($bReturn = $req->execute(array($iIdoffre,$sEmail,$sNom,$sPrenom,$sDate_resa,$iNbtables,$iNbPrs,date("Y-m-d H:i:s")))){
 	    	$aRetour = $req->fetch();
 	    	$req->CloseCursor();
 	    	return $aRetour;
@@ -529,19 +536,29 @@ class Bdd{
 			return $bReturn;
 		}
 		
-		//定义空闲时间减去已订数量
-		// $req = $bdd->prepare('SELECT * FROM `reservation`   WHERE `ID_OFFRE` = ? and `DATE_RESA` Between ? And ?');
-		// if($bReturn = $req->execute(array($iIdoffre,$sStartDate,$sEndDate))){
-			// while($row = $req -> fetch()){
-				// array_push($calendrier, $row);
-			// }
-			// $req->CloseCursor();
-		// }else{
-			// $req->CloseCursor();
-			// return $bReturn;
-		// }
-		
-		
+		// eliminer les créneaux déjà réservé par différents offres d'un restaurants
+		$req = $bdd->prepare('SELECT `ID_OFFRE` FROM `OFFRE`   WHERE `ID_RESTO` = ?');
+		if($bReturn = $req->execute(array($iIdresto))){
+			while($row = $req -> fetch()){
+				$req2 = $bdd->prepare('SELECT `DATE_RESA`,`NB_TABLES` FROM `reservation`   WHERE `ID_OFFRE` = ? and `DATE_RESA` Between ? And ?');
+				if($bReturn = $req2->execute(array($row['ID_OFFRE'],$sStartDate,$sEndDate))){
+					while($row2 = $req2 -> fetch()){
+						$calendrier[substr($row2['DATE_RESA'],0,10)][substr($row2['DATE_RESA'],11,8)] -= $row2['NB_TABLES'];
+						if($calendrier[substr($row2['DATE_RESA'],0,10)][substr($row2['DATE_RESA'],11,8)] <=0){
+							unset($calendrier[substr($row2['DATE_RESA'],0,10)][substr($row2['DATE_RESA'],11,8)]);
+						}
+					}
+					$req2->CloseCursor();
+				}else{
+					$req2->CloseCursor();
+					return $bReturn;
+				}
+			}
+			$req->CloseCursor();
+		}else{
+			$req->CloseCursor();
+			return $bReturn;
+		}
 		foreach ($calendrier as $date => $calendrier_jour){
 			if(empty($calendrier[$date]))
 				unset($calendrier[$date]);

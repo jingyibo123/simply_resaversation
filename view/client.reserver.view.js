@@ -4,10 +4,6 @@ $(document).ready(function() {
 		editable: true,
 		selectable: false,
 		dayClick: function(date, jsEvent, view) {
-			//alert('Clicked on: ' + date.format());
-			// alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-			// alert('Current view: ' + view.name);
-			
 			if($(this).css('background-color')=='rgb(80, 120, 255)'){
 				$('.fc-day').each(function(index){
 					if($(this).css('background-color') == 'rgb(0, 128, 0)'){
@@ -28,8 +24,6 @@ $(document).ready(function() {
 					$('#HoraireListDiv').children('table').children('tbody').append(str);
 					i = i + 1;
 				}
-				
-				//隐藏桌数 
 				$('#CtnBtn').fadeOut();
 				$('#TableTotalDiv').fadeOut();
 				$('#HoraireListDiv').fadeIn();
@@ -53,7 +47,7 @@ $(document).ready(function() {
 					for(var key in window.calendrier){
 						window.AvailableDays.push(key);
 					}
-					for(var i in window.AvailableDays){
+					for(var i in window.AvailableDays){//mettre en couleurs les dates possibles
 						$('.fc-day').each(function(index){
 						if($(this).attr('data-date') == window.AvailableDays[i] && Date.parse($(this).attr('data-date')) > new Date() && !$(this).hasClass('fc-other-month'))
 							$(this).css('background-color', 'rgb(80, 120, 255)');
@@ -62,7 +56,7 @@ $(document).ready(function() {
 				}
 			});
 		},
-		viewRender: function(currentView){
+		viewRender: function(currentView){//désactiver les dates avant ajd
 			var minDate = moment(),
 			maxDate = moment().add(2,'weeks');
 			// Past
@@ -103,40 +97,34 @@ $(document).ready(function() {
 			}
 		});
 		$('#OrderDetailDateTime').val(sDate + ' ' + sTime);
-		$('#OrderDetailDateTime').attr('disabled','disabled');
+		$('#OrderDetailDateTime').attr("readonly","readonly");
 		$('#OrderDetailNbTable').val(iNbtable);
-		$('#OrderDetailNbTable').attr('disabled','disabled');
-		
-		
+		$('#OrderDetailNbTable').attr("readonly","readonly");
 		$( '#DialogResa' ).dialog( 'open' );
 	});
-	$( '.horaireboutton' ).click(function() {
+	
+	
+	// $('#VldBtn').click(function(){
+		// //verification des données
 		
-	});
-	$ ('input#nbtablesrange').change (function (){
-		$ ('input#nbtables').val($ ('input#nbtablesrange').val());
-	});
-	//recharge de case selon le glisseur
-	
-	
-	$('#VldBtn').click(function(){
-		$.ajax({
-			type: 'POST',
-			cache: false,
-			url: 'ajax/creer_reservation.php',
-			data: {
-				 DATE_RESA : $('#OrderDetailDateTime').val(), 
-				 NB_TABLES : $('#OrderDetailNbTable').val(), 
-				 NB_PERSONNE : $('#OrderDetailNbPrs').val(), 
-				 NOM : $('#OrderDetailNom').val(), 
-				 PRENOM : $('#OrderDetailPrenom').val(), 
-				 EMAIL_CLIENT : $('#OrderDetailEmail').val()
-			},
-			dataType: 'json',
-			success: function(data){
-			}
-		 });
-	});
+		// $.ajax({
+			// type: 'POST',
+			// cache: false,
+			// url: 'ajax/creer_reserver.php',
+			// data: {
+				 // DATE_RESA : $('#OrderDetailDateTime').val(), 
+				 // NB_TABLES : $('#OrderDetailNbTable').val(), 
+				 // NB_PERSONNE : $('#OrderDetailNbPrs').val(), 
+				 // NOM : $('#OrderDetailNom').val(),
+				 // PRENOM : $('#OrderDetailPrenom').val(), 
+				 // EMAIL_CLIENT : $('#OrderDetailEmail').val()
+			// },
+			// dataType: 'json',
+			// success: function(data){
+				// window.location.href="http://localhost/simply_resaversation/?category=33";
+			// }
+		 // });
+	// });
 });
 function ShowContinueButton(e){
 	$('#CtnBtn').fadeIn();

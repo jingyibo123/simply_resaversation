@@ -2,9 +2,7 @@
 
 /* ------------------------------------------------------------------------- /
 						
-	Ce fichier sert à diriger l'utilisateur et à traiter les informations
-	dynamiques. C'est le controller, c'est lui qui appel les classes et les
-	vues.
+	Ce fichier sert à traiter les appels AJAX 
 
 / ------------------------------------------------------------------------- */
 	include '../include/parametres.inc.php';

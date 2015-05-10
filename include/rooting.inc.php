@@ -356,9 +356,19 @@
 			
 			require_once 'class/bdd.class.php';
 			$oBdd = new Bdd();
+			$_SESSION['id_offre'] = $_GET['offre'];
 			$_SESSION['ID_RESTO'] = $oBdd->getIdrestoParIdoffre($_GET['offre']);
 			if($_SESSION['ID_RESTO']!=0){
-				define('ROOTING', 'view/client.reserver.view.php');
+				/* verifier si cet offre a déjà été reservé */
+				if(!$oBdd->if_offre_reserved($_GET['offre'])){
+					/* Enrigistrer IP 
+				
+					*/
+					define('ROOTING', 'view/client.reserver.view.php');
+				}
+				else{
+					define('ROOTING', 'view/client.offre_reservé.view.php');
+				}
 			}
 			else{
 				/* Enrigistrer IP errone 
@@ -367,7 +377,21 @@
 				*/
 				define('ROOTING', 'view/client.offre_error.view.php');
 			}
+		break;
+		case 33:
 			
+			if(!isset($_SESSION['id_offre'])){
+				echo "vueillez selectionner d'abord votre offre acheté";
+			}
+			elseif(isset($_POST['reservation']) && !empty($_POST['reservation'])){
+				require_once 'class/bdd.class.php';
+				$oBdd = new Bdd();
+				$oBdd->reservation_putdata($_SESSION['id_offre'], $_POST['reservation']['EMAIL_CLIENT'],
+				$_POST['reservation']['NOM'], $_POST['reservation']['PRENOM'], $_POST['reservation']['DATE_RESA'],
+				$_POST['reservation']['NB_TABLES'], $_POST['reservation']['NB_PERSONNE'] );
+				define('ROOTING', 'view/client.reserver.fini.view.php');	
+			}
+		break;	
 			
 		break;
 	}
