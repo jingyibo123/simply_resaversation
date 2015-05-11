@@ -393,6 +393,7 @@
 			}
 		break;	
 		case 34:
+			define('ROOTING', 'view/restaurateur_initialisation_calendrier.php');	
 		break;
 	}
 
