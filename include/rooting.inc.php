@@ -351,7 +351,18 @@
 			$aListeOffres = $oBdd->getOffresParRestaurateur($iId);
 		break;
 
+<<<<<<< HEAD
 		
+=======
+		case 24:
+			define('ROOTING', 'view/messageAjoutOffre.view.php');
+		break;
+		case 27:
+			define('ROOTING', 'view/messageSuppressionOffre.view.php');
+			
+		break;
+
+>>>>>>> origin/master
 		case 31:
 			
 			require_once 'class/bdd.class.php';
