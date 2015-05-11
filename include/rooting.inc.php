@@ -351,18 +351,55 @@
 			$aListeOffres = $oBdd->getOffresParRestaurateur($iId);
 		break;
 
-<<<<<<< HEAD
-		
-=======
 		case 24:
 			define('ROOTING', 'view/messageAjoutOffre.view.php');
 		break;
+		
+		case 25:
+			define('ROOTING', 'view/ajoutRestaurant.view.php');
+
+			if(isset($_POST['ajoutResto']) && !empty($_POST['ajoutResto'])){
+
+				require_once 'class/restaurant.class.php';
+
+				$oRestaurant = new Restaurant();
+				$iId = $_GET['id'];
+
+				$oRestaurant->setNom($_POST['ajoutResto']['nom']);
+				$oRestaurant->setAdresse($_POST['ajoutResto']['adresse']);
+				$oRestaurant->setTelephone($_POST['ajoutResto']['telephone']);
+				$oRestaurant->setDescriptif($_POST['ajoutResto']['descriptif']);
+
+				$oRestaurant->validation();
+				
+				require_once 'class/bdd.class.php';
+
+				$oBdd = new Bdd();
+				
+				if(empty($oRestaurant->aError)){
+
+					$iReturnIdent = $oBdd->insertRestaurant($oRestaurant);
+
+					if($iReturnIdent ){
+						header('Location: index.php?category=26');
+					}
+					else{
+						echo 'erreur inscription';
+						header('Location: index.php?category=25&&id='.$iId);
+					}	
+				}
+			}
+		break;
+		
+		case 26:
+			define('ROOTING', 'view/messageAjoutRestaurant.view.php');
+		break;
+
 		case 27:
 			define('ROOTING', 'view/messageSuppressionOffre.view.php');
 			
 		break;
 
->>>>>>> origin/master
 		case 31:
 			
 			require_once 'class/bdd.class.php';

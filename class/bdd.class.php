@@ -123,7 +123,7 @@ class Bdd{
 	public function getRestaurants(){
 		$bdd = $this->bdd;
 		
-		$req = $bdd->prepare('SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE ACTIF = 2');
+		$req = $bdd->prepare('SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE ACTIF = 1');
 		$aListe = $req->execute(array());
 		
 		echo "Liste des restaurants </br></br>";
@@ -444,23 +444,22 @@ class Bdd{
 	
 	
 	// Ajouter un restaurant
-	/*public function insertRestaurant($oRestaurant){
+	public function insertRestaurant($oRestaurant){
 		$bdd = $this->bdd;
-		$iId = $_GET['id];
+		$iId = $_GET['id'];
 		
-		$req=$bdd->prepare("INSERT INTO RESTAURANT (ID_USER, NOM_RESTO, ADRESSE, TELEPHONE, DESCRIPTIF, IMAGE, ACTIF) VALUES ('$iId', :nom, :adresse, :telephone, :descriptif, ' ', :actif)");
+		$req=$bdd->prepare("INSERT INTO RESTAURANT (ID_USER, NOM_RESTO, ADRESSE, TELEPHONE, DESCRIPTIF, IMAGE, ACTIF) VALUES ('$iId', :nom, :adresse, :telephone, :descriptif, ' ', 1)");
 
 	    $req->bindValue(':nom',$oRestaurant->getNom(), PDO::PARAM_STR);
 	    $req->bindValue(':adresse',$oRestaurant->getAdresse(), PDO::PARAM_STR);
 	    $req->bindValue(':telephone',$oRestaurant->getTelephone(), PDO::PARAM_STR);
 	    $req->bindValue(':descriptif',$oRestaurant->getDescriptif(), PDO::PARAM_STR);
-	    $req->bindValue(':actif',$oRestaurant->getActif(), PDO::PARAM_INT);
 
 	    $bReturn = $req->execute();
 	    $req->CloseCursor();
 
     	return $bReturn;
-	}*/
+	}
 	
 	
 	// Modification restaurant
