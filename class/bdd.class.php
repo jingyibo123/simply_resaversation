@@ -293,7 +293,7 @@ class Bdd{
 		
 		return $bReturn;
 	}
-
+	
 	
 	// Liste des restaurants par restaurateurs
 	public function getRestaurantParRestaurateur($iId) {
@@ -430,6 +430,26 @@ class Bdd{
 	    	$req->CloseCursor();
 	    	return $bReturn;
 	    }
+	}
+	
+	
+	// Ajouter un restaurant
+	public function insertRestaurant($oRestaurant){
+		$bdd = $this->bdd;
+		$iId = $_GET['id]';
+		
+		$req=$bdd->prepare("INSERT INTO RESTAURANT (ID_USER, NOM_RESTO, ADRESSE, TELEPHONE, DESCRIPTIF, IMAGE, ACTIF) VALUES ('$iId', :nom, :adresse, :telephone, :descriptif, ' ', :actif)");
+
+	    $req->bindValue(':nom',$oRestaurant->getNom(), PDO::PARAM_STR);
+	    $req->bindValue(':adresse',$oRestaurant->getAdresse(), PDO::PARAM_STR);
+	    $req->bindValue(':telephone',$oRestaurant->getTelephone(), PDO::PARAM_STR);
+	    $req->bindValue(':descriptif',$oRestaurant->getDescriptif(), PDO::PARAM_STR);
+	    $req->bindValue(':actif',$oRestaurant->getActif(), PDO::PARAM_INT);
+
+	    $bReturn = $req->execute();
+	    $req->CloseCursor();
+
+    	return $bReturn;
 	}
 	
 	
