@@ -360,6 +360,10 @@
 		case 24:
 			define('ROOTING', 'view/messageAjoutOffre.view.php');
 		break;
+		case 27:
+			define('ROOTING', 'view/messageSuppressionOffre.view.php');
+			
+		break;
 
 		case 31:
 			
