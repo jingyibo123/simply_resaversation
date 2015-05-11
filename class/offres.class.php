@@ -2,7 +2,9 @@
 
 class Offre {
 
-	private $sDescriptif; 
+	private $iId_resto;
+	private $sDescriptif;
+	private $iActif;
  
 
 	public $aError;
@@ -16,7 +18,12 @@ class Offre {
    					case 'descriptif':
    						$this->sDescriptif = $v;
    					break;
-   					
+   					case 'id_resto':
+   						$this->iId_resto = $v;
+   					break;
+   					case 'actif':
+   						$this->iActif = $v;
+   					break;
    				}
    			}
    		}
@@ -28,7 +35,12 @@ class Offre {
 	public function getDescriptif(){
 		return $this->sDescriptif;
 	}
-	
+	public function getId_resto(){
+		return $this->iId_resto;
+	}
+	public function getActif(){
+		return $this->iActif;
+	}
 	
 
 	
@@ -37,6 +49,12 @@ class Offre {
 	
 	public function setDescriptif($sNewDescriptif){
 		$this->sDescriptif = $sNewDescriptif;
+	}
+	public function setId_resto($iNouveauId_resto){
+		$this->iId_resto = $iNouveauId_resto;
+	}
+	public function setActif($bNouveauActif){
+		$this->iActif = $bNouveauActif;
 	}
 	
 
