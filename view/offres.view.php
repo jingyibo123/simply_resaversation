@@ -11,7 +11,7 @@ include 'include/header.inc.php';
 	</head> 
 	<body>
 		<?php if($_SESSION['droit']==1){
-			?><p><a href="index.php?category=7"> Ajouter une offre</a></p><?php
+			?><p><a href="index.php?category=18"> Ajouter une offre</a></p><?php
 		}
 		?>
 		<p><a href="index.php?category=4"> Retour au menu</a></p>
