@@ -437,7 +437,7 @@ class Bdd{
 	// Ajouter un restaurant
 	public function insertRestaurant($oRestaurant){
 		$bdd = $this->bdd;
-		$iId = $_GET['id]';
+		$iId = $_GET['id];
 		
 		$req=$bdd->prepare("INSERT INTO RESTAURANT (ID_USER, NOM_RESTO, ADRESSE, TELEPHONE, DESCRIPTIF, IMAGE, ACTIF) VALUES ('$iId', :nom, :adresse, :telephone, :descriptif, ' ', :actif)");
 
