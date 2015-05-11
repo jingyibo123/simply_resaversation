@@ -8,21 +8,12 @@
         <script src='//fullcalendar.io/js/fullcalendar-2.3.1/fullcalendar.min.js'></script>
         <script src='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/lang/fr.js'></script>
 		<script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
-		<script src='restaurateur_initialisation_calendrier.js'></script>
+		<script src='view/restaurateur_initialisation_calendrier.js'></script>
     ";
     include 'include/header.inc.php';
 ?>
 
-<link href='http://fullcalendar.io/js/fullcalendar-2.3.1/fullcalendar.min.css' rel='stylesheet' />
 
-<script src='http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js'></script>
-<script src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='http://fullcalendar.io/js/fullcalendar-2.3.1/fullcalendar.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/lang/fr.js'></script>
-
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script>
 
 <style>
 
@@ -43,7 +34,7 @@
 
 <!--  la dialogue de inscription  -->
 <button id="opener">open the dialog</button>
-<div id="dialog" title="Dialog Title">
+<div id="dialog" title="Définir le calendrier de votre restaurant" style='display:none'>
     <label for="selecjour">Selectionner les jours que votre restaurant est ouvert:</label><br/>
     <label><input class="jourcheckbox" name="selecjour" id="selecjour1" type="checkbox" value="" />Lundi</label> 
     <label><input class="jourcheckbox" name="selecjour" id="selecjour2" type="checkbox" value="" />Mardi</label> 
@@ -52,15 +43,15 @@
     <label><input class="jourcheckbox" name="selecjour" id="selecjour5" type="checkbox" value="" />Vendredi</label> 
     <label><input class="jourcheckbox" name="selecjour" id="selecjour6" type="checkbox" value="" />Samedi</label> 
     <label><input class="jourcheckbox" name="selecjour" id="selecjour7" type="checkbox" value="" />Dimanche</label> 
-    <br/><br/>
+    <br/><br/><br/>
     <label for="selechoraire">Selectionner les horaires de votre restaurant:</label><br/><?php
     for($i = 1;$i < 25;$i++){
 		echo '<label><input class="horairecheckbox" name="selecthoraire" id="selecthoraire'.$i.'" type="checkbox" value="" />'.$i.':00:00</label>';
-	}?><br/>
+	}?><br/><br/>
 	
     
     <label for="saisirnbtable">Nombre de tables possibles pour un offre:</label>
-	<input type="number" name = "nbtables" id="nbtables" min="1" max="30">
+	<input type="number" name = "nbtables" class="nbtables" id="nbtables" min="1" max="30">
     <button class="btn calendar initialise save" id="btnsavecalendar" action="" >Sauvegarder</button>
     <button class="btn calendar initialise annuler"  action="" >Annuler</button>
 

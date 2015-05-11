@@ -611,7 +611,7 @@ class Bdd{
 		$db = null;
 		return $calendrier;
 	}
-	public function reservation_get_month($iIdoffre, $sStartDate, $sEndDate){
+	/* public function reservation_get_by_month($iIdoffre, $sStartDate, $sEndDate){
 		$bdd = $this->bdd;
 		$calendrier = Array ();
 		$req = $bdd->prepare('SELECT * FROM `reservation`   WHERE `ID_OFFRE` = ? and `DATE_RESA` Between ? And ?');
@@ -624,10 +624,8 @@ class Bdd{
 			$req->CloseCursor();
 			return $bReturn;
 		}
-		
-		
 		$db = null;
 		return $calendrier;
-	}
+	} */
 }
 ?>

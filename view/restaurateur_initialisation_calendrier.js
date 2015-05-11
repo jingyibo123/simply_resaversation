@@ -10,21 +10,38 @@ $( "#opener" ).click(function() {
 $ ("input#nbtablesrange").change (function (){
     $ ("input#nbtables").val($ ("input#nbtablesrange").val());
 });
-//recharge de case selon le glisseur
-$("#btnajouterhebdo").click(function(){
-    
-    var str = '<tr><td>';
+
+
+$("button#btnsavecalendar").click(function(){
+	var jours = new Array();
+	var horaires = new Array();
     $("input.jourcheckbox").each(function(){
         if(this.checked){
-            str = str + this.nextSibling.data.substring(0,3) + ',';
+            jours.push(this.id.substring(9,10));
         }
     });
-    str = str + '</td><td>' + $("select#selechoraire").children()[$("select#selechoraire").val()-1].text + '</td><td>' + $ ("input#nbtables").val() + '</td><td>' + '<button class="btn delete horaire" onclick="supprimerhoraire(this)" >Supprimer</button>' + '</td></tr>';
-    $('table#horairelist').append(str);
+	$("input.horairecheckbox").each(function(){
+        if(this.checked){
+            horaires.push(this.nextSibling.data);
+        }
+    });
+	var nbtables = $("input#nbtables").val();
+    $.ajax({
+		url: 'ajax/initialiser_calendrier.php',
+		type: 'POST',
+		dataType: 'json',
+		cache: false,
+		data: {
+			jours: jours,
+			horaires: horaires,
+			nbtables: nbtables
+		},
+		success: function(response) {
+			alert("botre calendrier a été bien enreegistré");
+			$( "#dialog" ).dialog( "close" );
+		}
+	});
 });
-//ajouter dans le table
-function supprimerhoraire(e){  
-    if(confirm("Supprimer l'horaire choisi?")){
-        $(e).parent().parent("tr").remove();
-    }
-}
+
+
+
