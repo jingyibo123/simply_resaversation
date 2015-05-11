@@ -357,7 +357,10 @@
 			$aListeOffres = $oBdd->getOffresParRestaurateur($iId);
 		break;
 
-		
+		case 24:
+			define('ROOTING', 'view/messageAjoutOffre.view.php');
+		break;
+
 		case 31:
 			
 			require_once 'class/bdd.class.php';
