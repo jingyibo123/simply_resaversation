@@ -196,7 +196,7 @@ class Bdd{
 	public function getOffresParRestaurateur($iId){
 		$bdd1 = $this->bdd;
 
-		$req1 = $bdd1->prepare("SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = :id_user AND RESTAURANT.ACTIF=2");
+		$req1 = $bdd1->prepare("SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = :id_user AND RESTAURANT.ACTIF=1");
 		$aListe1 = $req1->execute(array('id_user' => $iId));
 		
 
@@ -205,7 +205,7 @@ class Bdd{
 			echo 'Liste des offres du restaurant '.$donnees1['NOM_RESTO'].' : <br /><br />'; 
 			
 			$bdd2 = $this->bdd;
-			$req2 = $bdd2->prepare("SELECT ID_OFFRE, DESCRIPTIF FROM OFFRE WHERE OFFRE.ID_RESTO = :id AND ACTIF=2");
+			$req2 = $bdd2->prepare("SELECT ID_OFFRE, DESCRIPTIF FROM OFFRE WHERE OFFRE.ID_RESTO = :id AND ACTIF=1");
 			$aListe2 = $req2->execute(array('id' => $donnees1['ID_RESTO'] ));
 		
 			while ($donnees2 = $req2->fetch()) {
@@ -246,7 +246,7 @@ class Bdd{
 	public function getOffresParAdministrateur(){
 		$bdd1 = $this->bdd;
 		
-		$req1 = $bdd1->prepare("SELECT NOM_RESTO, ID_RESTO, ID_USER FROM RESTAURANT WHERE RESTAURANT.ACTIF=2");
+		$req1 = $bdd1->prepare("SELECT NOM_RESTO, ID_RESTO, ID_USER FROM RESTAURANT WHERE RESTAURANT.ACTIF=1");
 		$aListe1 = $req1->execute(array());
 		
 		while ($donnees1 = $req1->fetch()) {
@@ -261,7 +261,7 @@ class Bdd{
 					echo 'Liste des offres du restaurant '.$donnees1['NOM_RESTO'].' dont le propriétaire est '.$donnees['PRENOM'].' '.$donnees['NOM'].' : <br /><br />'; 
 			
 					$bdd2 = $this->bdd;
-					$req2 = $bdd2->prepare("SELECT ID_OFFRE, DESCRIPTIF FROM OFFRE WHERE OFFRE.ID_RESTO = :id AND ACTIF=2");
+					$req2 = $bdd2->prepare("SELECT ID_OFFRE, DESCRIPTIF FROM OFFRE WHERE OFFRE.ID_RESTO = :id AND ACTIF=1");
 					$aListe2 = $req2->execute(array(
 							'id' => $donnees1['ID_RESTO'] ));
 		
@@ -319,7 +319,7 @@ class Bdd{
 		
 		$bdd2 = $this->bdd;
 
-		$req2 = $bdd2->prepare("SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = $iId AND ACTIF=2");
+		$req2 = $bdd2->prepare("SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = $iId AND ACTIF=1");
 		$aListe2 = $req2->execute(array());
 
 		
@@ -365,7 +365,7 @@ class Bdd{
 	public function getDetailRestaurant($iId) {
 		$bdd = $this->bdd;
 
-		$req = $bdd->prepare("SELECT * FROM RESTAURANT WHERE RESTAURANT.ID_RESTO = $iId AND ACTIF=2");
+		$req = $bdd->prepare("SELECT * FROM RESTAURANT WHERE RESTAURANT.ID_RESTO = $iId AND ACTIF=1");
 		$aListe = $req->execute(array());
 		
 		$donnees = $req->fetch();
