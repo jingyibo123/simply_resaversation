@@ -364,10 +364,10 @@
 					/* Enrigistrer IP 
 				
 					*/
-					define('ROOTING', 'view/client.offre_deja_reserve.view.php');
+					define('ROOTING', 'view/client.reserver.view.php');
 				}
 				else{
-					define('ROOTING', 'view/client.offre_reservé.view.php');
+					define('ROOTING', 'view/client.offre_deja_reserve.view.php');
 				}
 			}
 			else{
