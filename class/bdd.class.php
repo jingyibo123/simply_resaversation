@@ -147,8 +147,7 @@ class Bdd{
 		
 		echo "Liste des restaurateurs </br></br>";
 		while ($donnees = $req->fetch()) {
-			echo  $donnees['NOM'].' '.$donnees['PRENOM'] ?> <a href="index.php?category=8&&id=<?php echo $donnees['ID_USER'];?>">Restaurants</a>
-									<a href="index.php?category=19&&id=<?php echo $donnees['ID_USER'];?>">Offres</a><?php
+			echo  $donnees['NOM'].' '.$donnees['PRENOM'] ?> <a href="index.php?category=8&&id=<?php echo $donnees['ID_USER'];?>">Restaurants</a> <?php
 			echo'<br />'; 
 		}
 		
@@ -298,7 +297,8 @@ class Bdd{
 
 		
 		while ($donnees2 = $req2->fetch()) {
-			echo  $donnees2['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees2['ID_RESTO'];?>">Details</a><?php
+			echo  $donnees2['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees2['ID_RESTO'];?>">Details</a>
+												<a href="index.php?category=20&&id=<?php echo $donnees2['ID_RESTO'];?>">Offres</a> <?php
 			echo '<br/>';
 		}
 		
