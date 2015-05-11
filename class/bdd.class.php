@@ -128,10 +128,11 @@ class Bdd{
 		
 		echo "Liste des restaurants </br></br>";
 		while ($donnees = $req->fetch()) {
-			echo  $donnees['NOM_RESTO'].' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>"> Détails </a>
-						<a href="index.php?category=20&&id=<?php echo $donnees['ID_RESTO']; ?>"> Offres </a>
-						<a href="index.php?category=18&&id=<?php echo $donnees['ID_RESTO']; ?>"> Ajouter une offre </a><?php
-			echo'<br />'; 
+			echo  $donnees['NOM_RESTO'].' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>"> Détails </a><?php
+			echo ' ';?>
+						<a href="index.php?category=20&&id=<?php echo $donnees['ID_RESTO']; ?>"> Offres </a><?php
+
+			echo'<br />';  
 		}
 		
 		$req->closeCursor();
