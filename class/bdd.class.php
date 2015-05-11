@@ -154,6 +154,23 @@ class Bdd{
 		$req->closeCursor();
 	}
 	
+	//Ajouter une offre
+	public function ajoutOffre($oOffre) {
+		$bdd = $this->bdd;
+
+
+		$req = $bdd->prepare('INSERT INTO OFFRE(ID_RESTO, DESCRIPTIF, ACTIF) VALUES (:id_resto, :descriptif, 1) ');
+		
+		$req->bindValue(':id_resto',$oOffre->getId_resto(), PDO::PARAM_STR);
+	    $req->bindValue(':descriptif',$oOffre->getDescriptif(), PDO::PARAM_STR);
+	    
+	    
+
+	    $bReturn = $req->execute();
+	    $req->CloseCursor();
+		
+		return $bReturn;
+	}
 
 	public function offre_getData($iId){
 		$bdd = $this->bdd;
