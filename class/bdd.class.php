@@ -197,8 +197,7 @@ class Bdd{
 		$bdd1 = $this->bdd;
 
 		$req1 = $bdd1->prepare("SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = :id_user AND RESTAURANT.ACTIF=2");
-		$aListe1 = $req1->execute(array(
-					'id_user' => $iId));
+		$aListe1 = $req1->execute(array('id_user' => $iId));
 		
 
 		
@@ -207,8 +206,7 @@ class Bdd{
 			
 			$bdd2 = $this->bdd;
 			$req2 = $bdd2->prepare("SELECT ID_OFFRE, DESCRIPTIF FROM OFFRE WHERE OFFRE.ID_RESTO = :id AND ACTIF=2");
-			$aListe2 = $req2->execute(array(
-					'id' => $donnees1['ID_RESTO'] ));
+			$aListe2 = $req2->execute(array('id' => $donnees1['ID_RESTO'] ));
 		
 			while ($donnees2 = $req2->fetch()) {
 				echo $donnees2['DESCRIPTIF'];
@@ -253,8 +251,7 @@ class Bdd{
 			
 			$bdd = $this->bdd;
 			$req = $bdd->prepare("SELECT PRENOM, NOM FROM MEMBRE WHERE MEMBRE.ID_USER= :id");
-			$aListe = $req->execute(array(
-				'id' => $donnees1['ID_USER']));
+			$aListe = $req->execute(array('id' => $donnees1['ID_USER']));
 				
 				
 				while ($donnees = $req->fetch()) {
@@ -281,7 +278,17 @@ class Bdd{
 	
 		$req1->closeCursor();
 	}
-	
+	public function calendrier_initialise($iIresto, $tJours_dispos, $tHoraires_dispos, $iNbtables) {
+		$bdd = $this->bdd;
+		$req = $bdd->prepare("INSERT INTO `CALENDRIER_HEBDO`(`ID_RESTO`, `JOUR`, `HORAIRE`, `NB_TABLES`, `ACTIF`) VALUES (?,?,?,?,1)");
+		foreach($tJours_dispos as $jour){
+			foreach($tHoraires_dispos as $horaire){
+				$req->execute(array($iIresto, $jour, $horaire, $iNbtables));
+			}
+		}
+		$req->closeCursor();
+		
+	}
 	
 	// Modification offre
 	public function updateOffre($iId, $sDescriptif) {
