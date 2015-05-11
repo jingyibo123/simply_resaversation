@@ -435,7 +435,7 @@ class Bdd{
 	
 	
 	// Ajouter un restaurant
-	public function insertRestaurant($oRestaurant){
+	/*public function insertRestaurant($oRestaurant){
 		$bdd = $this->bdd;
 		$iId = $_GET['id];
 		
@@ -451,7 +451,7 @@ class Bdd{
 	    $req->CloseCursor();
 
     	return $bReturn;
-	}
+	}*/
 	
 	
 	// Modification restaurant
