@@ -153,7 +153,8 @@ class Bdd{
 		while ($donnees = $req->fetch()) {
 			echo  $donnees['NOM_RESTO'].' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>">Détails</a><?php
 			echo '  ';?>
-			<a href="index.php?category=20&&id=<?php echo $donnees['ID_RESTO']; ?>">Offres</a><?php
+			<a href="index.php?category=20&&id=<?php echo $donnees['ID_RESTO']; ?>">Offres</a>
+			<a href="index.php?category=46&&id=<?php echo $donnees['ID_RESTO'];?>" onclick="return confirm('Voulez-vous vraiment suprimer ce restaurant ?');">Supprimer Restaurant</a><?php
 			echo'<br />';  
 		}
 		
@@ -354,7 +355,7 @@ class Bdd{
 	}
 	
 	
-	// Liste des restaurants par restaurateurs
+	// Liste des restaurants par restaurateurs (lorsque l'on est connecté en tant qu'admin)
 	public function getRestaurantParRestaurateur($iId) {
 		$bdd1 = $this->bdd;
 
@@ -375,7 +376,8 @@ class Bdd{
 		while ($donnees2 = $req2->fetch()) {
 			echo  $donnees2['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees2['ID_RESTO'];?>">Détails</a> <?php
 			echo '  ';?>
-			<a href="index.php?category=20&&id=<?php echo $donnees2['ID_RESTO'];?>">Offres</a> <?php
+			<a href="index.php?category=20&&id=<?php echo $donnees2['ID_RESTO'];?>">Offres</a>
+				<a href="index.php?category=46&&id=<?php echo $donnees2['ID_RESTO'];?>" onclick="return confirm('Voulez-vous vraiment suprimer ce restaurant ?');">Supprimer Restaurant</a><?php
 			echo '<br/>';
 		}
 		
