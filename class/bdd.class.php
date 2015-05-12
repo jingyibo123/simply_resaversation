@@ -516,15 +516,21 @@ class Bdd{
 
 
 	// Envoi notification administrateur pour modification restaurant
-	public function notifUpdateRestaurant() {
+	public function notifUpdateRestaurant($dCurrentDate) {
+		$iDateExpiration = 864000; // Correspond à 10 jours
+		$dDateCurrent1 = strtotime($dCurrentDate);
+		
 		$bdd = $this->bdd;
 		
 		$req = $bdd->prepare("SELECT * FROM NOTIFICATIONS_RESTO INNER JOIN RESTAURANT ON NOTIFICATIONS_RESTO.ID_RESTO = RESTAURANT.ID_RESTO INNER JOIN MEMBRE ON RESTAURANT.ID_USER = MEMBRE.ID_USER ORDER BY DATE_MODIF DESC");
 		$aListe = $req->execute(array());
 		while ($donnees = $req->fetch()) {
-			echo 'Le restaurant '.$donnees['NOM_RESTO'].' a été modifié par '.$donnees['PRENOM'].' '.$donnees['NOM'].' le '.$donnees['DATE_MODIF'].'<br/>';
-			echo 'Cliquez '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">ici </a><?php 
-			echo 'pour accéder aux modifications<br/><br/>';
+			$dDateModif = strtotime($donnees['DATE_MODIF']);
+			if (($dDateCurrent1-$dDateModif)<$iDateExpiration) {
+				echo 'Le restaurant '.$donnees['NOM_RESTO'].' a été modifié par '.$donnees['PRENOM'].' '.$donnees['NOM'].' le '.$donnees['DATE_MODIF'].'<br/>';
+				echo 'Cliquez '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">ici </a><?php 
+				echo 'pour accéder aux modifications<br/><br/>';
+			}
 		}
 		
 		$req->closeCursor();		

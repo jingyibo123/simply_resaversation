@@ -418,8 +418,9 @@
 		case 30:
 			define('ROOTING', 'view/notifications.view.php');
 			require_once 'class/bdd.class.php';
+			$dDateCurrent = date('Y-m-d H:i:s');
 			$oBdd = new Bdd();
-			$aListeNotifs = $oBdd->notifUpdateRestaurant();
+			$aListeNotifs = $oBdd->notifUpdateRestaurant($dDateCurrent);
 		break;
 
 
