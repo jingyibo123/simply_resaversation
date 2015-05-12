@@ -87,8 +87,10 @@
 					}
 					else{
 						
-						echo 'error_log';
-						define('ROOTING', 'view/connexion.view.php');
+						?>
+					<script>alert("<?php echo htmlspecialchars('Adresse email ou mot de passe incorrect', ENT_QUOTES); ?>")</script>
+					<?php
+						
 					}
 				}
 			}
