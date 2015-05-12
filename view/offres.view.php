@@ -2,7 +2,7 @@
 
 <?php
 include 'include/header.inc.php';
-$iId = $_GET['id'];
+
 ?>
 
 <html>
