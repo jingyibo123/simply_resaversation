@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 
 <?php
-	include '../include/header.inc.php';
+	include 'include/header.inc.php';
 ?>
 
 <!-- L'utilisateur a rempli le formulaire et visualise les informations remplies.-->
@@ -25,7 +25,7 @@
 	$_SESSION['domaineAdresse'] = htmlspecialchars($_POST['domaineAdresse']);
 	$_SESSION['localAdresse'] = htmlspecialchars($_POST['localAdresse']);
 	?>
-	<h1>Voici le récapitulatif de votre inscription :</h1>
+	<h1>Voici le récapitulatif de l'inscription :</h1>
 	<?php $sNom = strtoupper($_POST['nom']); ?>
 	<?php switch ($_POST['sexe'])
 		{
@@ -45,9 +45,11 @@
 		<?php echo 'Votre adresse e-mail : ' . $_SESSION['debutAdresse'] . '@' . $_SESSION['domaineAdresse'] . '.' . $_SESSION['localAdresse'];	
 	}
 	?>
+	<br></br>
+	<p><a href="index.php?category=4"> Retour au menu</a></p>
 </body>
 </html>
 
 <?php
-	include '../include/footer.inc.php';
+	include 'include/footer.inc.php';
 ?>

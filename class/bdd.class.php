@@ -53,6 +53,23 @@ class Bdd{
 	    	return $bReturn;
 	    }
 	}
+	
+	public function user_getDetails($iId){
+		$bdd = $this->bdd;
+		
+		$req=$bdd->prepare("SELECT * FROM MEMBRE WHERE ID_USER = $iId");
+
+	    $aListe = $req->execute(array());
+
+		$donnees = $req->fetch();
+		echo 'Vos informations personnelles :<br /><br />';
+		echo 'Nom : '.$donnees['NOM'].'<br />'; 
+		echo 'Prénom : '.$donnees['PRENOM'].'<br/>';
+		echo 'Sexe : <br/>';
+		echo 'Adresse e-mail : '.$donnees['EMAIL'].'<br/>'; 
+		$req->closeCursor();
+	}
+
 
 	public function user_insert($oUser){
 		$bdd = $this->bdd;

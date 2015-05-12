@@ -415,6 +415,58 @@
 			
 		break;
 		
+		case 28 : 
+			define('ROOTING', 'view/consultationProfil.view.php');
+			require_once 'class/bdd.class.php';
+
+			$oBdd = new Bdd();
+			$iId = $_GET['id'];
+			$aDetails = $oBdd->user_getDetails($iId);
+		break;
+			
+		case 29:
+			define('ROOTING', 'view/recapitulatifProfil.view.php');	
+				require_once 'class/user.class.php';
+
+				$oUser = new User();
+
+				$oUser->setNom($_POST['nom']);
+				$oUser->setPrenom($_POST['prenom']);
+		
+				$sEmailComplete = $_POST['debutAdresse']."@";
+				$sEmailComplete .= $_POST['domaineAdresse'];
+				$sEmailComplete .= ".";
+				$sEmailComplete .= $_POST['localAdresse'];;
+				$oUser->setEmail($sEmailComplete);
+				$oUser->setMdp($_POST['mdp1']);
+				$oUser->setActif(true);
+				
+				if ($_POST['type'] == "Administrateur") {
+					$oUser->setDroit(1);
+				}
+				else {
+					$oUser->setDroit(2);
+				}
+				
+				$oUser->validation();
+				
+				require_once 'class/bdd.class.php';
+
+				$oBdd = new Bdd();
+				if(empty($oUser->aError)){
+
+					$iReturnIdent = $oBdd->user_insert($oUser);
+					
+					if($iReturnIdent ){
+						header('Location: index.php?category=40');
+					}
+					else{
+						echo 'erreur inscription';
+						header('Location: index.php?category=29');
+					}	
+				}
+		break;
+		
 		case 30:
 			define('ROOTING', 'view/notifications.view.php');
 			require_once 'class/bdd.class.php';
@@ -471,6 +523,14 @@
 		case 100:
 			session_destroy();
 			header('Location: index.php?category=0');
+		break;
+		
+		case 40:
+			define('ROOTING', 'view/messageAjoutProfil.view.php');
+		break;
+		
+		case 41:
+			define('ROOTING', 'view/ajoutProfil.view.php');
 		break;
 	}
 

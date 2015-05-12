@@ -1,7 +1,10 @@
 <!DOCTYPE html> 
 
 <?php
-	include '../include/header.inc.php';
+	include 'include/header.inc.php';
+	require_once 'class/bdd.class.php';
+
+	$oBdd = new Bdd();
 ?>
 
 <!-- L'utilisateur n'est pas connecté et souhaite s'enregistrer sur le site.-->
@@ -12,15 +15,20 @@
 		<title>Création nouveau profil</title> 
 	</head> 
 		<!-- Création Compte -->
-	<!-- Le header -->
-	<header> Bienvenue </header>
 	<!-- Le menu -->
 	<!--php include ("../include/menu.inc.php");-->
 	<!-- Le corps de la page -->
 	<body>
 	<title> Formulaire de création </title>
-	<form method="post" action="recapitulatifProfil.view.php" onSubmit="return verifyInfo(this.nom, this.prenom, this.debutAdresse, this.domaineAdresse, this.localAdresse, this.mdp1, this.mdp2)"> 
-		<p> Veuillez remplir le formulaire suivant pour vous enregistrer sur note site : </p>
+	<form method="post" onSubmit="return verifyInfo(this)"
+	action="<?php echo $_SERVER['PHP_SELF'].'?category=29'; ?>">
+	<h2> Inscription </h2>
+		Type Profil :
+		<select name="type">
+		<option value="Restaurateur">Restaurateur</option>
+		<option value="Administrateur">Administrateur</option>
+		</select>
+		<br>
 		Nom :
 		<input type="text" name="nom" value=""/>
 		<br>
@@ -41,9 +49,16 @@
 		<br>
 	
 		<script type="text/javascript">
-		function verifyInfo(nom, prenom, debut, domaine, local, element1, element2)
+		function verifyInfo(f)
 		 {
 		  var passed=false
+		  var nom = f.nom;
+		  var prenom = f.prenom;
+		  var debut = f.debutAdresse;
+		  var domaine = f.domaineAdresse;
+		  var local = f.localAdresse;
+		  var element1 = f.mdp1;
+		  var element2 = f.mdp2;
 		   if (nom.value=='')
 		   {
 		    alert("ERREUR : Vous n'avez pas renseigné votre nom.")
@@ -79,12 +94,14 @@
 		Entrez votre mot de passe : <input type="password" name="mdp1">
 		<br>
 		Confirmez le mot de passe :<input type="password" name="mdp2">
-		<br>
+		<br></br>
 		<input type="submit" value="Confirmer"/>
 	</form>
+	<br></br>
+	<p><a href="index.php?category=4"> Retour au menu</a></p>
 	</body>
 </html>
 
 <?php
-	include '../include/footer.inc.php';
+	include 'include/footer.inc.php';
 ?>

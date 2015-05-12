@@ -1,7 +1,11 @@
 <!DOCTYPE html> 
 
 <?php
-	include '../include/header.inc.php';
+	include 'include/header.inc.php';
+	require_once 'class/bdd.class.php';
+
+	$oBdd = new Bdd();
+	$iId = $_GET['id'];
 ?>
 
 <!-- L'utilisateur est connecté et souhaite consulter son profil.-->
@@ -11,23 +15,15 @@
     <head> 
 		<title>Votre Profil</title> 
 	</head> 
-	<!-- Le header -->
-	<header> Vos informations personnelles</header>
+
 	<body>
-		Nom : 
-		<br>
-		Prenom :
-		<br>
-		Sexe :
-		<br>
-		Email :
-		<br>
-		<button><a href='modificationProfil.view.php'>Modifier</a></button>
-		<button><a href='supprimerProfil.view.php'>Supprimer</a></button>
-		
+	<br>
+		<button><a href="index.php?category=29">Modifier</a></button>
+		<br><br>
+		<p><a href="index.php?category=4"> Retour au menu</a></p>
 	</body>
 </html>
 
 <?php
-	include '../include/footer.inc.php';
+	include 'include/footer.inc.php';
 ?>
