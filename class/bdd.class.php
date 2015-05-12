@@ -172,6 +172,24 @@ class Bdd{
 		
 		return $bReturn;
 	}
+	
+	//Supprimer une offre
+	public function supprimerOffre($iId_offre) {
+		$bdd = $this->bdd;
+
+
+		$req = $bdd->prepare('DELETE FROM OFFRE WHERE ID_OFFRE = :id_offre ');
+		
+		$req->bindValue(':id_offre',$iId_offre, PDO::PARAM_STR);
+	    
+	    
+	    
+
+	    $bReturn = $req->execute();
+	    $req->CloseCursor();
+		
+		return $bReturn;
+	}
 
 	public function offre_getData($iId){
 		$bdd = $this->bdd;

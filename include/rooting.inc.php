@@ -405,6 +405,11 @@
 		break;
 
 		case 27:
+			
+			require_once 'class/bdd.class.php';
+			$oBdd = new Bdd();
+			$iId_offre = $_GET['id'];
+			$oBdd->supprimerOffre($iId_offre);
 			define('ROOTING', 'view/messageSuppressionOffre.view.php');
 			
 		break;
