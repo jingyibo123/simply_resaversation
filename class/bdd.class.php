@@ -472,14 +472,37 @@ class Bdd{
 			$dDateCurrent = date('Y-m-d H:i:s');
 
 			if ($dDateCurrent < $donnees['DATE_RESA']) {
-				echo  'Le '.$donnees['DATE_RESA'].' : '.$donnees['NB_TABLES'].' table(s) pour '.$donnees['NB_PRS'].' personne(s) au nom de ';
-				echo $donnees['PRENOM'].' '.$donnees['NOM'].' (Email : '.$donnees['EMAIL_CLIENT'].')';
-				echo '<br/><br/>';
+				if ($donnees['ACTIF'] == 1) {
+					echo  'Le '.$donnees['DATE_RESA'].' : '.$donnees['NB_TABLES'].' table(s) pour '.$donnees['NB_PRS'].' personne(s) au nom de ';
+					echo $donnees['PRENOM'].' '.$donnees['NOM'].' (Email : '.$donnees['EMAIL_CLIENT'].')'?>
+					<a href="index.php?category=44&&id=<?php echo $donnees['ID_RESA']; ?>">Annuler la réservation</a><?php
+					echo '<br/><br/>';
+				}
 			}
 		}
 		
 		$req->closeCursor();
+	}
 	
+	
+	// Annuler une réservation
+	public function annulerReservation($oAnnulation) {
+		$bdd = $this->bdd;
+		$iId = $_GET['id'];
+		
+		$req2 = $bdd->prepare("UPDATE RESERVATION SET ACTIF = 0 WHERE ID_RESA = '$iId'");
+		$bReturn2 = $req2->execute();
+		$req2->CloseCursor();
+
+		$req1 = $bdd->prepare("INSERT INTO ANNULATION_RESA (`ID_RESA`, `MOTIF`) VALUES ('$iId', :motif)");
+	    $req1->bindValue(':motif',$oAnnulation->getMotif(), PDO::PARAM_STR);
+	    $bReturn1 = $req1->execute();
+	    $req1->CloseCursor();
+		if($bReturn1 == true){
+	    	return $bdd->lastInsertId();
+	    }else{
+	    	return 0;
+		}
 	}
 	
 	

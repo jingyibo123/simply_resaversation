@@ -547,6 +547,44 @@
 			$iId = $_GET['id'];
 			$oBdd->user_delete($iId);
 		break;
+		
+		case 44:
+			define('ROOTING', 'view/annulationReservation.view.php');
+
+			if(isset($_POST['annulation']) && !empty($_POST['annulation'])){
+
+				require_once 'class/annulationReservation.class.php';
+
+				$oAnnulation = new Annulation();
+				$iId = $_GET['id'];
+
+				$oAnnulation->setMotif($_POST['annulation']['motif']);
+
+				$oAnnulation->validation();
+				
+				require_once 'class/bdd.class.php';
+
+				$oBdd = new Bdd();
+				
+				if(empty($oAnnulation->aError)){
+
+					$iReturnIdent = $oBdd->annulerReservation($oAnnulation);
+
+					if($iReturnIdent != 0){
+						header('Location: index.php?category=45');
+					}
+					else{
+						echo 'erreur annulation';
+						header('Location: index.php?category=44&&id='.$iId);
+					}	
+				}
+			}
+		break;
+		
+		case 45:
+			define('ROOTING', 'view/messageAnnulationReservation.view.php');
+		break;
+
 	}
 
 ?>
