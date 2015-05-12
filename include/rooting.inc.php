@@ -36,10 +36,16 @@
 					$oBdd = new Bdd();
 				
 				//Si l'email n'existe pas déjà dans la base de donnée
-				if($oBdd->user_checkEmail($oUser->getEmail())>0){
+				if($_POST['inscription']['confirm'] != $oUser->getMdp() ){?>
+					<script>alert("<?php echo htmlspecialchars('Les mots de passe indiqués ne sont pas les mêmes, veuillez remplir le formulaire à nouveau', ENT_QUOTES); ?>")</script>
+					<?php
+				}
+				
+				// si les deux mots de passes ne sont pas identiques
+				elseif($oBdd->user_checkEmail($oUser->getEmail())>0){
 					?>
 					<script>alert("<?php echo htmlspecialchars('L adresse email indiquée est déjà associée à un compte existant', ENT_QUOTES); ?>")</script>
-					<?php
+					<?php 
 					
 				}
 				//S'il n'y a aucun retour d'erreur
