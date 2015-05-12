@@ -22,6 +22,7 @@ $sPrenom = $aMembre['PRENOM'];
 					?>
 						<li><a href="CompteClient.html"> Mon Compte C</a></li>
 						<li><a href="ReservationsClients.html"> Ma Reservation C</a></li>
+						<li><a href="index.php?category=100" onclick="return confirm('Voulez-vous vraiment vous déconnecter ?');">Déconnexion</a></li>
 					<?php break;
 					
 					case "2": // Restaurateur : A créer
@@ -31,6 +32,7 @@ $sPrenom = $aMembre['PRENOM'];
 						<li><a href="index.php?category=10"> Mes Restaurants </a></li>
 						<li><a href="index.php?category=12"> Mes Offres </a></li>
 						<li><a href="index.php?category=11"> Mes Reservations </a></li>
+						<li><a href="index.php?category=100" onclick="return confirm('Voulez-vous vraiment vous déconnecter ?');">Déconnexion</a></li>
 					<?php break;
 					
 					case "1": // Administrateur : A créer
@@ -40,6 +42,7 @@ $sPrenom = $aMembre['PRENOM'];
 						<li><a href="index.php?category=7"> Restaurateurs </a></li>
 						<li><a href="index.php?category=5"> Restaurants </a></li>
 						<li><a href="index.php?category=1"> Inscrire un membre</a></li>
+						<li><a href="index.php?category=100" onclick="return confirm('Voulez-vous vraiment vous déconnecter ?');">Déconnexion</a></li>
 					<?php break;
 					
 					default:

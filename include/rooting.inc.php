@@ -457,6 +457,11 @@
 		case 34:
 			define('ROOTING', 'view/restaurateur_initialisation_calendrier.php');	
 		break;
+		
+		case 100:
+			session_destroy();
+			header('Location: index.php?category=0');
+		break;
 	}
 
 ?>
