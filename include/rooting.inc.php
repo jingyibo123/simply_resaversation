@@ -532,21 +532,6 @@
 		case 41:
 			define('ROOTING', 'view/ajoutProfil.view.php');
 		break;
-				
-		case 42:
-			define ('ROOTING', 'view/supprimerProfil.view.php');
-			require_once 'class/bdd.class.php';
-			$oBdd = new Bdd();
-			$iId = $_GET['id'];
-			$aDetails = $oBdd->user_getDetails($iId);
-		break;
-		
-		case 43:
-			define('ROOTING', 'view/messageSuppresionProfil.view.php');
-			$oBdd = new Bdd();
-			$iId = $_GET['id'];
-			$oBdd->user_delete($iId);
-		break;
 	}
 
 ?>
