@@ -41,6 +41,7 @@ $sPrenom = $aMembre['PRENOM'];
 						<li><a href="CompteModerateur.html"> Mon Compte </a></li>
 						<li><a href="index.php?category=7"> Restaurateurs </a></li>
 						<li><a href="index.php?category=5"> Restaurants </a></li>
+						<li><a href="index.php?category=30"> Notifications</a></li>
 						<li><a href="index.php?category=1"> Inscrire un membre</a></li>
 						<li><a href="index.php?category=100" onclick="return confirm('Voulez-vous vraiment vous déconnecter ?');">Déconnexion</a></li>
 					<?php break;

@@ -217,7 +217,7 @@
 				if (empty($oRestaurant->aError)) {
 					$oBdd = new Bdd();
 					
-					$aModifResto = $oBdd->updateRestaurant($iId, $sTelephone, $sDescriptif);
+					$aModifResto = $oBdd->updateRestaurant($iId, $sTelephone, $sDescriptif, $dCurrentDate);
 						
 					if(!empty($aModifResto) ){
 						header('Location: index.php?category=14');
@@ -413,6 +413,14 @@
 			define('ROOTING', 'view/messageSuppressionOffre.view.php');
 			
 		break;
+		
+		case 30:
+			define('ROOTING', 'view/notifications.view.php');
+			require_once 'class/bdd.class.php';
+			$oBdd = new Bdd();
+			$aListeNotifs = $oBdd->notifUpdateRestaurant();
+		break;
+
 
 		case 31:
 			

@@ -489,15 +489,34 @@ class Bdd{
 	
 	
 	// Modification restaurant
-	public function updateRestaurant($iId, $sTelephone, $sDescriptif) {
+	public function updateRestaurant($iId, $sTelephone, $sDescriptif, $dDateModif) {
 		$bdd = $this->bdd;
 
-		$req = $bdd->prepare("UPDATE RESTAURANT SET TELEPHONE = '$sTelephone', DESCRIPTIF = '$sDescriptif' WHERE ID_RESTO = '$iId'");
+		$req1 = $bdd->prepare("UPDATE RESTAURANT SET TELEPHONE = '$sTelephone', DESCRIPTIF = '$sDescriptif', DATE_DERNIERE_MODIF = '$dDateModif' WHERE ID_RESTO = '$iId'");
+	    $bReturn1 = $req1->execute();
+	    $req1->CloseCursor();
 
-	    $bReturn = $req->execute();
-	    $req->CloseCursor();
+		$req2 = $bdd->prepare("INSERT INTO NOTIFICATIONS_RESTO (ID_RESTO, DATE_MODIF) VALUES ('$iId', '$dDateModif')");
+	    $bReturn2 = $req2->execute();
+	    $req2->CloseCursor();
 		
-		return $bReturn;
+		return $bReturn1;
+	}
+
+
+	// Envoi notification administrateur pour modification restaurant
+	public function notifUpdateRestaurant() {
+		$bdd = $this->bdd;
+		
+		$req = $bdd->prepare("SELECT * FROM NOTIFICATIONS_RESTO INNER JOIN RESTAURANT ON NOTIFICATIONS_RESTO.ID_RESTO = RESTAURANT.ID_RESTO INNER JOIN MEMBRE ON RESTAURANT.ID_USER = MEMBRE.ID_USER ORDER BY DATE_MODIF DESC");
+		$aListe = $req->execute(array());
+		while ($donnees = $req->fetch()) {
+			echo 'Le restaurant '.$donnees['NOM_RESTO'].' a été modifié par '.$donnees['PRENOM'].' '.$donnees['NOM'].' le '.$donnees['DATE_MODIF'].'<br/>';
+			echo 'Cliquez '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">ici </a><?php 
+			echo 'pour accéder aux modifications<br/><br/>';
+		}
+		
+		$req->closeCursor();		
 	}
 	
 	

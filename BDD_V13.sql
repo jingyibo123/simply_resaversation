@@ -16,6 +16,7 @@ CREATE TABLE RESTAURANT (
 	TELEPHONE VARCHAR(20),
 	DESCRIPTIF VARCHAR(1000),
 	IMAGE VARCHAR(200), /*répertoire images*/
+	DATE_DERNIERE_MODIF DATETIME,
 	ACTIF INT(1) unsigned, /* 1 pour actif, 0 inactif*/
 	FOREIGN KEY (ID_USER) REFERENCES MEMBRE(ID_USER) ON DELETE RESTRICT
 );
@@ -87,6 +88,14 @@ CREATE TABLE ANNULATION_RESA (
 	FOREIGN KEY (ID_RESA) REFERENCES RESERVATION(ID_RESA) ON DELETE RESTRICT
 );
 
+/*Notifications modifications restaurants**/
+CREATE TABLE NOTIFICATIONS_RESTO (
+	ID_NOTIF_RESTO INT(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	ID_RESTO INT(10) unsigned NOT NULL,
+	DATE_MODIF DATETIME,
+	FOREIGN KEY (ID_RESTO) REFERENCES RESTAURANT(ID_RESTO) ON DELETE RESTRICT
+);
+
 
 
 
@@ -96,9 +105,9 @@ INSERT INTO `MEMBRE`(`ID_USER`, `EMAIL`, `NOM`, `PRENOM`, `MDP`, `DROIT`, `ACTIF
  ('','paul19830611@hotmail.com','Paul','DUVAL','ddb2ae308bb0d4bb02d778516d215c18', 1,1), /*MDP: simpleCE */
  ('','baptisterobert@gmail.com','Baptiste','ROBERT','482c811da5d5b4bc6d497ffa98491e38',1,1);  /*MDP: password123 */
 
-INSERT INTO `RESTAURANT`(`ID_RESTO`, `ID_USER`,`NOM_RESTO`, `ADRESSE`, `TELEPHONE`, `DESCRIPTIF`, `IMAGE`, `ACTIF`) VALUES
- ('',1,'La Bonne franquette','4 Allée Jean 44400 Nantes','+33 02 51 92 37 22','Très bonne','images/pomme.jpg',1),
- ('',1,'Le ventre plein','7 Place Royal 44400 Nantes','+33 02 19 64 87 34','Moyenne ...','images/gateau.jpg',1);
+INSERT INTO `RESTAURANT`(`ID_RESTO`, `ID_USER`,`NOM_RESTO`, `ADRESSE`, `TELEPHONE`, `DESCRIPTIF`, `IMAGE`, `DATE_DERNIERE_MODIF`,`ACTIF`) VALUES
+ ('',1,'La Bonne franquette','4 Allée Jean 44400 Nantes','+33 02 51 92 37 22','Très bonne','images/pomme.jpg', '2015-4-11 12:00:00',1),
+ ('',1,'Le ventre plein','7 Place Royal 44400 Nantes','+33 02 19 64 87 34','Moyenne ...','images/gateau.jpg', '2015-4-13 13:00:00',1);
 
 INSERT INTO `CALENDRIER_HEBDO`(`ID_RESTO`, `JOUR`, `HORAIRE`, `NB_TABLES`, `ACTIF`) VALUES
  (1,1,'11:00:00',2,1),
