@@ -289,7 +289,7 @@
 					}
 				}
 				else{
-					echo $oOffre->aError;
+					//echo $oOffre->aError['descriptif'];
 				}
 			}
 		break;
