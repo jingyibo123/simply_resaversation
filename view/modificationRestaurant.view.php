@@ -15,12 +15,6 @@ $aRestaurant = $oBdd->restaurant_getData("$iId");
     <h1>Modification restaurant</h1>
 
     <div>
-        <p>Nom :</p><input type="text" name="modification[nom]" size="50" value="<?php echo ''.$aRestaurant['NOM_RESTO']; ?>" /> <?php if(isset($oRestaurant->aError['nom'])){echo $oRestaurant->aError['nom'];} ?>
-    </div>
-    <div>
-        <p>Adresse : </p><input type="text" name="modification[adresse]" size="70" value="<?php echo ''.$aRestaurant['ADRESSE']; ?>" /> <?php if(isset($oRestaurant->aError['adresse'])){echo $oRestaurant->aError['adresse'];} ?>
-    </div>
-    <div>
         <p>Téléphone : </p> <input type="text" name="modification[telephone]" value="<?php echo ''.$aRestaurant['TELEPHONE']; ?>" /> <?php if(isset($oRestaurant->aError['telephone'])){echo $oRestaurant->aError['telephone'];} ?>
     </div>
     <div>

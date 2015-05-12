@@ -85,18 +85,6 @@ class Restaurant {
 
 		$this->aError = array();
 
-		if($this->sNom == ''){
-			$this->aError['nom'] = 'error_vide';
-		}elseif(strlen($this->sNom) > 100){
-			$this->aError['nom'] = 'error_trop_long';
-		}
-
-		if($this->sAdresse == ''){
-			$this->aError['adresse'] = 'error_vide';
-		}elseif(strlen($this->sAdresse) > 100){
-			$this->aError['adresse'] = 'error_trop_long';
-		}
-
 		if($this->sTelephone == ''){
 			$this->aError['telephone'] = 'error_vide';
 		}elseif(strlen($this->sTelephone) > 20){

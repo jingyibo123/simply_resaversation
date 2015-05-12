@@ -468,10 +468,10 @@ class Bdd{
 	
 	
 	// Modification restaurant
-	public function updateRestaurant($iId, $sNom, $sAdresse, $sTelephone, $sDescriptif, $sImage) {
+	public function updateRestaurant($iId, $sTelephone, $sDescriptif) {
 		$bdd = $this->bdd;
 
-		$req = $bdd->prepare("UPDATE RESTAURANT SET NOM_RESTO = '$sNom', ADRESSE = '$sAdresse', TELEPHONE = '$sTelephone', DESCRIPTIF = '$sDescriptif' WHERE ID_RESTO = '$iId'");
+		$req = $bdd->prepare("UPDATE RESTAURANT SET TELEPHONE = '$sTelephone', DESCRIPTIF = '$sDescriptif' WHERE ID_RESTO = '$iId'");
 
 	    $bReturn = $req->execute();
 	    $req->CloseCursor();

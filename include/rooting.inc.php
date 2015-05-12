@@ -195,15 +195,11 @@
 			
 			if(isset($_POST['modification']) && !empty($_POST['modification'])){
 
-				$sNom = $_POST['modification']['nom'];
-				$sAdresse = $_POST['modification']['adresse'];
 				$sTelephone = $_POST['modification']['telephone'];
 				$sDescriptif = $_POST['modification']['descriptif'];
 				$iId = $_GET['id'];
 				
 				$oRestaurant = new Restaurant();
-				$oRestaurant->setNom($sNom);
-				$oRestaurant->setAdresse($sAdresse);
 				$oRestaurant->setTelephone($sTelephone);
 				$oRestaurant->setDescriptif($sDescriptif);
 				
@@ -212,7 +208,7 @@
 				if (empty($oRestaurant->aError)) {
 					$oBdd = new Bdd();
 					
-					$aModifResto = $oBdd->updateRestaurant($iId, $sNom, $sAdresse, $sTelephone, $sDescriptif);
+					$aModifResto = $oBdd->updateRestaurant($iId, $sTelephone, $sDescriptif);
 						
 					if(!empty($aModifResto) ){
 						header('Location: index.php?category=14');
