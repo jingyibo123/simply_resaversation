@@ -145,10 +145,9 @@ class Bdd{
 		
 		echo "Liste des restaurants </br></br>";
 		while ($donnees = $req->fetch()) {
-			echo  $donnees['NOM_RESTO'].' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>"> Détails </a><?php
-			echo ' ';?>
-						<a href="index.php?category=20&&id=<?php echo $donnees['ID_RESTO']; ?>"> Offres </a><?php
-
+			echo  $donnees['NOM_RESTO'].' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>">Détails</a><?php
+			echo '  ';?>
+			<a href="index.php?category=20&&id=<?php echo $donnees['ID_RESTO']; ?>">Offres</a><?php
 			echo'<br />';  
 		}
 		
@@ -365,8 +364,9 @@ class Bdd{
 
 		
 		while ($donnees2 = $req2->fetch()) {
-			echo  $donnees2['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees2['ID_RESTO'];?>">Details</a>
-												<a href="index.php?category=20&&id=<?php echo $donnees2['ID_RESTO'];?>">Offres</a> <?php
+			echo  $donnees2['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees2['ID_RESTO'];?>">Détails</a> <?php
+			echo '  ';?>
+			<a href="index.php?category=20&&id=<?php echo $donnees2['ID_RESTO'];?>">Offres</a> <?php
 			echo '<br/>';
 		}
 		
@@ -440,7 +440,7 @@ class Bdd{
 		echo "La liste de mes restaurants <br/><br/>";
 		
 		while ($donnees = $req->fetch()) {
-			echo  $donnees['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">Details</a><?php
+			echo  $donnees['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">Détails</a><?php
 			echo '<br/>';
 		}
 		
@@ -545,8 +545,8 @@ class Bdd{
 			$dDateModif = strtotime($donnees['DATE_MODIF']);
 			if (($dDateCurrent1-$dDateModif)<$iDateExpiration) {
 				echo 'Le restaurant '.$donnees['NOM_RESTO'].' a été modifié par '.$donnees['PRENOM'].' '.$donnees['NOM'].' le '.$donnees['DATE_MODIF'].'<br/>';
-				echo 'Cliquez '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">ici </a><?php 
-				echo 'pour accéder aux modifications<br/><br/>';
+				echo 'Cliquez '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">ici</a><?php 
+				echo ' pour accéder aux modifications<br/><br/>';
 			}
 		}
 		
