@@ -20,8 +20,9 @@ if (isset($_FILES['image']) AND $_FILES['image']['error'] == 0) {
 					$extension_upload = $infosImage['extension'];
 					$extensions_autorisees = array('gif', 'jpg', 'jpeg', 'png');
 					if (in_array($extension_upload, $extensions_autorisees)) {
+						$dCurrentDate = date('Y-m-d H:i:s');
 						move_uploaded_file($_FILES['image']['tmp_name'], 'images/' . basename($_FILES['image']['name']));
-						$sModifImage = $oBdd->updateImage($iId, $_FILES['image']['name']);
+						$sModifImage = $oBdd->updateImage($iId, $_FILES['image']['name'], $dCurrentDate);
 						echo "Image modifiée !"; ?>
 						
 						<html>

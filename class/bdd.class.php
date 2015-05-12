@@ -532,13 +532,18 @@ class Bdd{
 	
 	
 	// Modification image restaurant
-	public function updateImage($iId, $sNomImage) {
+	public function updateImage($iId, $sNomImage, $dDateModif) {
 		$bdd = $this->bdd;
 		
-		$req = $bdd->prepare("UPDATE RESTAURANT SET IMAGE = '$sNomImage' WHERE ID_RESTO = '$iId'");
+		$req1 = $bdd->prepare("UPDATE RESTAURANT SET IMAGE = '$sNomImage', DATE_DERNIERE_MODIF = '$dDateModif' WHERE ID_RESTO = '$iId'");
+		$bReturn1 = $req1->execute();
+		$req1->CloseCursor();
 		
-		$bReturn = $req->execute();
-		$req->CloseCursor();
+		$req2 = $bdd->prepare("INSERT INTO NOTIFICATIONS_RESTO (ID_RESTO, DATE_MODIF) VALUES ('$iId', '$dDateModif')");
+	    $bReturn2 = $req2->execute();
+	    $req2->CloseCursor();
+		
+		return $bReturn1;
 	}
 	
 	

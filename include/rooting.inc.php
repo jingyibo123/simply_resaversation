@@ -207,6 +207,7 @@
 				$sTelephone = $_POST['modification']['telephone'];
 				$sDescriptif = $_POST['modification']['descriptif'];
 				$iId = $_GET['id'];
+				$dCurrentDate = date('Y-m-d H:i:s');
 				
 				$oRestaurant = new Restaurant();
 				$oRestaurant->setTelephone($sTelephone);
