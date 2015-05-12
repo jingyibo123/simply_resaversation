@@ -524,9 +524,11 @@ class Bdd{
 	    $bReturn1 = $req1->execute();
 	    $req1->CloseCursor();
 
-		$req2 = $bdd->prepare("INSERT INTO NOTIFICATIONS_RESTO (ID_RESTO, DATE_MODIF) VALUES ('$iId', '$dDateModif')");
-	    $bReturn2 = $req2->execute();
-	    $req2->CloseCursor();
+		if ($_SESSION['droit'] == 2) {
+			$req2 = $bdd->prepare("INSERT INTO NOTIFICATIONS_RESTO (ID_RESTO, DATE_MODIF) VALUES ('$iId', '$dDateModif')");
+			$bReturn2 = $req2->execute();
+			$req2->CloseCursor();
+		}
 		
 		return $bReturn1;
 	}
@@ -562,9 +564,11 @@ class Bdd{
 		$bReturn1 = $req1->execute();
 		$req1->CloseCursor();
 		
-		$req2 = $bdd->prepare("INSERT INTO NOTIFICATIONS_RESTO (ID_RESTO, DATE_MODIF) VALUES ('$iId', '$dDateModif')");
-	    $bReturn2 = $req2->execute();
-	    $req2->CloseCursor();
+		if ($_SESSION['droit'] == 2) {
+			$req2 = $bdd->prepare("INSERT INTO NOTIFICATIONS_RESTO (ID_RESTO, DATE_MODIF) VALUES ('$iId', '$dDateModif')");
+			$bReturn2 = $req2->execute();
+			$req2->CloseCursor();
+		}
 		
 		return $bReturn1;
 	}
