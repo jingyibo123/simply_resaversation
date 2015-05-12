@@ -1,7 +1,7 @@
 $( "#dialog" ).dialog({ 
     autoOpen: false,
-    height: 600,
-    width: 600
+    height: 800,
+    width: 700
 });
 $( "#opener" ).click(function() {
     $( "#dialog" ).dialog( "open" );
@@ -36,12 +36,14 @@ $("button#btnsavecalendar").click(function(){
 			horaires: horaires,
 			nbtables: nbtables
 		},
-		success: function(response) {
-			alert("botre calendrier a été bien enreegistré");
-			$( "#dialog" ).dialog( "close" );
+		success: function() {
+			alert("votre calendrier a été bien enregistré");
+			window.location.href="index.php?category=4";
 		}
 	});
 });
-
+$("button#btncancelcalendar").click(function(){
+	$( "#dialog" ).dialog( "close" );
+});
 
 

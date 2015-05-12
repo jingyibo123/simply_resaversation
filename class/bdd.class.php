@@ -301,10 +301,16 @@ class Bdd{
 	public function calendrier_initialise($iIresto, $tJours_dispos, $tHoraires_dispos, $iNbtables) {
 		$bdd = $this->bdd;
 		$req = $bdd->prepare("INSERT INTO `CALENDRIER_HEBDO`(`ID_RESTO`, `JOUR`, `HORAIRE`, `NB_TABLES`, `ACTIF`) VALUES (?,?,?,?,1)");
+		$status = true;
 		foreach($tJours_dispos as $jour){
 			foreach($tHoraires_dispos as $horaire){
-				$req->execute(array($iIresto, $jour, $horaire, $iNbtables));
+				if($req->execute(array($iIresto, $jour, $horaire, $iNbtables)) == false){
+					$status = false;
+				}
 			}
+		}
+		if($status){
+			echo '{"success":true}';
 		}
 		$req->closeCursor();
 		
@@ -482,6 +488,11 @@ class Bdd{
 	    $req->bindValue(':descriptif',$oRestaurant->getDescriptif(), PDO::PARAM_STR);
 
 	    $bReturn = $req->execute();
+		if($bReturn == true){
+	    	return $bdd->lastInsertId();
+	    }else{
+	    	return 0;
+		}
 	    $req->CloseCursor();
 
     	return $bReturn;

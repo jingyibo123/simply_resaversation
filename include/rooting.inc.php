@@ -389,8 +389,8 @@
 
 					$iReturnIdent = $oBdd->insertRestaurant($oRestaurant);
 
-					if($iReturnIdent ){
-						header('Location: index.php?category=26');
+					if($iReturnIdent !=0){
+						header('Location: index.php?category=26&&idresto='.$iReturnIdent);
 					}
 					else{
 						echo 'erreur inscription';
