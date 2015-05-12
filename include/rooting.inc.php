@@ -517,8 +517,11 @@
 			}
 		break;	
 		case 34:
-			define('ROOTING', 'view/restaurateur_initialisation_calendrier.php');	
+			define('ROOTING', 'view/modif_calendrier_regles.php');
 		break;
+		// case 35:
+			// define('ROOTING', 'ajax/lire_calendrier_regles_hebdos.php');
+		// break;
 		
 		case 100:
 			session_destroy();

@@ -689,6 +689,36 @@ class Bdd{
 	    	return $bReturn;
 	    }
 	}
+	public function calendar_showweeklyrules($iIdresto){
+		$bdd = $this->bdd;
+		$weeklyrules = Array ();
+		$req = $bdd->prepare('SELECT JOUR,HORAIRE,NB_TABLES FROM `calendrier_hebdo`  WHERE `ID_RESTO` = ? and `ACTIF` = 1 ORDER BY JOUR, HORAIRE');
+		if($bReturn = $req->execute(array($iIdresto))){
+			while($row = $req -> fetch()){
+				array_push($weeklyrules,$row);
+			}
+			$req->CloseCursor();
+			return $weeklyrules;
+		}else{
+			$req->CloseCursor();
+			return 0;
+		}
+	}
+	public function calendar_showspecialrules($iIdresto){
+		$bdd = $this->bdd;
+		$specialrules = Array ();
+		$req = $bdd->prepare('SELECT DATE_EXCEPTION,HORAIRE,NB_TABLES FROM `calendrier_exception`  WHERE `ID_RESTO` = ? and `ACTIF` = 1 ORDER BY DATE_EXCEPTION, HORAIRE');
+		if($bReturn = $req->execute(array($iIdresto))){
+			while($row = $req -> fetch()){
+				array_push($specialrules,$row);
+			}
+			$req->CloseCursor();
+			return $specialrules;
+		}else{
+			$req->CloseCursor();
+			return 0;
+		}
+	}	
 	public function calendar_getAvailability($iIdresto, $sStartDate, $sEndDate){
 		$bdd = $this->bdd;
 		$calendrier = Array ();

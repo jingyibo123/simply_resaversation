@@ -27,7 +27,7 @@ $("button#btnsavecalendar").click(function(){
     });
 	var nbtables = $("input#nbtables").val();
     $.ajax({
-		url: 'ajax/initialiser_calendrier.php',
+		url: 'ajax/calendrier_initialiser.php',
 		type: 'POST',
 		dataType: 'json',
 		cache: false,
