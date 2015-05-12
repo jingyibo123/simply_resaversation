@@ -145,10 +145,5 @@ INSERT INTO `CONNEXION_ERRONEE`(`IP`, `URL`, `VISITE`) VALUES
 INSERT INTO `RESERVATION`(`ID_RESA`, `ID_OFFRE`, `EMAIL_CLIENT`, `NOM`, `PRENOM`, `DATE_RESA`, `NB_TABLES`, `NB_PRS` , `DATE_CREER`,`ACTIF`) VALUES
  ('',1,'johndoe@webmail.com','Doe','JOHN','2015-6-11 12:00:00', 1,2, '2015-6-11 12:00:00',1),
  ('',2,'julie1442@yahoo.fr','Julie','DGL','2015-5-09 19:00:00', 1,3, '2015-4-4 19:00:00',1),
+ ('',2,'poisson@rouge.com','Edouard','Dutronc','2015-6-03 19:00:00', 1,3,'2015-5-12 09:00:00',1),
  ('',3,'clementespaze@webmail.com','Clement','ESPAZE','2015-4-11 17:00:00', 2,6,'2015-6-13 17:00:00',1);
-
-
-/*Est-ce qu'un offre est liée à un client? si oui, pas la peine le'avoir reservation. sinon, comment savoir le nombre de personne limitée pour un offre?'*/
-
- 
- 

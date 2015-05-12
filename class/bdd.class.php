@@ -409,15 +409,20 @@ class Bdd{
 	public function getReservations($iId) {
 		$bdd = $this->bdd;
 
-		$req = $bdd->prepare("SELECT * FROM RESERVATION INNER JOIN OFFRE ON RESERVATION.ID_OFFRE = OFFRE.ID_OFFRE INNER JOIN RESTAURANT ON OFFRE.ID_RESTO = RESTAURANT.ID_RESTO WHERE RESTAURANT.ID_USER = $iId");
+		$req = $bdd->prepare("SELECT * FROM RESERVATION INNER JOIN OFFRE ON RESERVATION.ID_OFFRE = OFFRE.ID_OFFRE INNER JOIN RESTAURANT ON OFFRE.ID_RESTO = RESTAURANT.ID_RESTO WHERE RESTAURANT.ID_USER = $iId GROUP BY DATE_RESA");
 		$aListe = $req->execute(array());
 		
 		echo "La liste de mes reservations : <br/><br/>";
 		
 		while ($donnees = $req->fetch()) {
-			echo  'Le '.$donnees['DATE_RESA'].' : '.$donnees['NB_TABLES'].' table(s) pour '.$donnees['NB_PRS'].' personne(s) au nom de ';
-			echo $donnees['PRENOM'].' '.$donnees['NOM'].' (Email : '.$donnees['EMAIL_CLIENT'].')';
-			echo '<br/><br/>';
+		
+			$dDateCurrent = date('Y-m-d H:i:s');
+
+			if ($dDateCurrent < $donnees['DATE_RESA']) {
+				echo  'Le '.$donnees['DATE_RESA'].' : '.$donnees['NB_TABLES'].' table(s) pour '.$donnees['NB_PRS'].' personne(s) au nom de ';
+				echo $donnees['PRENOM'].' '.$donnees['NOM'].' (Email : '.$donnees['EMAIL_CLIENT'].')';
+				echo '<br/><br/>';
+			}
 		}
 		
 		$req->closeCursor();
