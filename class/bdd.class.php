@@ -96,8 +96,14 @@ class Bdd{
 
 	}
 
-	public function user_delete($oUser){
+	public function user_delete($iId){
+		$bdd = $this->bdd;
 
+		$req = $bdd->prepare('DELETE FROM MEMBRE WHERE ID_USER = :id_user ');
+		$req->bindValue(':id_user',$iId, PDO::PARAM_STR);
+
+	    $bReturn = $req->execute();
+	    $req->CloseCursor();
 	}
 	
 	public function user_checkData ($sEmail, $sMdp) {
@@ -162,10 +168,13 @@ class Bdd{
 		$req = $bdd->prepare('SELECT ID_USER, NOM, PRENOM FROM MEMBRE WHERE MEMBRE.DROIT = 2 GROUP BY NOM');
 		$aListe = $req->execute(array());
 		
-		echo "Liste des restaurateurs </br></br>";
+		echo "Liste des restaurateurs </br></br></br>";
 		while ($donnees = $req->fetch()) {
 			echo  $donnees['NOM'].' '.$donnees['PRENOM'] ?> <a href="index.php?category=8&&id=<?php echo $donnees['ID_USER'];?>">Restaurants</a> <?php
-			echo'<br />'; 
+			?>
+			<a href="index.php?category=42&&id=<?php echo $donnees['ID_USER']; ?>"> Supprimer le compte </a>
+			<?php
+			echo'<br/>';
 		}
 		
 		$req->closeCursor();
