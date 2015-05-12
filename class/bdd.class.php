@@ -203,7 +203,7 @@ class Bdd{
 		$bdd = $this->bdd;
 
 
-		$req = $bdd->prepare('DELETE FROM OFFRE WHERE ID_OFFRE = :id_offre ');
+		$req = $bdd->prepare('UPDATE OFFRE SET ACTIF = 0 WHERE ID_OFFRE = :id_offre ');
 		
 		$req->bindValue(':id_offre',$iId_offre, PDO::PARAM_STR);
 	    
