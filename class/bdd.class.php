@@ -365,11 +365,14 @@ class Bdd{
 	public function getDetailRestaurant($iId) {
 		$bdd = $this->bdd;
 
-		$req = $bdd->prepare("SELECT * FROM RESTAURANT WHERE RESTAURANT.ID_RESTO = $iId AND ACTIF=1");
+		$req = $bdd->prepare("SELECT * FROM RESTAURANT, MEMBRE WHERE RESTAURANT.ID_RESTO = $iId AND RESTAURANT.ACTIF=1 AND RESTAURANT.ID_USER = MEMBRE.ID_USER");
 		$aListe = $req->execute(array());
 		
 		$donnees = $req->fetch();
 		echo 'Restaurant : '.$donnees['NOM_RESTO'].' <br /><br />'; 
+		if ($_SESSION['droit'] == 1) {
+			echo 'Propriétaire : '.$donnees['PRENOM'].' '.$donnees['NOM'].'<br/>';
+		}
 		echo 'ADRESSE : '.$donnees['ADRESSE'].'<br/>';
 		echo 'TELEPHONE : '.$donnees['TELEPHONE'].'<br/>';
 		echo 'DESCRIPTIF : '.$donnees['DESCRIPTIF'].'<br/><br/>';
