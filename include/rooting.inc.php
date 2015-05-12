@@ -584,6 +584,17 @@
 		case 45:
 			define('ROOTING', 'view/messageAnnulationReservation.view.php');
 		break;
+		
+		case 46:
+			
+			require_once 'class/bdd.class.php';
+			$oBdd = new Bdd();
+			
+			$iId_resto = $_GET['id'];
+			$oBdd->supprimerRestaurant($iId_resto);
+			define('ROOTING', 'view/messageSuppressionRestaurant.view.php');
+			
+		break;
 
 	}
 
