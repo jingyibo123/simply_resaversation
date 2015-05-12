@@ -465,7 +465,7 @@ class Bdd{
 		$req = $bdd->prepare("SELECT * FROM RESERVATION INNER JOIN OFFRE ON RESERVATION.ID_OFFRE = OFFRE.ID_OFFRE INNER JOIN RESTAURANT ON OFFRE.ID_RESTO = RESTAURANT.ID_RESTO WHERE RESTAURANT.ID_USER = $iId GROUP BY DATE_RESA");
 		$aListe = $req->execute(array());
 		
-		echo "La liste de mes reservations : <br/><br/>";
+		echo "La liste de mes réservations : <br/><br/>";
 		
 		while ($donnees = $req->fetch()) {
 		
