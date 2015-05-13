@@ -480,7 +480,7 @@ class Bdd{
 	public function getReservations($iId) {
 		$bdd = $this->bdd;
 
-		$req = $bdd->prepare("SELECT * FROM RESERVATION INNER JOIN OFFRE ON RESERVATION.ID_OFFRE = OFFRE.ID_OFFRE INNER JOIN RESTAURANT ON OFFRE.ID_RESTO = RESTAURANT.ID_RESTO WHERE RESTAURANT.ID_USER = $iId GROUP BY DATE_RESA");
+		$req = $bdd->prepare("SELECT * FROM RESERVATION INNER JOIN OFFRE ON RESERVATION.ID_OFFRE = OFFRE.ID_OFFRE INNER JOIN RESTAURANT ON OFFRE.ID_RESTO = RESTAURANT.ID_RESTO WHERE RESERVATION.ACTIF=1 AND RESTAURANT.ID_USER = $iId GROUP BY DATE_RESA");
 		$aListe = $req->execute(array());
 		
 		echo "La liste de mes réservations : <br/><br/>";
@@ -490,12 +490,12 @@ class Bdd{
 			$dDateCurrent = date('Y-m-d H:i:s');
 
 			if ($dDateCurrent < $donnees['DATE_RESA']) {
-				if ($donnees['ACTIF'] == 1) {
+				
 					echo  'Le '.$donnees['DATE_RESA'].' : '.$donnees['NB_TABLES'].' table(s) pour '.$donnees['NB_PRS'].' personne(s) au nom de ';
 					echo $donnees['PRENOM'].' '.$donnees['NOM'].' (Email : '.$donnees['EMAIL_CLIENT'].')'?>
 					<a href="index.php?category=44&&id=<?php echo $donnees['ID_RESA']; ?>">Annuler la réservation</a><?php
 					echo '<br/><br/>';
-				}
+				
 			}
 		}
 		
