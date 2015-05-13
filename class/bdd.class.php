@@ -694,7 +694,7 @@ class Bdd{
 		$weeklyrules = Array ();
 		$req = $bdd->prepare('SELECT JOUR,HORAIRE,NB_TABLES FROM `calendrier_hebdo`  WHERE `ID_RESTO` = ? and `ACTIF` = 1 ORDER BY JOUR, HORAIRE');
 		if($bReturn = $req->execute(array($iIdresto))){
-			while($row = $req -> fetch()){
+			while($row = $req -> fetch(PDO::FETCH_ASSOC)){
 				array_push($weeklyrules,$row);
 			}
 			$req->CloseCursor();
@@ -709,7 +709,7 @@ class Bdd{
 		$specialrules = Array ();
 		$req = $bdd->prepare('SELECT DATE_EXCEPTION,HORAIRE,NB_TABLES FROM `calendrier_exception`  WHERE `ID_RESTO` = ? and `ACTIF` = 1 ORDER BY DATE_EXCEPTION, HORAIRE');
 		if($bReturn = $req->execute(array($iIdresto))){
-			while($row = $req -> fetch()){
+			while($row = $req -> fetch(PDO::FETCH_ASSOC)){
 				array_push($specialrules,$row);
 			}
 			$req->CloseCursor();
@@ -726,7 +726,7 @@ class Bdd{
 			$req = $bdd->prepare('SELECT * FROM `calendrier_hebdo`  WHERE `id_resto` = ? and `jour` = ?');
 			$jour = date("w",$date);
 			if($bReturn = $req->execute(array($iIdresto,$jour))){
-				while($row = $req -> fetch()){
+				while($row = $req -> fetch(PDO::FETCH_ASSOC)){
 					$calendrier[date("Y-m-d",$date)][$row['HORAIRE']] = $row['NB_TABLES'];
 				}
 				$req->CloseCursor();
@@ -737,7 +737,7 @@ class Bdd{
 		}
 		$req = $bdd->prepare('SELECT * FROM `calendrier_exception`  WHERE `id_resto` = ?');
 		if($bReturn = $req->execute(array($iIdresto))){
-			while($row = $req -> fetch()){
+			while($row = $req -> fetch(PDO::FETCH_ASSOC)){
 				if(strtotime($sStartDate) <= strtotime($row['DATE_EXCEPTION']) && strtotime($row['DATE_EXCEPTION']) <= strtotime($sEndDate)){
 					if($row['NB_TABLES']!=0)
 						$calendrier[$row['DATE_EXCEPTION']][$row['HORAIRE']] = $row['NB_TABLES'];
@@ -756,7 +756,7 @@ class Bdd{
 			while($row = $req -> fetch()){
 				$req2 = $bdd->prepare('SELECT `DATE_RESA`,`NB_TABLES` FROM `reservation`   WHERE `ID_OFFRE` = ? and `DATE_RESA` Between ? And ?');
 				if($bReturn = $req2->execute(array($row['ID_OFFRE'],$sStartDate,$sEndDate))){
-					while($row2 = $req2 -> fetch()){
+					while($row2 = $req2 -> fetch(PDO::FETCH_ASSOC)){
 						$calendrier[substr($row2['DATE_RESA'],0,10)][substr($row2['DATE_RESA'],11,8)] -= $row2['NB_TABLES'];
 						if($calendrier[substr($row2['DATE_RESA'],0,10)][substr($row2['DATE_RESA'],11,8)] <=0){
 							unset($calendrier[substr($row2['DATE_RESA'],0,10)][substr($row2['DATE_RESA'],11,8)]);

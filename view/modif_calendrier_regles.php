@@ -1,4 +1,17 @@
-<!DOCTYPE html>
+<?php
+    //Si il y a besoin de rajouter du code javascript pour cette vue
+    $sScript="
+        <link href='//fullcalendar.io/js/fullcalendar-2.3.1/fullcalendar.min.css' rel='stylesheet' />
+		<link href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css' rel='stylesheet' />
+        <script src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js'></script>
+        <script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src='//fullcalendar.io/js/fullcalendar-2.3.1/fullcalendar.min.js'></script>
+        <script src='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/lang/fr.js'></script>
+		<script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
+		<script src='view/client.reserver.view.js'></script>
+    ";
+    include 'include/header.inc.php';
+?>
 <html>
 <head>
 <meta charset='utf-8' />
@@ -27,7 +40,7 @@ $(document).ready(function() {
 
 	$("#btnmodifregle").click(function(){
 		$.ajax({
-		url: 'ajax/lire_calendrier_regles_special.php',
+		url: 'ajax/lire_calendrier_regles_hebdos.php',
 		type: 'POST',
 		dataType: 'json',
 		cache: false,
@@ -36,7 +49,6 @@ $(document).ready(function() {
 		},
 		success: function() {
 			alert("votre calendrier a été bien enregistré");
-			window.location.href="index.php?category=4";
 		}
 		});
 	});
@@ -83,14 +95,42 @@ $(document).ready(function() {
 </style>
 </head>
 <body>
+<?php
+$regles_special = $oBdd->calendar_showspecialrules(1);
+$regles_hebdos = $oBdd->calendar_showweeklyrules(1);
+
+	?>
 <a href="index.php?category=4&idresto=">Afficher le calendrier complet du restaurant</a>
 <button id="opener">open the dialog</button>
-<table id="reglelist" ><thead><tr>
+<h1>Voici tous les régles hebdomataires du calendrier</h1>
+<table id="reglelisthebdo" ><thead><tr>
     <td>Jours</td>
     <td>Horaire</td>
     <td>Nombre de tables</td>
     <td></td>
-    </tr></thead><tbody></tbody>
+    </tr></thead><tbody>
+	<?php
+	foreach ($regles_hebdos as $regle){
+		echo '<tr><td>'.$regle['JOUR'].'</td><td>'.$regle['HORAIRE'].'</td><td>'.$regle['NB_TABLES'].'</td><td></td></tr>';
+		
+	}
+	?>
+	</tbody>
+</table>
+<h1>Voici tous les régles exceptionnelles du calendrier</h1>
+<table id="reglelistexcep" ><thead><tr>
+    <td>Date</td>
+    <td>Horaire</td>
+    <td>Nombre de tables</td>
+    <td></td>
+    </tr></thead><tbody>
+	<?php
+	foreach ($regles_special as $regle){
+		echo '<tr><td>'.$regle['DATE_EXCEPTION'].'</td><td>'.$regle['HORAIRE'].'</td><td>'.$regle['NB_TABLES'].'</td><td></td></tr>';
+		
+	}
+	?>
+	</tbody>
 </table>
 <div id="DialogModifRegle" title="Modifier un règle">
     <label for="selecjour">Selectionner le jour:</label><br/>
