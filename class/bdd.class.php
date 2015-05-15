@@ -530,7 +530,7 @@ class Bdd{
 	
 	
 	// Annuler une réservation
-	public function annulerReservation($oAnnulation) {
+	public function annulerReservation($oAnnulation, $dDateAnnulation) {
 		$bdd = $this->bdd;
 		$iId = $_GET['id'];
 		
@@ -538,13 +538,40 @@ class Bdd{
 		$bReturn2 = $req2->execute();
 		$req2->CloseCursor();
 
-		$req1 = $bdd->prepare("INSERT INTO ANNULATION_RESA (`ID_RESA`, `MOTIF`) VALUES ('$iId', :motif)");
+		$req1 = $bdd->prepare("INSERT INTO ANNULATION_RESA (`ID_RESA`, `MOTIF`, `DATE_ANNULATION`) VALUES ('$iId', :motif, '$dDateAnnulation')");
 	    $req1->bindValue(':motif',$oAnnulation->getMotif(), PDO::PARAM_STR);
 	    $bReturn1 = $req1->execute();
 	    $req1->CloseCursor();
 
 		return $bReturn2;
 	}
+	
+	
+	// Notifications administrateur pour annulation réservation
+	public function notifAnnulationResa($dCurrentDate) {
+		$iDateExpiration = 864000; // Correspond à 10 jours
+		$dDateCurrent1 = strtotime($dCurrentDate);
+		
+		$bdd = $this->bdd;
+
+		$req = $bdd->prepare("SELECT * FROM ANNULATION_RESA INNER JOIN RESERVATION ON ANNULATION_RESA.ID_RESA = RESERVATION.ID_RESA 
+							INNER JOIN OFFRE ON RESERVATION.ID_OFFRE = OFFRE.ID_OFFRE INNER JOIN RESTAURANT ON OFFRE.ID_RESTO = RESTAURANT.ID_RESTO 
+							INNER JOIN MEMBRE ON RESTAURANT.ID_USER = MEMBRE.ID_USER ORDER BY DATE_MODIF DESC");
+		$aListe = $req->execute(array());
+		while ($donnees = $req->fetch()) {
+			$dDateModif = strtotime($donnees['DATE_MODIF']);
+			if (($dDateCurrent1-$dDateModif)<$iDateExpiration) {
+				echo 'Le '.$donnees['DATE_MODIF'].' :<br/>';
+				echo $donnees['PRENOM'].' '.$donnees['NOM'].' vient d\'annuler sa réservation du '.$donnees['DATE_RESA'].' pour '.$donnees['NB_PRS'].' personne(s).';
+				echo 'Motif : '.$donnees['MOTIF'].'<br/>';
+				echo 'Cliquez '?> <a href="index.php?category=28&&id=<?php echo $donnees['ID_USER'];?>">ici</a><?php 
+				echo ' pour accéder profil du restaurateur.<br/><br/>';
+			}
+		}
+		
+		$req->closeCursor();		
+	}
+
 	
 	
 	// Données restaurant
@@ -607,7 +634,7 @@ class Bdd{
 	}
 
 
-	// Envoi notification administrateur pour modification restaurant
+	// Notifications administrateur pour modification restaurant
 	public function notifUpdateRestaurant($dCurrentDate) {
 		$iDateExpiration = 864000; // Correspond à 10 jours
 		$dDateCurrent1 = strtotime($dCurrentDate);
@@ -619,6 +646,7 @@ class Bdd{
 		while ($donnees = $req->fetch()) {
 			$dDateModif = strtotime($donnees['DATE_MODIF']);
 			if (($dDateCurrent1-$dDateModif)<$iDateExpiration) {
+				echo 'Le '.$donnees['DATE_MODIF'].' :<br/>';
 				echo 'Le restaurant '.$donnees['NOM_RESTO'].' a été modifié par '.$donnees['PRENOM'].' '.$donnees['NOM'].' le '.$donnees['DATE_MODIF'].'<br/>';
 				echo 'Cliquez '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">ici</a><?php 
 				echo ' pour accéder aux modifications<br/><br/>';
