@@ -556,16 +556,16 @@ class Bdd{
 
 		$req = $bdd->prepare("SELECT * FROM ANNULATION_RESA INNER JOIN RESERVATION ON ANNULATION_RESA.ID_RESA = RESERVATION.ID_RESA 
 							INNER JOIN OFFRE ON RESERVATION.ID_OFFRE = OFFRE.ID_OFFRE INNER JOIN RESTAURANT ON OFFRE.ID_RESTO = RESTAURANT.ID_RESTO 
-							INNER JOIN MEMBRE ON RESTAURANT.ID_USER = MEMBRE.ID_USER ORDER BY DATE_MODIF DESC");
+							INNER JOIN MEMBRE ON RESTAURANT.ID_USER = MEMBRE.ID_USER ORDER BY DATE_ANNULATION DESC");
 		$aListe = $req->execute(array());
 		while ($donnees = $req->fetch()) {
-			$dDateModif = strtotime($donnees['DATE_MODIF']);
-			if (($dDateCurrent1-$dDateModif)<$iDateExpiration) {
-				echo 'Le '.$donnees['DATE_MODIF'].' :<br/>';
-				echo $donnees['PRENOM'].' '.$donnees['NOM'].' vient d\'annuler sa réservation du '.$donnees['DATE_RESA'].' pour '.$donnees['NB_PRS'].' personne(s).';
+			$dDateAnnulation = strtotime($donnees['DATE_ANNULATION']);
+			if (($dDateCurrent1-$dDateAnnulation)<$iDateExpiration) {
+				echo 'Le '.$donnees['DATE_ANNULATION'].' :<br/>';
+				echo $donnees['PRENOM'].' '.$donnees['NOM'].' a annulé sa réservation du '.$donnees['DATE_RESA'].' pour '.$donnees['NB_PRS'].' personne(s).<br/>';
 				echo 'Motif : '.$donnees['MOTIF'].'<br/>';
 				echo 'Cliquez '?> <a href="index.php?category=28&&id=<?php echo $donnees['ID_USER'];?>">ici</a><?php 
-				echo ' pour accéder profil du restaurateur.<br/><br/>';
+				echo ' pour accéder profil du restaurateur.<br/>';
 			}
 		}
 		
