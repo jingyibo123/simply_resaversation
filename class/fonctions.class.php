@@ -29,11 +29,7 @@ class Fonctions {
 	}
 	
 	
-	// Fonction récupération de la date et heure de connexion
-	public static function get_date_visite() {
-		$sDateTime = date(d/m/Y à H:i:s);
-		return $sDateTime;
-	}
+	
 
 
 }

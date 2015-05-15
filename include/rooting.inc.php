@@ -480,14 +480,15 @@
 			
 			require_once 'class/bdd.class.php';
 			$oBdd = new Bdd();
+			require_once 'class/fonctions.class.php';
+			$oFonctions = new Fonctions();
 			$_SESSION['id_offre'] = $_GET['offre'];
 			$_SESSION['ID_RESTO'] = $oBdd->getIdrestoParIdoffre($_GET['offre']);
 			if($_SESSION['ID_RESTO']!=0){
 				/* verifier si cet offre a déjà été reservé */
 				if(!$oBdd->if_offre_reserved($_GET['offre'])){
-					/* Enrigistrer IP 
-				
-					*/
+					/* Enrigistrer IP */
+					$oBdd->put_connextion_client($_GET['offre'],$oFonctions->get_ip(),$oFonctions->get_url(),date('Y-m-d H:i:s'));
 					define('ROOTING', 'view/client.reserver.view.php');
 				}
 				else{
@@ -495,10 +496,8 @@
 				}
 			}
 			else{
-				/* Enrigistrer IP errone 
-				
-				
-				*/
+				/* Enrigistrer IP errone*/ 
+				$oBdd->put_connextion_erronee($oFonctions->get_ip(),$oFonctions->get_url(),date('Y-m-d H:i:s'));
 				define('ROOTING', 'view/client.offre_error.view.php');
 			}
 		break;

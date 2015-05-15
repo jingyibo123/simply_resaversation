@@ -324,6 +324,30 @@ class Bdd{
 	
 		$req1->closeCursor();
 	}
+	public function put_connextion_client($iIdoffre, $sIp, $sUrl, $sDate) {
+		$bdd = $this->bdd;
+		$req = $bdd->prepare("INSERT INTO `CONNEXION_CLIENT`(`ID_OFFRE`, `IP`, `URL`, `VISITE`) VALUES (?,?,?,?)");
+		if($bReturn = $req->execute(array($iIdoffre, $sIp, $sUrl, $sDate))){
+		}
+		else{
+			$req->closeCursor();
+			break;
+		}
+		return $req->errorInfo();
+		$req->closeCursor();
+	}
+	public function put_connextion_erronee($sIp, $sUrl, $sDate) {
+		$bdd = $this->bdd;
+		$req = $bdd->prepare("INSERT INTO `CONNEXION_ERRONEE`(`IP`, `URL`, `VISITE`) VALUES (?,?,?)");
+		if($bReturn = $req->execute(array($sIp, $sUrl, $sDate))){
+		}
+		else{
+			$req->closeCursor();
+			break;
+		}
+		return $req->errorInfo();
+		$req->closeCursor();
+	}
 	public function calendrier_initialise($iIresto, $tJours_dispos, $tHoraires_dispos, $iNbtables) {
 		$bdd = $this->bdd;
 		$req = $bdd->prepare("INSERT INTO `CALENDRIER_HEBDO`(`ID_REGLE_HEBDO`, `ID_RESTO`, `JOUR`, `HORAIRE`, `NB_TABLES`, `ACTIF`) VALUES ('',?,?,?,?,1)");
