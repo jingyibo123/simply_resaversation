@@ -19,7 +19,7 @@
 <body>
 	<h3>Le restaurant a bien été ajouté</br>
 	<button id="opener">Cliquez moi</button></br>Veuillez cliquer ici pour définir le calendrier de votre restaurant(obligatoire)</h3>
-	<p><a href="index.php?category=4">Retour au menu</a></p>
+	<!-- <p><a href="index.php?category=4">Retour au menu</a></p> -->
 <!--  la dialogue de inscription  -->
 <div id="dialog" title="Définir le calendrier de votre restaurant" style='display:none'>
     <label for="selecjour">Selectionner les jours que votre restaurant est ouvert:</label><br/>

@@ -25,9 +25,17 @@ $("button#btnsavecalendar").click(function(){
             horaires.push(this.nextSibling.data);
         }
     });
+	if(jours.length == 0&&horaires.length == 0){
+		alert("Veuillez selectionner d'abord les jours les horaires");
+		return;
+	}
 	var nbtables = $("input#nbtables").val();
+	if(nbtables == ''){
+		alert("Veuillez définir le nombre de tables disponinbles");
+		return;
+	}
     $.ajax({
-		url: 'ajax/calendrier_initialiser.php',
+		url: 'ajax/calendrier.initialiser.php',
 		type: 'POST',
 		dataType: 'json',
 		cache: false,

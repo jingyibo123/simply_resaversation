@@ -111,7 +111,11 @@ $regles_hebdos = $oBdd->calendar_showweeklyrules(1);
     </tr></thead><tbody>
 	<?php
 	foreach ($regles_hebdos as $regle){
-		echo '<tr><td>'.$regle['JOUR'].'</td><td>'.$regle['HORAIRE'].'</td><td>'.$regle['NB_TABLES'].'</td><td></td></tr>';
+		echo '<tr>
+		<td>'.$regle['JOUR'].'</td>
+		<td>'.$regle['HORAIRE'].'</td>
+		<td>'.$regle['NB_TABLES'].'</td>
+		<td></td></tr>';
 		
 	}
 	?>
@@ -126,22 +130,26 @@ $regles_hebdos = $oBdd->calendar_showweeklyrules(1);
     </tr></thead><tbody>
 	<?php
 	foreach ($regles_special as $regle){
-		echo '<tr><td>'.$regle['DATE_EXCEPTION'].'</td><td>'.$regle['HORAIRE'].'</td><td>'.$regle['NB_TABLES'].'</td><td></td></tr>';
+		echo '<tr>
+		<td>'.$regle['DATE_EXCEPTION'].'</td>
+		<td>'.$regle['HORAIRE'].'</td>
+		<td>'.$regle['NB_TABLES'].'</td>
+		<td><button class="btn delete regle" onclick="supprimerhoraire(this)" >Supprimer</button></td></tr>';
 		
 	}
 	?>
 	</tbody>
 </table>
-<div id="DialogModifRegle" title="Modifier un règle">
+<div id="DialogModifRegle" title="Modifier un règle" style='display:none'>
     <label for="selecjour">Selectionner le jour:</label><br/>
 	<select>
-		<option class="selecjour" name="selecjour" id="selecjour2" value="2" />Lundi</label> 
-		<option class="selecjour" name="selecjour" id="selecjour3" value="3" />Mardi</label> 
-		<option class="selecjour" name="selecjour" id="selecjour4" value="4" />Mercredi</label> 
-		<option class="selecjour" name="selecjour" id="selecjour5" value="5" />Jeudi</label> 
-		<option class="selecjour" name="selecjour" id="selecjour6" value="6" />Vendredi</label> 
-		<option class="selecjour" name="selecjour" id="selecjour7" value="7" />Samedi</label> 
-		<option class="selecjour" name="selecjour" id="selecjour1" value="1" />Dimanche</label>
+		<option class="selecjour" name="selecjour" id="selecjour1" value="1" />Lundi</label> 
+		<option class="selecjour" name="selecjour" id="selecjour2" value="2" />Mardi</label> 
+		<option class="selecjour" name="selecjour" id="selecjour3" value="3" />Mercredi</label> 
+		<option class="selecjour" name="selecjour" id="selecjour4" value="4" />Jeudi</label> 
+		<option class="selecjour" name="selecjour" id="selecjour5" value="5" />Vendredi</label> 
+		<option class="selecjour" name="selecjour" id="selecjour6" value="6" />Samedi</label> 
+		<option class="selecjour" name="selecjour" id="selecjour7" value="7" />Dimanche</label>
 	</select>
     <br/><br/>
     <label for="selechoraire">Selectionner les horaires de votre restaurant:</label><br/>

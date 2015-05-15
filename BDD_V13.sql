@@ -23,22 +23,26 @@ CREATE TABLE RESTAURANT (
 
 /*Définition du calendrier hebdomadaire du restaurant*/
 CREATE TABLE CALENDRIER_HEBDO (
+	ID_REGLE_HEBDO INT(10) unsigned NOT NULL AUTO_INCREMENT,
 	ID_RESTO INT(10) unsigned NOT NULL,
-	JOUR enum('1','2','3','4','5','6','7') NOT NULL,/*  1 pour dimache, 2 pour lundi...7 pour samedi*/
+	JOUR enum('1','2','3','4','5','6','7') NOT NULL,/*  1 pour lundi, 2 pour mardi...7 pour dimanche*/
 	HORAIRE TIME,
 	NB_TABLES INT(3),
 	ACTIF INT(1) unsigned,
+	KEY(ID_REGLE_HEBDO),
 	PRIMARY KEY (ID_RESTO, JOUR, HORAIRE),
 	FOREIGN KEY (ID_RESTO) REFERENCES RESTAURANT(ID_RESTO) ON DELETE RESTRICT
 );
 
 /*Définition des dates exceptionnelles du restaurant*/
 CREATE TABLE CALENDRIER_EXCEPTION (
+	ID_REGLE_EXCEP INT(10) unsigned NOT NULL AUTO_INCREMENT,
 	ID_RESTO INT(10) unsigned NOT NULL,
 	DATE_EXCEPTION DATE,
 	HORAIRE TIME,
 	NB_TABLES INT,
 	ACTIF INT(1) unsigned,
+	KEY(ID_REGLE_EXCEP),
     PRIMARY KEY (ID_RESTO, DATE_EXCEPTION, HORAIRE),
 	FOREIGN KEY (ID_RESTO) REFERENCES RESTAURANT(ID_RESTO) ON DELETE RESTRICT
 );
@@ -109,27 +113,27 @@ INSERT INTO `RESTAURANT`(`ID_RESTO`, `ID_USER`,`NOM_RESTO`, `ADRESSE`, `TELEPHON
  ('',1,'La Bonne franquette','4 Allée Jean 44400 Nantes','+33 02 51 92 37 22','Très bonne','pomme.jpg', '2015-4-11 12:00:00',1),
  ('',1,'Le ventre plein','7 Place Royal 44400 Nantes','+33 02 19 64 87 34','Moyenne ...','gateau.jpg', '2015-4-13 13:00:00',1);
 
-INSERT INTO `CALENDRIER_HEBDO`(`ID_RESTO`, `JOUR`, `HORAIRE`, `NB_TABLES`, `ACTIF`) VALUES
- (1,1,'11:00:00',2,1),
- (1,1,'13:00:00',2,1),
- (1,1,'15:00:00',3,1),
- (1,2,'12:00:00',2,1),
- (1,2,'14:00:00',2,1),
- (1,2,'16:00:00',3,1),
- (1,3,'13:00:00',2,1),
- (1,3,'15:00:00',2,1),
- (1,4,'14:00:00',3,1),
- (1,4,'16:00:00',2,1),
- (1,4,'18:00:00',2,1),
- (1,5,'15:00:00',3,1),
- (1,5,'17:00:00',1,1),
- (1,6,'16:00:00',2,1),
- (1,6,'18:30:00',2,1);
+INSERT INTO `CALENDRIER_HEBDO`(`ID_REGLE_HEBDO`, `ID_RESTO`, `JOUR`, `HORAIRE`, `NB_TABLES`, `ACTIF`) VALUES
+ ('',1,1,'11:00:00',2,1),
+ ('',1,1,'13:00:00',2,1),
+ ('',1,1,'15:00:00',3,1),
+ ('',1,2,'12:00:00',2,1),
+ ('',1,2,'14:00:00',2,1),
+ ('',1,2,'16:00:00',3,1),
+ ('',1,3,'13:00:00',2,1),
+ ('',1,3,'15:00:00',2,1),
+ ('',1,4,'14:00:00',3,1),
+ ('',1,4,'16:00:00',2,1),
+ ('',1,4,'18:00:00',2,1),
+ ('',1,5,'15:00:00',3,1),
+ ('',1,5,'17:00:00',1,1),
+ ('',1,6,'16:00:00',2,1),
+ ('',1,6,'18:30:00',2,1);
 
-INSERT INTO `CALENDRIER_EXCEPTION`(`ID_RESTO`, `DATE_EXCEPTION`, `HORAIRE`, `NB_TABLES`, `ACTIF`) VALUES
- (1,'2015-3-18','15:00:00',0,1),
- (1,'2015-3-18','21:00:00',1,1),
- (1,'2015-3-22','15:00:00',1,1);
+INSERT INTO `CALENDRIER_EXCEPTION`(`ID_REGLE_EXCEP`, `ID_RESTO`, `DATE_EXCEPTION`, `HORAIRE`, `NB_TABLES`, `ACTIF`) VALUES
+ ('',1,'2015-3-18','15:00:00',0,1),
+ ('',1,'2015-3-18','21:00:00',1,1),
+ ('',1,'2015-3-22','15:00:00',1,1);
 
 INSERT INTO `OFFRE`(`ID_OFFRE`, `ID_RESTO`, `DESCRIPTIF`, `ACTIF`) VALUES
  ('','1','15% de remise sur les menus',1),

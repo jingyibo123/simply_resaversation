@@ -326,20 +326,22 @@ class Bdd{
 	}
 	public function calendrier_initialise($iIresto, $tJours_dispos, $tHoraires_dispos, $iNbtables) {
 		$bdd = $this->bdd;
-		$req = $bdd->prepare("INSERT INTO `CALENDRIER_HEBDO`(`ID_RESTO`, `JOUR`, `HORAIRE`, `NB_TABLES`, `ACTIF`) VALUES (?,?,?,?,1)");
-		$status = true;
+		$req = $bdd->prepare("INSERT INTO `CALENDRIER_HEBDO`(`ID_REGLE_HEBDO`, `ID_RESTO`, `JOUR`, `HORAIRE`, `NB_TABLES`, `ACTIF`) VALUES ('',?,?,?,?,1)");
+		$bReturn = true;
 		foreach($tJours_dispos as $jour){
 			foreach($tHoraires_dispos as $horaire){
-				if($req->execute(array($iIresto, $jour, $horaire, $iNbtables)) == false){
-					$status = false;
+				if($bReturn = $req->execute(array($iIresto, $jour, $horaire, $iNbtables))){
+					
+				}
+				else{
+					$req->closeCursor();
+					break;
 				}
 			}
+			if(!$bReturn){break;}
 		}
-		if($status){
-			echo '{"success":true}';
-		}
+		return $req->errorInfo();
 		$req->closeCursor();
-		
 	}
 	
 	// Modification offre
