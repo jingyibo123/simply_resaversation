@@ -570,9 +570,9 @@
 				
 				if(empty($oAnnulation->aError)){
 
-					$iReturnIdent = $oBdd->annulerReservation($oAnnulation);
+					$aAnnulResa = $oBdd->annulerReservation($oAnnulation);
 
-					if($iReturnIdent != 0){
+					if(!empty($aAnnulResa)){
 						header('Location: index.php?category=45');
 					}
 					else{

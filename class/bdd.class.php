@@ -542,11 +542,8 @@ class Bdd{
 	    $req1->bindValue(':motif',$oAnnulation->getMotif(), PDO::PARAM_STR);
 	    $bReturn1 = $req1->execute();
 	    $req1->CloseCursor();
-		if($bReturn1 == true){
-	    	return $bdd->lastInsertId();
-	    }else{
-	    	return 0;
-		}
+
+		return $bReturn2;
 	}
 	
 	
