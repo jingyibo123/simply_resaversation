@@ -529,13 +529,9 @@ class Bdd{
 	}
 	
 	
-<<<<<<< HEAD
+
 	// Annuler une r¨¦servation
-	public function annulerReservation($oAnnulation) {
-=======
-	// Annuler une rÃ©servation
 	public function annulerReservation($oAnnulation, $dDateAnnulation) {
->>>>>>> origin/master
 		$bdd = $this->bdd;
 		$iId = $_GET['id'];
 		
