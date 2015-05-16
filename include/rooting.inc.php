@@ -516,11 +516,61 @@
 			}
 		break;	
 		case 34:
-			define('ROOTING', 'view/modif.calendrie.regles.view.php');
+			// define('ROOTING', 'view/modif.calendrier.regles.view.php');
 		break;
-		// case 35:
-			// define('ROOTING', 'ajax/lire_calendrier_regles_hebdos.php');
-		// break;
+		case 35:
+			require_once 'class/bdd.class.php';
+			$oBdd = new Bdd();
+			if(isset($_GET['op'])){
+				switch($_GET['op']){
+					case 'delete_weeklyrule':
+						$oBdd->delete_calendar_weeklyrules($_GET['ruleid']);
+						header('Location: '.$_SERVER['PHP_SELF'].'?category=35');
+						exit;
+					break;
+					case 'delete_specialrule':
+						$oBdd->delete_calendar_specialrules($_GET['ruleid']);
+						header('Location: '.$_SERVER['PHP_SELF'].'?category=35');
+						exit;
+					break;
+					case 'modif_weeklyrule':
+						$oBdd->update_calendar_weeklyrules($_POST['id'],$_POST['nbtables']);
+						header('Location: '.$_SERVER['PHP_SELF'].'?category=35');
+						exit;
+					break;
+					case 'modif_specialrule':
+						$oBdd->update_calendar_specialrules($_POST['id'],$_POST['nbtables']);
+						header('Location: '.$_SERVER['PHP_SELF'].'?category=35');
+						exit;
+					break;
+					case 'create_weeklyrule':
+						if($_POST['nbtables']==''){
+							$_SESSION['msg_alert'] = 'Veuillez entrer le nombre de tables';
+						}
+						else{
+							$oBdd->put_calendar_weeklyrules(1,$_POST['selecjour'],$_POST['selecthorairehebdo'].':00:00',$_POST['nbtables']);
+						}
+						header('Location: '.$_SERVER['PHP_SELF'].'?category=35');
+						exit;
+					break;
+					case 'create_specialrule':
+						if($_POST['nbtables']==''){
+							$_SESSION['msg_alert'] = 'Veuillez entrer le nombre de tables';
+						}
+						elseif($_POST['dateexcepcree']==''){
+							$_SESSION['msg_alert'] = 'Veuillez choisir le date exceptionnel';
+						}
+						else{
+							$oBdd->put_calendar_specialrules(1,$_POST['dateexcepcree'],$_POST['selecthoraireexcep'].':00:00',$_POST['nbtables']);
+						}
+						header('Location: '.$_SERVER['PHP_SELF'].'?category=35');
+						exit;
+					break;
+				}
+			}else{
+				define('ROOTING', 'view/restaurateur.modif.calendrier.defini.php');
+			}
+		break;
 		
 		case 100:
 			session_destroy();

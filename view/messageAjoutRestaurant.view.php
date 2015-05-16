@@ -1,12 +1,7 @@
 <?php
     //Si il y a besoin de rajouter du code javascript pour cette vue
     $sScript="
-        <link href='//fullcalendar.io/js/fullcalendar-2.3.1/fullcalendar.min.css' rel='stylesheet' />
-		<link href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css' rel='stylesheet' />
-        <script src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js'></script>
         <script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-        <script src='//fullcalendar.io/js/fullcalendar-2.3.1/fullcalendar.min.js'></script>
-        <script src='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/lang/fr.js'></script>
 		<script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
 		<script src='view/messageAjoutRestaurant.view.js'></script>
     ";
@@ -18,10 +13,9 @@
 
 <body>
 	<h3>Le restaurant a bien été ajouté</br>
-	<button id="opener">Cliquez moi</button></br>Veuillez cliquer ici pour définir le calendrier de votre restaurant(obligatoire)</h3>
-	<!-- <p><a href="index.php?category=4">Retour au menu</a></p> -->
-<!--  la dialogue de inscription  -->
-<div id="dialog" title="Définir le calendrier de votre restaurant" style='display:none'>
+	</br>Veuillez cliquer ici pour définir le calendrier de votre restaurant(obligatoire)</h3>
+	
+
     <label for="selecjour">Selectionner les jours que votre restaurant est ouvert:</label><br/>
     <label><input class="jourcheckbox" name="selecjour" id="selecjour1" type="checkbox" value="" />Lundi</label> 
     <label><input class="jourcheckbox" name="selecjour" id="selecjour2" type="checkbox" value="" />Mardi</label> 
@@ -60,12 +54,11 @@
 	
 	
     
-    <label for="saisirnbtable">Nombre de tables possibles pour un offre:</label>
+    <label for="saisirnbtable">Nombre de tables par défaut pour un offre:</label>
 	<input type="number" name = "nbtables" class="nbtables" id="nbtables" min="1" max="30">
-    <button class="btn calendar initialise save" id="btnsavecalendar" action="" >Sauvegarder</button>
-    <button class="btn calendar initialise annuler" id="btncancelcalendar" action="" >Annuler</button>
+    <button class="btn calendar initialise save" id="btnsavecalendar" action="" >Sauvegarder</button><br/>
+	<h4>Pour modifier votre calendrier restaurant plus précisément, veuillez aller dans rubrique "Modification Restaurant"</h4>
 
-</div>
 </body>
 
 

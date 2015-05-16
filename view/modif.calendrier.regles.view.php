@@ -25,7 +25,39 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
-
+function modif_regle_excep(e){  
+	if(confirm("Supprimer l'horaire choisi?")){
+		$(e).parent().parent("tr").remove();
+	}
+}
+function supprimer_regle_excep(ruleid){  
+	if(confirm("Supprimer la regle choisie?")){
+		$(e).parent().parent("tr").remove();
+		window.location.reload();
+	}
+}
+function modif_regle_modif(e){  
+	if(confirm("Supprimer l'horaire choisi?")){
+		$(e).parent().parent("tr").remove();
+	}
+}
+function supprimer_regle_hebdo(ruleid){ 
+	if(confirm("Supprimer la regle choisie?")){
+		$.ajax({
+		url: 'ajax/lire_calendrier_regles_hebdos.php',
+		type: 'POST',
+		dataType: 'json',
+		cache: false,
+		data: {
+			ruleid:ruleid,
+		},
+		success: function() {
+			window.location.reload();
+		}
+		});
+		
+	}
+}
 
 $(document).ready(function() {
 
@@ -87,7 +119,7 @@ $(document).ready(function() {
 	}
 
 	#calendar {
-		float: left;
+		float: right;
 		max-width: 700px;
 		margin: 0 auto;
 	}
@@ -100,7 +132,7 @@ $regles_special = $oBdd->calendar_showspecialrules(1);
 $regles_hebdos = $oBdd->calendar_showweeklyrules(1);
 
 	?>
-<a href="index.php?category=4&idresto=">Afficher le calendrier complet du restaurant</a>
+<a href="index.php?category=35&idresto=">Afficher le calendrier défini du restaurant</a>
 <button id="opener">open the dialog</button>
 <h1>Voici tous les régles hebdomataires du calendrier</h1>
 <table id="reglelisthebdo" ><thead><tr>
@@ -111,11 +143,13 @@ $regles_hebdos = $oBdd->calendar_showweeklyrules(1);
     </tr></thead><tbody>
 	<?php
 	foreach ($regles_hebdos as $regle){
-		echo '<tr>
+		echo "<tr>
 		<td>'.$regle['JOUR'].'</td>
 		<td>'.$regle['HORAIRE'].'</td>
 		<td>'.$regle['NB_TABLES'].'</td>
-		<td></td></tr>';
+		<td><button class='btn mofif regle' onclick='modif_regle_hebdo(this)' >Modifier</button></td>
+		<td><button class='btn delete regle' onclick='supprimer_regle_hebdo($regle['ID_REGLE_HEBDO'])' >Supprimer</button></td></tr>";
+		
 		
 	}
 	?>
@@ -126,15 +160,16 @@ $regles_hebdos = $oBdd->calendar_showweeklyrules(1);
     <td>Date</td>
     <td>Horaire</td>
     <td>Nombre de tables</td>
-    <td></td>
+    <td></td><td></td>
     </tr></thead><tbody>
 	<?php
 	foreach ($regles_special as $regle){
-		echo '<tr>
+		echo "<tr>
 		<td>'.$regle['DATE_EXCEPTION'].'</td>
 		<td>'.$regle['HORAIRE'].'</td>
 		<td>'.$regle['NB_TABLES'].'</td>
-		<td><button class="btn delete regle" onclick="supprimerhoraire(this)" >Supprimer</button></td></tr>';
+		<td><button class='btn mofif regle' onclick='modif_regle_excep(this)' >Modifier</button></td>
+		<td><button class='btn delete regle' onclick='supprimer_regle_excep($regle['ID_REGLE_EXCEP'])' >Supprimer</button></td></tr>";
 		
 	}
 	?>

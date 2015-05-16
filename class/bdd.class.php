@@ -2,8 +2,8 @@
 
 /* ------------------------------------------------------------------------- /
                         
-    Ce fichier est la seule classe qui √† l'authorisation de communiquer
-    √† la base de donn√©es. Elle ne contient que des fonctions de requ√™tages.  
+    Ce fichier est la seule classe qui ®§ l'authorisation de communiquer
+    ®§ la base de donn®¶es. Elle ne contient que des fonctions de requ®∫tages.  
 
 / ------------------------------------------------------------------------- */
 
@@ -20,8 +20,8 @@ class Bdd{
 	
 
 	//Constructeur
-	//Si aucun param√®tre ne lui est pass√©, il charge la base de donn√©es √† partir des constantes
-	//contenu dans le fichier parametres. Sinon il charge la base de donn√©es pass√©e en argument.
+	//Si aucun param®®tre ne lui est pass®¶, il charge la base de donn®¶es ®§ partir des constantes
+	//contenu dans le fichier parametres. Sinon il charge la base de donn®¶es pass®¶e en argument.
 	function bdd($sHost='', $sDbname='', $sUtilisateur='', $sMdp=''){
 		
 		$sHost = $sHost != '' ? $sHost : $this->sHost;
@@ -64,7 +64,7 @@ class Bdd{
 		$donnees = $req->fetch();
 		echo 'Vos informations personnelles :<br /><br />';
 		echo 'Nom : '.$donnees['NOM'].'<br />'; 
-		echo 'Pr√©nom : '.$donnees['PRENOM'].'<br/>';
+		echo 'Pr®¶nom : '.$donnees['PRENOM'].'<br/>';
 		echo 'Sexe : <br/>';
 		echo 'Adresse e-mail : '.$donnees['EMAIL'].'<br/>'; 
 		$req->closeCursor();
@@ -107,7 +107,7 @@ class Bdd{
 	}
 	
 	public function user_checkData ($sEmail, $sMdp) {
-		// V√©rification des identifiants
+		// V®¶rification des identifiants
 		$bdd = $this->bdd;
 			$req = $bdd->prepare('SELECT id_user, prenom, nom, droit FROM MEMBRE WHERE email = :email AND mdp = :mdp');
 				
@@ -139,7 +139,7 @@ class Bdd{
 		$iId = $response->fetch();
 		$response->closeCursor();
 		
-		//Techniquement une adresse email est associ√©e √† un unique ID. A v√©rifier !
+		//Techniquement une adresse email est associ®¶e ®§ un unique ID. A v®¶rifier !
 		return $iId;
 	}
 	
@@ -151,7 +151,7 @@ class Bdd{
 		
 		echo "Liste des restaurants </br></br>";
 		while ($donnees = $req->fetch()) {
-			echo  $donnees['NOM_RESTO'].' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>">D√©tails</a><?php
+			echo  $donnees['NOM_RESTO'].' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>">D®¶tails</a><?php
 			echo '  ';?>
 			<a href="index.php?category=20&&id=<?php echo $donnees['ID_RESTO']; ?>">Offres</a>
 			<a href="index.php?category=46&&id=<?php echo $donnees['ID_RESTO'];?>" onclick="return confirm('Voulez-vous vraiment suprimer ce restaurant ?');">Supprimer Restaurant</a><?php
@@ -302,7 +302,7 @@ class Bdd{
 				
 				while ($donnees = $req->fetch()) {
 			
-					echo 'Liste des offres du restaurant '.$donnees1['NOM_RESTO'].' dont le propri√©taire est '.$donnees['PRENOM'].' '.$donnees['NOM'].' : <br /><br />'; 
+					echo 'Liste des offres du restaurant '.$donnees1['NOM_RESTO'].' dont le propri®¶taire est '.$donnees['PRENOM'].' '.$donnees['NOM'].' : <br /><br />'; 
 			
 					$bdd2 = $this->bdd;
 					$req2 = $bdd2->prepare("SELECT ID_OFFRE, DESCRIPTIF FROM OFFRE WHERE OFFRE.ID_RESTO = :id AND ACTIF=1");
@@ -381,7 +381,7 @@ class Bdd{
 	}
 	
 	
-	// Liste des restaurants par restaurateurs (lorsque l'on est connect√© en tant qu'admin)
+	// Liste des restaurants par restaurateurs (lorsque l'on est connect®¶ en tant qu'admin)
 	public function getRestaurantParRestaurateur($iId) {
 		$bdd1 = $this->bdd;
 
@@ -400,7 +400,7 @@ class Bdd{
 
 		
 		while ($donnees2 = $req2->fetch()) {
-			echo  $donnees2['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees2['ID_RESTO'];?>">D√©tails</a> <?php
+			echo  $donnees2['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees2['ID_RESTO'];?>">D®¶tails</a> <?php
 			echo '  ';?>
 			<a href="index.php?category=20&&id=<?php echo $donnees2['ID_RESTO'];?>">Offres</a>
 				<a href="index.php?category=46&&id=<?php echo $donnees2['ID_RESTO'];?>" onclick="return confirm('Voulez-vous vraiment suprimer ce restaurant ?');">Supprimer Restaurant</a><?php
@@ -411,7 +411,7 @@ class Bdd{
 		$req2->closeCursor();
 	
 	}
-	//v√©rifier si l'offre a d√©j√† √©t√© r√©serv√©
+	//v®¶rifier si l'offre a d®¶j®§ ®¶t®¶ r®¶serv®¶
 	public function if_offre_reserved($iIdoffre) {
 		$bdd = $this->bdd;
 		$req = $bdd->prepare("SELECT ID_RESA FROM `RESERVATION` WHERE ID_OFFRE = $iIdoffre");
@@ -439,7 +439,7 @@ class Bdd{
 		$req->closeCursor();
 	}
 	
-	// D√©tails d'un restaurants
+	// D®¶tails d'un restaurants
 	public function getDetailRestaurant($iId) {
 		$bdd = $this->bdd;
 
@@ -449,7 +449,7 @@ class Bdd{
 		$donnees = $req->fetch();
 		echo 'Restaurant : '.$donnees['NOM_RESTO'].' <br /><br />'; 
 		if ($_SESSION['droit'] == 1) {
-			echo 'Propri√©taire : '.$donnees['PRENOM'].' '.$donnees['NOM'].'<br/>';
+			echo 'Propri®¶taire : '.$donnees['PRENOM'].' '.$donnees['NOM'].'<br/>';
 		}
 		echo 'ADRESSE : '.$donnees['ADRESSE'].'<br/>';
 		echo 'TELEPHONE : '.$donnees['TELEPHONE'].'<br/>';
@@ -477,7 +477,7 @@ class Bdd{
 		echo "La liste de mes restaurants <br/><br/>";
 		
 		while ($donnees = $req->fetch()) {
-			echo  $donnees['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">D√©tails</a><?php
+			echo  $donnees['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">D®¶tails</a><?php
 			echo '<br/>';
 		}
 		
@@ -502,14 +502,14 @@ class Bdd{
 	}
 	
 	
-	// Liste des r√©servations par restaurateur
+	// Liste des r®¶servations par restaurateur
 	public function getReservations($iId) {
 		$bdd = $this->bdd;
 
 		$req = $bdd->prepare("SELECT * FROM RESERVATION INNER JOIN OFFRE ON RESERVATION.ID_OFFRE = OFFRE.ID_OFFRE INNER JOIN RESTAURANT ON OFFRE.ID_RESTO = RESTAURANT.ID_RESTO WHERE RESERVATION.ACTIF=1 AND RESTAURANT.ID_USER = $iId GROUP BY DATE_RESA");
 		$aListe = $req->execute(array());
 		
-		echo "La liste de mes r√©servations : <br/><br/>";
+		echo "La liste de mes r®¶servations : <br/><br/>";
 		
 		while ($donnees = $req->fetch()) {
 		
@@ -519,7 +519,7 @@ class Bdd{
 				
 					echo  'Le '.$donnees['DATE_RESA'].' : '.$donnees['NB_TABLES'].' table(s) pour '.$donnees['NB_PRS'].' personne(s) au nom de ';
 					echo $donnees['PRENOM'].' '.$donnees['NOM'].' (Email : '.$donnees['EMAIL_CLIENT'].')'?>
-					<a href="index.php?category=44&&id=<?php echo $donnees['ID_RESA']; ?>">Annuler la r√©servation</a><?php
+					<a href="index.php?category=44&&id=<?php echo $donnees['ID_RESA']; ?>">Annuler la r®¶servation</a><?php
 					echo '<br/><br/>';
 				
 			}
@@ -529,7 +529,7 @@ class Bdd{
 	}
 	
 	
-	// Annuler une r√©servation
+	// Annuler une r®¶servation
 	public function annulerReservation($oAnnulation) {
 		$bdd = $this->bdd;
 		$iId = $_GET['id'];
@@ -550,7 +550,7 @@ class Bdd{
 	}
 	
 	
-	// Donn√©es restaurant
+	// Donn®¶es restaurant
 	public function restaurant_getData($iId) {
 		$bdd = $this->bdd;
 		
@@ -612,7 +612,7 @@ class Bdd{
 
 	// Envoi notification administrateur pour modification restaurant
 	public function notifUpdateRestaurant($dCurrentDate) {
-		$iDateExpiration = 864000; // Correspond √† 10 jours
+		$iDateExpiration = 864000; // Correspond ®§ 10 jours
 		$dDateCurrent1 = strtotime($dCurrentDate);
 		
 		$bdd = $this->bdd;
@@ -622,9 +622,9 @@ class Bdd{
 		while ($donnees = $req->fetch()) {
 			$dDateModif = strtotime($donnees['DATE_MODIF']);
 			if (($dDateCurrent1-$dDateModif)<$iDateExpiration) {
-				echo 'Le restaurant '.$donnees['NOM_RESTO'].' a √©t√© modifi√© par '.$donnees['PRENOM'].' '.$donnees['NOM'].' le '.$donnees['DATE_MODIF'].'<br/>';
+				echo 'Le restaurant '.$donnees['NOM_RESTO'].' a ®¶t®¶ modifi®¶ par '.$donnees['PRENOM'].' '.$donnees['NOM'].' le '.$donnees['DATE_MODIF'].'<br/>';
 				echo 'Cliquez '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">ici</a><?php 
-				echo ' pour acc√©der aux modifications<br/><br/>';
+				echo ' pour acc®¶der aux modifications<br/><br/>';
 			}
 		}
 		
@@ -653,7 +653,7 @@ class Bdd{
 	// RESTAURATEURS 
 	public function user_getListeRestaurants($iId_user) {
 		$bdd = $this->bdd;
-		//On v√©rifie qu'il s'agit bien d'un restaurateur !
+		//On v®¶rifie qu'il s'agit bien d'un restaurateur !
 		$req1 = $bdd->prepare('SELECT DROIT FROM MEMBRE WHERE MEMBRE.ID_USER = :id');
 		$iDroit = $req1->execute(array('id' => $iId_user));
 		
@@ -673,7 +673,7 @@ class Bdd{
 			}
 	}
 	
-		// A v√©rifier : forme du tableau retourn√©
+		// A v®¶rifier : forme du tableau retourn®¶
 	public function user_getListeResa($iId_Resto) {
 		$bdd = $this->bdd;
 		$req = $bdd->prepare('SELECT DISTINCT * WHERE OFFRE.ID_RESTO = ? AND OFFRE.ID_OFFRE = RESERVATION.ID_OFFRE');
@@ -704,9 +704,7 @@ class Bdd{
 	public function reservation_putdata($iIdoffre, $sEmail, $sNom, $sPrenom, $sDate_resa, $iNbtables, $iNbPrs ){
 		$bdd = $this->bdd;
 		$req=$bdd->prepare('INSERT INTO `reservation`(`ID_RESA`, `ID_OFFRE`, `EMAIL_CLIENT`, `NOM`, `PRENOM`, `DATE_RESA`, `NB_TABLES`, `NB_PRS`, `DATE_CREER`, `ACTIF`) VALUES (\'\',?,?,?,?,?,?,?,?,1)');
-
-
-	    if($bReturn = $req->execute(array($iIdoffre,$sEmail,$sNom,$sPrenom,$sDate_resa,$iNbtables,$iNbPrs,date("Y-m-d H:i:s")))){
+		if($bReturn = $req->execute(array($iIdoffre,$sEmail,$sNom,$sPrenom,$sDate_resa,$iNbtables,$iNbPrs,date("Y-m-d H:i:s")))){
 	    	$aRetour = $req->fetch();
 	    	$req->CloseCursor();
 	    	return $aRetour;
@@ -715,13 +713,38 @@ class Bdd{
 	    	return $bReturn;
 	    }
 	}
-	public function calendar_showweeklyrules($iIdresto){
+	public function get_calendar_weeklyrules($iIdresto){
 		$bdd = $this->bdd;
 		$weeklyrules = Array ();
-		$req = $bdd->prepare('SELECT JOUR,HORAIRE,NB_TABLES FROM `calendrier_hebdo`  WHERE `ID_RESTO` = ? and `ACTIF` = 1 ORDER BY JOUR, HORAIRE');
+		$req = $bdd->prepare('SELECT ID_REGLE_HEBDO,JOUR,HORAIRE,NB_TABLES FROM `calendrier_hebdo`  WHERE `ID_RESTO` = ? and `ACTIF` = 1 ORDER BY JOUR, HORAIRE');
 		if($bReturn = $req->execute(array($iIdresto))){
 			while($row = $req -> fetch(PDO::FETCH_ASSOC)){
 				array_push($weeklyrules,$row);
+			}
+			for($i = 0;$i < count($weeklyrules); $i++){
+				switch ($weeklyrules[$i]['JOUR']){
+				case 1:
+					$weeklyrules[$i]['JOUR'] = 'Lundi';
+				break;
+				case 2:
+					$weeklyrules[$i]['JOUR'] = 'Mardi';
+				break;
+				case 3:
+					$weeklyrules[$i]['JOUR'] = 'Mercredi';
+				break;
+				case 4:
+					$weeklyrules[$i]['JOUR'] = 'Jeudi';
+				break;
+				case 5:
+					$weeklyrules[$i]['JOUR'] = 'Vendredi';
+				break;
+				case 6:
+					$weeklyrules[$i]['JOUR'] = 'Samedi';
+				break;
+				case 7:
+					$weeklyrules[$i]['JOUR'] = 'Dimanche';
+				break;
+				}
 			}
 			$req->CloseCursor();
 			return $weeklyrules;
@@ -730,10 +753,10 @@ class Bdd{
 			return 0;
 		}
 	}
-	public function calendar_showspecialrules($iIdresto){
+	public function get_calendar_specialrules($iIdresto){
 		$bdd = $this->bdd;
 		$specialrules = Array ();
-		$req = $bdd->prepare('SELECT DATE_EXCEPTION,HORAIRE,NB_TABLES FROM `calendrier_exception`  WHERE `ID_RESTO` = ? and `ACTIF` = 1 ORDER BY DATE_EXCEPTION, HORAIRE');
+		$req = $bdd->prepare('SELECT ID_REGLE_EXCEP,DATE_EXCEPTION,HORAIRE,NB_TABLES FROM `calendrier_exception`  WHERE `ID_RESTO` = ? and `ACTIF` = 1 ORDER BY DATE_EXCEPTION, HORAIRE');
 		if($bReturn = $req->execute(array($iIdresto))){
 			while($row = $req -> fetch(PDO::FETCH_ASSOC)){
 				array_push($specialrules,$row);
@@ -744,8 +767,80 @@ class Bdd{
 			$req->CloseCursor();
 			return 0;
 		}
-	}	
-	public function calendar_getAvailability($iIdresto, $sStartDate, $sEndDate){
+	}
+	public function delete_calendar_weeklyrules($iIdregle){
+		$bdd = $this->bdd;
+		$req = $bdd->prepare('DELETE FROM `calendrier_hebdo` WHERE `ID_REGLE_HEBDO` = ?');
+		if($bReturn = $req->execute(array($iIdregle))){
+			$req->CloseCursor();
+			return 0;
+		}else{
+			$req->CloseCursor();
+			return 0;
+		}
+	}
+	public function delete_calendar_specialrules($iIdregle){
+		$bdd = $this->bdd;
+		$req = $bdd->prepare('DELETE FROM `calendrier_exception` WHERE `ID_REGLE_EXCEP` = ?');
+		if($bReturn = $req->execute(array($iIdregle))){
+			$req->CloseCursor();
+			return 0;
+		}else{
+			$req->CloseCursor();
+			return 0;
+		}
+	}
+	public function put_calendar_weeklyrules($iIdresto,$iJour,$sHoraire,$iNbtables){
+		$bdd = $this->bdd;
+		$req = $bdd->prepare('INSERT INTO `calendrier_hebdo`(`ID_REGLE_HEBDO`, `ID_RESTO`, `JOUR`, `HORAIRE`, `NB_TABLES`, `ACTIF`) VALUES (\'\',?,?,?,?,1)');
+		if($bReturn = $req->execute(array($iIdresto,$iJour,$sHoraire,$iNbtables))){
+			$req->CloseCursor();
+			return 0;
+		}else{
+			if($req->errorInfo()[1] == 1062){
+				$_SESSION['msg_alert'] = 'Cette r®®gle est d®¶j®§ d®¶finie, veuillez v®¶rifier';
+			}
+			$req->CloseCursor();
+			return 1;
+		}
+	}
+	public function put_calendar_specialrules($iIdresto,$sDate,$sHoraire,$iNbtables){
+		$bdd = $this->bdd;
+		$req = $bdd->prepare('INSERT INTO `calendrier_exception`(`ID_REGLE_EXCEP`, `ID_RESTO`, `DATE_EXCEPTION`, `HORAIRE`, `NB_TABLES`, `ACTIF`) VALUES (\'\',?,?,?,?,1)');
+		if($bReturn = $req->execute(array($iIdresto,$sDate,$sHoraire,$iNbtables))){
+			$req->CloseCursor();
+			return 0;
+		}else{
+			if($req->errorInfo()[1] == 1062){
+				$_SESSION['msg_alert'] = 'Cette r®®gle est d®¶j®§ d®¶finie, veuillez v®¶rifier';
+			}
+			$req->CloseCursor();
+			return 1;
+		}
+	}
+	public function update_calendar_weeklyrules($iIdregle,$iNbtables){
+		$bdd = $this->bdd;
+		$req = $bdd->prepare('UPDATE `calendrier_hebdo` SET `NB_TABLES`= ? WHERE `ID_REGLE_HEBDO` = ?');
+		if($bReturn = $req->execute(array($iNbtables,$iIdregle))){
+			$req->CloseCursor();
+			return 0;
+		}else{
+			$req->CloseCursor();
+			return 0;
+		}
+	}
+	public function update_calendar_specialrules($iIdregle,$iNbtables){
+		$bdd = $this->bdd;
+		$req = $bdd->prepare('UPDATE `calendrier_exception` SET `NB_TABLES`= ? WHERE `ID_REGLE_EXCEP` = ?');
+		if($bReturn = $req->execute(array($iNbtables,$iIdregle))){
+			$req->CloseCursor();
+			return 0;
+		}else{
+			$req->CloseCursor();
+			return 0;
+		}
+	}
+	public function get_calendar_defined($iIdresto, $sStartDate, $sEndDate){
 		$bdd = $this->bdd;
 		$calendrier = Array ();
 		for($date = strtotime($sStartDate); $date <= strtotime($sEndDate); $date = strtotime("+1days",$date)){
@@ -775,8 +870,16 @@ class Bdd{
 			$req->CloseCursor();
 			return $bReturn;
 		}
-		
-		// eliminer les cr√©neaux d√©j√† r√©serv√© par diff√©rents offres d'un restaurants
+		foreach ($calendrier as $date => $calendrier_jour){
+			if(empty($calendrier[$date]))
+				unset($calendrier[$date]);
+		}
+		return $calendrier;
+	}
+	public function get_calendar_available($iIdresto, $sStartDate, $sEndDate){
+		// eliminer les cr®¶neaux d®¶j®§ r®¶serv®¶ par diff®¶rents offres d'un restaurants
+		$bdd = $this->bdd;
+		$calendrier = $this->get_calendar_defined($iIdresto, $sStartDate, $sEndDate);
 		$req = $bdd->prepare('SELECT `ID_OFFRE` FROM `OFFRE`   WHERE `ID_RESTO` = ?');
 		if($bReturn = $req->execute(array($iIdresto))){
 			while($row = $req -> fetch()){
