@@ -2,8 +2,8 @@
 
 /* ------------------------------------------------------------------------- /
                         
-    Ce fichier est la seule classe qui ®§ l'authorisation de communiquer
-    ®§ la base de donn®¶es. Elle ne contient que des fonctions de requ®∫tages.  
+    Ce fichier est la seule classe qui a l'authorisation de communiquer
+    a la base de donnees. Elle ne contient que des fonctions de requetages.  
 
 / ------------------------------------------------------------------------- */
 
@@ -20,8 +20,8 @@ class Bdd{
 	
 
 	//Constructeur
-	//Si aucun param®®tre ne lui est pass®¶, il charge la base de donn®¶es ®§ partir des constantes
-	//contenu dans le fichier parametres. Sinon il charge la base de donn®¶es pass®¶e en argument.
+	//Si aucun parametre ne lui est passe, il charge la base de donnees a partir des constantes
+	//contenu dans le fichier parametres. Sinon il charge la base de donnees passee en argument.
 	function bdd($sHost='', $sDbname='', $sUtilisateur='', $sMdp=''){
 		
 		$sHost = $sHost != '' ? $sHost : $this->sHost;
@@ -64,8 +64,7 @@ class Bdd{
 		$donnees = $req->fetch();
 		echo 'Vos informations personnelles :<br /><br />';
 		echo 'Nom : '.$donnees['NOM'].'<br />'; 
-		echo 'Pr®¶nom : '.$donnees['PRENOM'].'<br/>';
-		echo 'Sexe : <br/>';
+		echo 'Prenom : '.$donnees['PRENOM'].'<br/>';
 		echo 'Adresse e-mail : '.$donnees['EMAIL'].'<br/>'; 
 		$req->closeCursor();
 	}
@@ -85,10 +84,7 @@ class Bdd{
 	    $bReturn = $req->execute();
 	    $req->CloseCursor();
 
-	    // if($bReturn == true){
-	    	// return $bdd->lastInsertId();
-	    // }else{
-	    	return $bReturn;
+    	return $bReturn;
 	    
 	}
 
@@ -107,7 +103,7 @@ class Bdd{
 	}
 	
 	public function user_checkData ($sEmail, $sMdp) {
-		// V®¶rification des identifiants
+		// V√©rification des identifiants
 		$bdd = $this->bdd;
 			$req = $bdd->prepare('SELECT id_user, prenom, nom, droit FROM MEMBRE WHERE email = :email AND mdp = :mdp');
 				
@@ -139,7 +135,7 @@ class Bdd{
 		$iId = $response->fetch();
 		$response->closeCursor();
 		
-		//Techniquement une adresse email est associ®¶e ®§ un unique ID. A v®¶rifier !
+		//Techniquement une adresse email est associe a un unique ID. A verifier !
 		return $iId;
 	}
 	
@@ -151,7 +147,7 @@ class Bdd{
 		
 		echo "Liste des restaurants </br></br>";
 		while ($donnees = $req->fetch()) {
-			echo  $donnees['NOM_RESTO'].' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>">D®¶tails</a><?php
+			echo  $donnees['NOM_RESTO'].' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>">Details</a><?php
 			echo '  ';?>
 			<a href="index.php?category=20&&id=<?php echo $donnees['ID_RESTO']; ?>">Offres</a>
 			<a href="index.php?category=46&&id=<?php echo $donnees['ID_RESTO'];?>" onclick="return confirm('Voulez-vous vraiment suprimer ce restaurant ?');">Supprimer Restaurant</a><?php
@@ -302,7 +298,7 @@ class Bdd{
 				
 				while ($donnees = $req->fetch()) {
 			
-					echo 'Liste des offres du restaurant '.$donnees1['NOM_RESTO'].' dont le propri®¶taire est '.$donnees['PRENOM'].' '.$donnees['NOM'].' : <br /><br />'; 
+					echo 'Liste des offres du restaurant '.$donnees1['NOM_RESTO'].' dont le proprietaire est '.$donnees['PRENOM'].' '.$donnees['NOM'].' : <br /><br />'; 
 			
 					$bdd2 = $this->bdd;
 					$req2 = $bdd2->prepare("SELECT ID_OFFRE, DESCRIPTIF FROM OFFRE WHERE OFFRE.ID_RESTO = :id AND ACTIF=1");
@@ -324,6 +320,8 @@ class Bdd{
 	
 		$req1->closeCursor();
 	}
+	
+	
 	public function put_connextion_client($iIdoffre, $sIp, $sUrl, $sDate) {
 		$bdd = $this->bdd;
 		$req = $bdd->prepare("INSERT INTO `CONNEXION_CLIENT`(`ID_OFFRE`, `IP`, `URL`, `VISITE`) VALUES (?,?,?,?)");
@@ -336,6 +334,8 @@ class Bdd{
 		return $req->errorInfo();
 		$req->closeCursor();
 	}
+	
+	
 	public function put_connextion_erronee($sIp, $sUrl, $sDate) {
 		$bdd = $this->bdd;
 		$req = $bdd->prepare("INSERT INTO `CONNEXION_ERRONEE`(`IP`, `URL`, `VISITE`) VALUES (?,?,?)");
@@ -348,6 +348,8 @@ class Bdd{
 		return $req->errorInfo();
 		$req->closeCursor();
 	}
+	
+	
 	public function calendrier_initialise($iIresto, $tJours_dispos, $tHoraires_dispos, $iNbtables) {
 		$bdd = $this->bdd;
 		$req = $bdd->prepare("INSERT INTO `CALENDRIER_HEBDO`(`ID_REGLE_HEBDO`, `ID_RESTO`, `JOUR`, `HORAIRE`, `NB_TABLES`, `ACTIF`) VALUES ('',?,?,?,?,1)");
@@ -381,7 +383,7 @@ class Bdd{
 	}
 	
 	
-	// Liste des restaurants par restaurateurs (lorsque l'on est connect®¶ en tant qu'admin)
+	// Liste des restaurants par restaurateurs (lorsque l'on est connecte en tant qu'admin)
 	public function getRestaurantParRestaurateur($iId) {
 		$bdd1 = $this->bdd;
 
@@ -400,7 +402,7 @@ class Bdd{
 
 		
 		while ($donnees2 = $req2->fetch()) {
-			echo  $donnees2['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees2['ID_RESTO'];?>">D®¶tails</a> <?php
+			echo  $donnees2['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees2['ID_RESTO'];?>">Details</a> <?php
 			echo '  ';?>
 			<a href="index.php?category=20&&id=<?php echo $donnees2['ID_RESTO'];?>">Offres</a>
 				<a href="index.php?category=46&&id=<?php echo $donnees2['ID_RESTO'];?>" onclick="return confirm('Voulez-vous vraiment suprimer ce restaurant ?');">Supprimer Restaurant</a><?php
@@ -411,7 +413,7 @@ class Bdd{
 		$req2->closeCursor();
 	
 	}
-	//v®¶rifier si l'offre a d®¶j®§ ®¶t®¶ r®¶serv®¶
+	//v√©rifier si l'offre a deja ete reservee
 	public function if_offre_reserved($iIdoffre) {
 		$bdd = $this->bdd;
 		$req = $bdd->prepare("SELECT ID_RESA FROM `RESERVATION` WHERE ID_OFFRE = $iIdoffre");
@@ -439,7 +441,7 @@ class Bdd{
 		$req->closeCursor();
 	}
 	
-	// D®¶tails d'un restaurants
+	// Details d'un restaurants
 	public function getDetailRestaurant($iId) {
 		$bdd = $this->bdd;
 
@@ -449,7 +451,7 @@ class Bdd{
 		$donnees = $req->fetch();
 		echo 'Restaurant : '.$donnees['NOM_RESTO'].' <br /><br />'; 
 		if ($_SESSION['droit'] == 1) {
-			echo 'Propri®¶taire : '.$donnees['PRENOM'].' '.$donnees['NOM'].'<br/>';
+			echo 'Propri√©taire : '.$donnees['PRENOM'].' '.$donnees['NOM'].'<br/>';
 		}
 		echo 'ADRESSE : '.$donnees['ADRESSE'].'<br/>';
 		echo 'TELEPHONE : '.$donnees['TELEPHONE'].'<br/>';
@@ -477,7 +479,7 @@ class Bdd{
 		echo "La liste de mes restaurants <br/><br/>";
 		
 		while ($donnees = $req->fetch()) {
-			echo  $donnees['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">D®¶tails</a><?php
+			echo  $donnees['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">Details</a><?php
 			echo '<br/>';
 		}
 		
@@ -502,14 +504,14 @@ class Bdd{
 	}
 	
 	
-	// Liste des r®¶servations par restaurateur
+	// Liste des r√©servations par restaurateur
 	public function getReservations($iId) {
 		$bdd = $this->bdd;
 
 		$req = $bdd->prepare("SELECT * FROM RESERVATION INNER JOIN OFFRE ON RESERVATION.ID_OFFRE = OFFRE.ID_OFFRE INNER JOIN RESTAURANT ON OFFRE.ID_RESTO = RESTAURANT.ID_RESTO WHERE RESERVATION.ACTIF=1 AND RESTAURANT.ID_USER = $iId GROUP BY DATE_RESA");
 		$aListe = $req->execute(array());
 		
-		echo "La liste de mes r®¶servations : <br/><br/>";
+		echo "La liste de mes reservations : <br/><br/>";
 		
 		while ($donnees = $req->fetch()) {
 		
@@ -519,7 +521,7 @@ class Bdd{
 				
 					echo  'Le '.$donnees['DATE_RESA'].' : '.$donnees['NB_TABLES'].' table(s) pour '.$donnees['NB_PRS'].' personne(s) au nom de ';
 					echo $donnees['PRENOM'].' '.$donnees['NOM'].' (Email : '.$donnees['EMAIL_CLIENT'].')'?>
-					<a href="index.php?category=44&&id=<?php echo $donnees['ID_RESA']; ?>">Annuler la r®¶servation</a><?php
+					<a href="index.php?category=44&&id=<?php echo $donnees['ID_RESA']; ?>">Annuler la reservation</a><?php
 					echo '<br/><br/>';
 				
 			}
@@ -529,8 +531,12 @@ class Bdd{
 	}
 	
 	
+<<<<<<< HEAD
 
-	// Annuler une r®¶servation
+	// Annuler une r√©servation
+=======
+	// Annuler une reservation
+>>>>>>> origin/master
 	public function annulerReservation($oAnnulation, $dDateAnnulation) {
 		$bdd = $this->bdd;
 		$iId = $_GET['id'];
@@ -548,9 +554,9 @@ class Bdd{
 	}
 	
 	
-	// Notifications administrateur pour annulation r√©servation
+	// Notifications administrateur pour annulation reservation
 	public function notifAnnulationResa($dCurrentDate) {
-		$iDateExpiration = 864000; // Correspond √† 10 jours
+		$iDateExpiration = 864000; // Correspond a?10 jours
 		$dDateCurrent1 = strtotime($dCurrentDate);
 		
 		$bdd = $this->bdd;
@@ -563,10 +569,10 @@ class Bdd{
 			$dDateAnnulation = strtotime($donnees['DATE_ANNULATION']);
 			if (($dDateCurrent1-$dDateAnnulation)<$iDateExpiration) {
 				echo 'Le '.$donnees['DATE_ANNULATION'].' :<br/>';
-				echo $donnees['PRENOM'].' '.$donnees['NOM'].' a annul√© sa r√©servation du '.$donnees['DATE_RESA'].' pour '.$donnees['NB_PRS'].' personne(s).<br/>';
+				echo $donnees['PRENOM'].' '.$donnees['NOM'].' a annule sa reservation du '.$donnees['DATE_RESA'].' pour '.$donnees['NB_PRS'].' personne(s).<br/>';
 				echo 'Motif : '.$donnees['MOTIF'].'<br/>';
 				echo 'Cliquez '?> <a href="index.php?category=28&&id=<?php echo $donnees['ID_USER'];?>">ici</a><?php 
-				echo ' pour acc√©der profil du restaurateur.<br/>';
+				echo ' pour acceder profil du restaurateur.<br/>';
 			}
 		}
 		
@@ -575,7 +581,7 @@ class Bdd{
 
 	
 	
-	// Donn®¶es restaurant
+	// Donnees restaurant
 	public function restaurant_getData($iId) {
 		$bdd = $this->bdd;
 		
@@ -637,7 +643,7 @@ class Bdd{
 
 	// Notifications administrateur pour modification restaurant
 	public function notifUpdateRestaurant($dCurrentDate) {
-		$iDateExpiration = 864000; // Correspond ®§ 10 jours
+		$iDateExpiration = 864000; // Correspond a 10 jours
 		$dDateCurrent1 = strtotime($dCurrentDate);
 		
 		$bdd = $this->bdd;
@@ -647,14 +653,10 @@ class Bdd{
 		while ($donnees = $req->fetch()) {
 			$dDateModif = strtotime($donnees['DATE_MODIF']);
 			if (($dDateCurrent1-$dDateModif)<$iDateExpiration) {
-<<<<<<< HEAD
-				echo 'Le restaurant '.$donnees['NOM_RESTO'].' a ®¶t®¶ modifi®¶ par '.$donnees['PRENOM'].' '.$donnees['NOM'].' le '.$donnees['DATE_MODIF'].'<br/>';
-=======
 				echo 'Le '.$donnees['DATE_MODIF'].' :<br/>';
-				echo 'Le restaurant '.$donnees['NOM_RESTO'].' a √©t√© modifi√© par '.$donnees['PRENOM'].' '.$donnees['NOM'].' le '.$donnees['DATE_MODIF'].'<br/>';
->>>>>>> origin/master
+				echo 'Le restaurant '.$donnees['NOM_RESTO'].' a ete modifie par '.$donnees['PRENOM'].' '.$donnees['NOM'].'<br/>';
 				echo 'Cliquez '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">ici</a><?php 
-				echo ' pour acc®¶der aux modifications<br/><br/>';
+				echo ' pour acceder aux modifications<br/><br/>';
 			}
 		}
 		
@@ -683,7 +685,7 @@ class Bdd{
 	// RESTAURATEURS 
 	public function user_getListeRestaurants($iId_user) {
 		$bdd = $this->bdd;
-		//On v®¶rifie qu'il s'agit bien d'un restaurateur !
+		//On verifie qu'il s'agit bien d'un restaurateur !
 		$req1 = $bdd->prepare('SELECT DROIT FROM MEMBRE WHERE MEMBRE.ID_USER = :id');
 		$iDroit = $req1->execute(array('id' => $iId_user));
 		
@@ -703,7 +705,7 @@ class Bdd{
 			}
 	}
 	
-		// A v®¶rifier : forme du tableau retourn®¶
+		// A verifier : forme du tableau retourne
 	public function user_getListeResa($iId_Resto) {
 		$bdd = $this->bdd;
 		$req = $bdd->prepare('SELECT DISTINCT * WHERE OFFRE.ID_RESTO = ? AND OFFRE.ID_OFFRE = RESERVATION.ID_OFFRE');
@@ -828,7 +830,7 @@ class Bdd{
 			return 0;
 		}else{
 			if($req->errorInfo()[1] == 1062){
-				$_SESSION['msg_alert'] = 'Cette r®®gle est d®¶j®§ d®¶finie, veuillez v®¶rifier';
+				$_SESSION['msg_alert'] = 'Cette regle est deja definie, veuillez verifier';
 			}
 			$req->CloseCursor();
 			return 1;
@@ -842,7 +844,7 @@ class Bdd{
 			return 0;
 		}else{
 			if($req->errorInfo()[1] == 1062){
-				$_SESSION['msg_alert'] = 'Cette r®®gle est d®¶j®§ d®¶finie, veuillez v®¶rifier';
+				$_SESSION['msg_alert'] = 'Cette regle est deja definie, veuillez verifier';
 			}
 			$req->CloseCursor();
 			return 1;
@@ -907,7 +909,7 @@ class Bdd{
 		return $calendrier;
 	}
 	public function get_calendar_available($iIdresto, $sStartDate, $sEndDate){
-		// eliminer les cr®¶neaux d®¶j®§ r®¶serv®¶ par diff®¶rents offres d'un restaurants
+		// eliminer les creneaux deja reserves par differentes offres d'un restaurant
 		$bdd = $this->bdd;
 		$calendrier = $this->get_calendar_defined($iIdresto, $sStartDate, $sEndDate);
 		$req = $bdd->prepare('SELECT `ID_OFFRE` FROM `OFFRE`   WHERE `ID_RESTO` = ?');

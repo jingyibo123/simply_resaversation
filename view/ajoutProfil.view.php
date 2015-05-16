@@ -35,17 +35,10 @@
 		Prénom :
 		<input type="text" name="prenom" value=""/>
 		<br>
-		Sexe :
-		<select name="sexe">
-		<option value="Femme">Femme</option>
-		<option value="Homme">Homme</option>
-		<option value="Autre">Autre</option>
-		</select>
-		<br>
 		Adresse e-mail : 
 		<input type="text" name="debutAdresse" value=""/>
-		@<input type="text" name="domaineAdresse" value="" size="5"/> 
-		.<input type="text" name="localAdresse" value="" size="5"/>
+		@ <input type="text" name="domaineAdresse" value="" size="5"/> 
+		. <input type="text" name="localAdresse" value="" size="5"/>
 		<br>
 	
 		<script type="text/javascript">
