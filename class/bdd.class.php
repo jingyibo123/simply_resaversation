@@ -530,13 +530,8 @@ class Bdd{
 		$req->closeCursor();
 	}
 	
-	
-<<<<<<< HEAD
+		// Annuler une reservation
 
-	// Annuler une réservation
-=======
-	// Annuler une reservation
->>>>>>> origin/master
 	public function annulerReservation($oAnnulation, $dDateAnnulation) {
 		$bdd = $this->bdd;
 		$iId = $_GET['id'];
