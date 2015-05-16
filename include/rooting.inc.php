@@ -472,7 +472,10 @@
 			require_once 'class/bdd.class.php';
 			$dDateCurrent = date('Y-m-d H:i:s');
 			$oBdd = new Bdd();
-			$aListeNotifs = $oBdd->notifUpdateRestaurant($dDateCurrent);
+			echo 'ANNULATIONS RESERVATIONS CLIENTS :<br/><br/>';
+			$aListeNotifsResa = $oBdd->notifAnnulationResa($dDateCurrent);
+			echo '<br/><br/>MODIFICATIONS PROFILS RESTAURANTS :<br/><br/>';
+			$aListeNotifsResto = $oBdd->notifUpdateRestaurant($dDateCurrent);
 		break;
 
 
@@ -485,9 +488,9 @@
 			$_SESSION['id_offre'] = $_GET['offre'];
 			$_SESSION['ID_RESTO'] = $oBdd->getIdrestoParIdoffre($_GET['offre']);
 			if($_SESSION['ID_RESTO']!=0){
-				/* verifier si cet offre a déjà été reservé */
+				/* vérifier si cette offre a déjà été reservée */
 				if(!$oBdd->if_offre_reserved($_GET['offre'])){
-					/* Enrigistrer IP */
+					/* Enregistrer IP */
 					$oBdd->put_connextion_client($_GET['offre'],$oFonctions->get_ip(),$oFonctions->get_url(),date('Y-m-d H:i:s'));
 					define('ROOTING', 'view/client.reserver.view.php');
 				}
@@ -496,7 +499,7 @@
 				}
 			}
 			else{
-				/* Enrigistrer IP errone*/ 
+				/* Enregistrer IP erronée */ 
 				$oBdd->put_connextion_erronee($oFonctions->get_ip(),$oFonctions->get_url(),date('Y-m-d H:i:s'));
 				define('ROOTING', 'view/client.offre_error.view.php');
 			}
@@ -609,6 +612,7 @@
 
 				$oAnnulation = new Annulation();
 				$iId = $_GET['id'];
+				$dCurrentDate = date('Y-m-d H:i:s');
 
 				$oAnnulation->setMotif($_POST['annulation']['motif']);
 
@@ -620,9 +624,9 @@
 				
 				if(empty($oAnnulation->aError)){
 
-					$iReturnIdent = $oBdd->annulerReservation($oAnnulation);
+					$aAnnulResa = $oBdd->annulerReservation($oAnnulation, $dCurrentDate);
 
-					if($iReturnIdent != 0){
+					if(!empty($aAnnulResa)){
 						header('Location: index.php?category=45');
 					}
 					else{
