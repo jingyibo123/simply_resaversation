@@ -15,7 +15,7 @@
     <head> 
 		<title>Supprimer le profil suivant</title> 
 	</head> 
-	<header> Vous êtes sur le point de supprimer le profil suivant : </header>
+	<header> Vous êtes sur le point de supprimer ce profil. </header>
 	<!-- Le menu -->
 	<!--php include ("../include/menu.inc.php");-->
 	<!-- Le corps de la page -->

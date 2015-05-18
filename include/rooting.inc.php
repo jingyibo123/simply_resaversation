@@ -651,7 +651,17 @@
 			define('ROOTING', 'view/messageSuppressionRestaurant.view.php');
 			
 		break;
-
+		case 47:
+			define('ROOTING', 'view/modifierMdp.view.php');
+		break;
+		
+		case 48:
+			$sNvMdp = md5($_POST['mdp1']);
+			$oBdd = new Bdd();
+			$iId = $_GET['id'];
+			$oBdd->modifierMdp($iId, $sNvMdp);
+			define('ROOTING', 'view/messageModifMdp.view.php');
+		break;
 	}
 
 ?>

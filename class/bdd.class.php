@@ -88,18 +88,28 @@ class Bdd{
 	    
 	}
 
-	public function user_update($oUser){
+	public function modifierMdp($iId, $sNvMdp){
+		$bdd = $this->bdd;
 
+		$req = $bdd->prepare('UPDATE MEMBRE SET MDP = :nv_mdp WHERE ID_USER = :id_user ');
+		$req->bindValue(':nv_mdp',$sNvMdp, PDO::PARAM_STR);
+		$req->bindValue(':id_user',$iId, PDO::PARAM_STR);
+	    $bReturn = $req->execute();
+	    $req->CloseCursor();
 	}
 
 	public function user_delete($iId){
 		$bdd = $this->bdd;
 
-		$req = $bdd->prepare('DELETE FROM MEMBRE WHERE ID_USER = :id_user ');
-		$req->bindValue(':id_user',$iId, PDO::PARAM_STR);
-
-	    $bReturn = $req->execute();
-	    $req->CloseCursor();
+		$req1 = $bdd->prepare('UPDATE MEMBRE SET ACTIF = 0 WHERE ID_USER = :id_user ');
+		$req1->bindValue(':id_user',$iId, PDO::PARAM_STR);
+	    $bReturn = $req1->execute();
+	    $req1->CloseCursor();
+		
+		$req2 = $bdd->prepare('UPDATE RESTAURANT SET ACTIF = 0 WHERE ID_USER = :id_user ');
+		$req2->bindValue(':id_user',$iId, PDO::PARAM_STR);
+	    $bReturn = $req2->execute();
+	    $req2->CloseCursor();
 	}
 	
 	public function user_checkData ($sEmail, $sMdp) {
