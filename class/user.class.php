@@ -22,6 +22,7 @@ class User
 	//private
     private $sPrenom;
 	private $sNom;
+	private $sSexe;
     private $sEmail;
 	private $sMdp;
 	private $iDroit; /*Droits en chiffres*/
@@ -44,6 +45,9 @@ class User
    					case 'nom':
    						$this->sNom = $v;
    					break;
+					case 'sexe':
+						$this->sSexe = $v;
+					break;
    					case 'email':
    						$this->sEmail = $v;
    					break;
@@ -71,6 +75,10 @@ class User
 		return $this->sNom;
 	}
 
+	public function getSexe(){
+		return $this->sSexe;
+	}
+	
 	public function getEmail(){
 		return $this->sEmail;
 	}
@@ -95,6 +103,10 @@ class User
 	
 	public function setNom($sNvNom) {
 		$this->sNom = $sNvNom;	
+	}
+	
+	public function setSexe($sNvSexe) {
+		$this->sSexe = $sNvSexe;
 	}
 	
 	public function setEmail($sNvEmail) {

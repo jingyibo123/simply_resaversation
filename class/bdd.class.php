@@ -62,9 +62,21 @@ class Bdd{
 	    $aListe = $req->execute(array());
 
 		$donnees = $req->fetch();
-		echo 'Vos informations personnelles :<br /><br />';
-		echo 'Nom : '.$donnees['NOM'].'<br />'; 
-		echo 'Prenom : '.$donnees['PRENOM'].'<br/>';
+		echo 'Informations personnelles :<br /><br />';
+		if ($donnees['SEXE'] == "Homme") {
+			echo 'Monsieur ';
+		}
+		elseif ($donnees['SEXE'] == "Femme") {
+			echo 'Madame ';
+		}
+		else {
+			echo 'M. ';
+		}
+		
+		$sNom = strtoupper($donnees['NOM']);
+		$sPrenom = ucfirst($donnees['PRENOM']);
+		echo ' '.$sNom.' '; 
+		echo ' '.$sPrenom.'<br/>';
 		echo 'Adresse e-mail : '.$donnees['EMAIL'].'<br/>'; 
 		$req->closeCursor();
 	}
@@ -73,11 +85,12 @@ class Bdd{
 	public function user_insert($oUser){
 		$bdd = $this->bdd;
 
-		$req=$bdd->prepare('INSERT INTO MEMBRE (email, nom, prenom, mdp, droit, actif) VALUES (:email, :nom, :prenom, :mdp, :droit, 1)');
+		$req=$bdd->prepare('INSERT INTO MEMBRE (email, nom, prenom, sexe, mdp, droit, actif) VALUES (:email, :nom, :prenom, :sexe, :mdp, :droit, 1)');
 
 	    $req->bindValue(':email',$oUser->getEmail(), PDO::PARAM_STR);
 	    $req->bindValue(':nom',$oUser->getNom(), PDO::PARAM_STR);
 	    $req->bindValue(':prenom',$oUser->getPrenom(), PDO::PARAM_STR);
+		$req->bindValue(':sexe',$oUser->getPrenom(), PDO::PARAM_STR);
 	    $req->bindValue(':mdp',md5($oUser->getMdp()), PDO::PARAM_STR);
 	    $req->bindValue(':droit',$oUser->getDroit(), PDO::PARAM_STR);
 
@@ -177,8 +190,9 @@ class Bdd{
 		
 		echo "Liste des restaurateurs </br></br></br>";
 		while ($donnees = $req->fetch()) {
-			echo  $donnees['NOM'].' '.$donnees['PRENOM'] ?> <a href="index.php?category=8&&id=<?php echo $donnees['ID_USER'];?>">Restaurants</a> <?php
-			?>
+			echo  $donnees['NOM'].' '.$donnees['PRENOM'] ?>
+			<a href="index.php?category=49&&id=<?php echo $donnees['ID_USER'];?>">Informations Personnelles</a>		
+			<a href="index.php?category=8&&id=<?php echo $donnees['ID_USER'];?>">Restaurants</a>
 			<a href="index.php?category=42&&id=<?php echo $donnees['ID_USER']; ?>"> Supprimer le compte </a>
 			<?php
 			echo'<br/>';

@@ -1,6 +1,7 @@
 CREATE TABLE MEMBRE (
 	ID_USER INT(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	EMAIL VARCHAR(50) UNIQUE,
+	SEXE VARCHAR(10),
 	NOM VARCHAR(50),
 	PRENOM VARCHAR(50),
 	MDP VARCHAR(50),
@@ -104,11 +105,11 @@ CREATE TABLE NOTIFICATIONS_RESTO (
 
 
 
-INSERT INTO `MEMBRE`(`ID_USER`, `EMAIL`, `NOM`, `PRENOM`, `MDP`, `DROIT`, `ACTIF`) VALUES
- ('','David11313@yahoo.fr','David','ROBERT','7581f38742fbcc46d3f3a56f47b987fa', 2,1),/*MDP: minesnantes */ 
- ('','josephchutin@gmail.com','Joseph','Chutin','3594cfc4c0384af96c5a56954b580776', 2,1),/*MDP: vivelafrance */ 
- ('','paul19830611@hotmail.com','Paul','DUVAL','ddb2ae308bb0d4bb02d778516d215c18', 1,1), /*MDP: simpleCE */
- ('','baptisterobert@gmail.com','Baptiste','ROBERT','482c811da5d5b4bc6d497ffa98491e38',1,1);  /*MDP: password123 */
+INSERT INTO `MEMBRE`(`ID_USER`,`EMAIL`,`PRENOM`,`NOM`,`SEXE`, `MDP`, `DROIT`, `ACTIF`) VALUES
+ ('','David11313@yahoo.fr','David','ROBERT','Homme','7581f38742fbcc46d3f3a56f47b987fa', 2,1),/*MDP: minesnantes */ 
+ ('','josephchutin@gmail.com','Joseph','Chutin','Homme','3594cfc4c0384af96c5a56954b580776', 2,1),/*MDP: vivelafrance */ 
+ ('','paul19830611@hotmail.com','Paul','DUVAL','Homme','ddb2ae308bb0d4bb02d778516d215c18', 1,1), /*MDP: simpleCE */
+ ('','baptisterobert@gmail.com','Baptiste','ROBERT','Autre','482c811da5d5b4bc6d497ffa98491e38',1,1);  /*MDP: password123 */
 
 INSERT INTO `RESTAURANT`(`ID_RESTO`, `ID_USER`,`NOM_RESTO`, `ADRESSE`, `TELEPHONE`, `DESCRIPTIF`, `IMAGE`, `DATE_DERNIERE_MODIF`,`ACTIF`) VALUES
  ('',1,'La Bonne franquette','4 Allée Jean 44400 Nantes','+33 02 51 92 37 22','Très bonne','pomme.jpg', '2015-4-11 12:00:00',1),

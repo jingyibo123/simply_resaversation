@@ -432,7 +432,8 @@
 
 				$oUser->setNom($_POST['nom']);
 				$oUser->setPrenom($_POST['prenom']);
-		
+				$oUser->setSexe($_POST['sexe']);
+				
 				$sEmailComplete = $_POST['debutAdresse']."@";
 				$sEmailComplete .= $_POST['domaineAdresse'];
 				$sEmailComplete .= ".";
@@ -661,6 +662,14 @@
 			$iId = $_GET['id'];
 			$oBdd->modifierMdp($iId, $sNvMdp);
 			define('ROOTING', 'view/messageModifMdp.view.php');
+		break;
+		case 49 : 
+			define('ROOTING', 'view/consultationProfilRestaurateur.view.php');
+			require_once 'class/bdd.class.php';
+
+			$oBdd = new Bdd();
+			$iId = $_GET['id'];
+			$aDetails = $oBdd->user_getDetails($iId);
 		break;
 	}
 
