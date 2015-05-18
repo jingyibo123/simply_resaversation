@@ -119,7 +119,11 @@ class Bdd{
 	    $bReturn = $req1->execute();
 	    $req1->CloseCursor();
 		
-		$req2 = $bdd->prepare('UPDATE RESTAURANT SET ACTIF = 0 WHERE ID_USER = :id_user ');
+		$req2 = $bdd->prepare('UPDATE RESTAURANT, OFFRE, RESERVATION 
+		SET RESTAURANT.ACTIF = 0, OFFRE.ACTIF = 0, RESERVATION.ACTIF = 0
+		WHERE ID_USER = :id_user 
+		AND OFFRE.ID_RESTO = RESTAURANT.ID_RESTO
+		AND OFFRE.ID_OFFRE = RESERVATION.ID_OFFRE');
 		$req2->bindValue(':id_user',$iId, PDO::PARAM_STR);
 	    $bReturn = $req2->execute();
 	    $req2->CloseCursor();
@@ -185,17 +189,19 @@ class Bdd{
 	public function getRestaurateurs() {
 		$bdd = $this->bdd;
 		
-		$req = $bdd->prepare('SELECT ID_USER, NOM, PRENOM FROM MEMBRE WHERE MEMBRE.DROIT = 2 GROUP BY NOM');
+		$req = $bdd->prepare('SELECT ID_USER, NOM, PRENOM, ACTIF FROM MEMBRE WHERE MEMBRE.DROIT = 2 GROUP BY NOM');
 		$aListe = $req->execute(array());
 		
 		echo "Liste des restaurateurs </br></br></br>";
 		while ($donnees = $req->fetch()) {
+			if($donnees['ACTIF'] == 1) {
 			echo  strtoupper($donnees['NOM']).' '.ucfirst($donnees['PRENOM']) ?>
 			<a href="index.php?category=49&&id=<?php echo $donnees['ID_USER'];?>">Details</a>		
 			<a href="index.php?category=8&&id=<?php echo $donnees['ID_USER'];?>">Restaurants</a>
 			<a href="index.php?category=42&&id=<?php echo $donnees['ID_USER']; ?>"> Supprimer le compte </a>
 			<?php
 			echo'<br/>';
+			}
 		}
 		
 		$req->closeCursor();
@@ -426,7 +432,7 @@ class Bdd{
 
 		
 		while ($donnees2 = $req2->fetch()) {
-			echo  $donnees2['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees2['ID_RESTO'];?>">Details</a> <?php
+			echo  ucwords(strtolower($donnees2['NOM_RESTO'])).' '?> <a href="index.php?category=9&&id=<?php echo $donnees2['ID_RESTO'];?>">Details</a> <?php
 			echo '  ';?>
 			<a href="index.php?category=20&&id=<?php echo $donnees2['ID_RESTO'];?>">Offres</a>
 				<a href="index.php?category=46&&id=<?php echo $donnees2['ID_RESTO'];?>" onclick="return confirm('Voulez-vous vraiment suprimer ce restaurant ?');">Supprimer Restaurant</a><?php
