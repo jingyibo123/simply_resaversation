@@ -517,21 +517,7 @@ class Bdd{
 	
 	}
 	
-	//Supprimer un Restaurant
-	public function supprimerRestaurant($iId_resto) {
-		$bdd = $this->bdd;
 
-
-		$req = $bdd->prepare('UPDATE RESTAURANT SET ACTIF = 0 WHERE ID_RESTO = :id_resto ');
-		
-		$req->bindValue(':id_resto',$iId_resto, PDO::PARAM_STR);
-	    
-
-	    $bReturn = $req->execute();
-	    $req->CloseCursor();
-		
-		return $bReturn;
-	}
 	
 	
 	// Liste des réservations par restaurateur
@@ -645,6 +631,22 @@ class Bdd{
 	    $req->CloseCursor();
 
     	return $bReturn;
+	}
+	
+		//Supprimer un Restaurant
+	public function supprimerRestaurant($iId_resto) {
+		$bdd = $this->bdd;
+
+
+		$req = $bdd->prepare('UPDATE RESTAURANT SET ACTIF = 0 WHERE ID_RESTO = :id_resto ');
+		
+		$req->bindValue(':id_resto',$iId_resto, PDO::PARAM_STR);
+	    
+
+	    $bReturn = $req->execute();
+	    $req->CloseCursor();
+		
+		return $bReturn;
 	}
 	
 	
