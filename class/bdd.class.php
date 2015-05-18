@@ -638,13 +638,23 @@ class Bdd{
 		$bdd = $this->bdd;
 
 
-		$req = $bdd->prepare('UPDATE RESTAURANT SET ACTIF = 0 WHERE ID_RESTO = :id_resto ');
+		$req = $bdd->prepare('UPDATE RESTAURANT
+		SET RESTAURANT.ACTIF = 0 WHERE ID_RESTO = :id_resto');
 		
 		$req->bindValue(':id_resto',$iId_resto, PDO::PARAM_STR);
+
 	    
 
 	    $bReturn = $req->execute();
 	    $req->CloseCursor();
+		
+		$req2 = $bdd->prepare('UPDATE OFFRE, RESERVATION 
+		SET OFFRE.ACTIF = 0, RESERVATION.ACTIF = 0
+		WHERE OFFRE.ID_RESTO = :id_resto
+		AND RESERVATION.ID_OFFRE = OFFRE.ID_OFFRE');
+		$req2->bindValue(':id_resto',$iId_resto, PDO::PARAM_STR);
+	    $bReturn = $req2->execute();
+	    $req2->CloseCursor();
 		
 		return $bReturn;
 	}
