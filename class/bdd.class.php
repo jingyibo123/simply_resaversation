@@ -170,7 +170,7 @@ class Bdd{
 		
 		echo "Liste des restaurants </br></br>";
 		while ($donnees = $req->fetch()) {
-			echo  $donnees['NOM_RESTO'].' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>">Details</a><?php
+			echo  ucwords(strtolower($donnees['NOM_RESTO'])).' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>">Details</a><?php
 			echo '  ';?>
 			<a href="index.php?category=20&&id=<?php echo $donnees['ID_RESTO']; ?>">Offres</a>
 			<a href="index.php?category=46&&id=<?php echo $donnees['ID_RESTO'];?>" onclick="return confirm('Voulez-vous vraiment suprimer ce restaurant ?');">Supprimer Restaurant</a><?php
@@ -180,7 +180,7 @@ class Bdd{
 		$req->closeCursor();
 		
 	}
-	
+
 	// Liste des restaurateurs
 	public function getRestaurateurs() {
 		$bdd = $this->bdd;
@@ -190,8 +190,8 @@ class Bdd{
 		
 		echo "Liste des restaurateurs </br></br></br>";
 		while ($donnees = $req->fetch()) {
-			echo  $donnees['NOM'].' '.$donnees['PRENOM'] ?>
-			<a href="index.php?category=49&&id=<?php echo $donnees['ID_USER'];?>">Informations Personnelles</a>		
+			echo  strtoupper($donnees['NOM']).' '.ucfirst($donnees['PRENOM']) ?>
+			<a href="index.php?category=49&&id=<?php echo $donnees['ID_USER'];?>">Details</a>		
 			<a href="index.php?category=8&&id=<?php echo $donnees['ID_USER'];?>">Restaurants</a>
 			<a href="index.php?category=42&&id=<?php echo $donnees['ID_USER']; ?>"> Supprimer le compte </a>
 			<?php
@@ -503,7 +503,7 @@ class Bdd{
 		echo "La liste de mes restaurants <br/><br/>";
 		
 		while ($donnees = $req->fetch()) {
-			echo  $donnees['NOM_RESTO'].' '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">Details</a><?php
+			echo  ucwords(strtolower($donnees['NOM_RESTO'])).' '?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO'];?>">Details</a><?php
 			echo '<br/>';
 		}
 		
