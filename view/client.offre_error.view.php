@@ -21,7 +21,7 @@
 
 
 <body>
-	<p>Numéro d'offre érroné</p>
+	<p>Numéro d'offre erroné</p>
 </body>
 
 

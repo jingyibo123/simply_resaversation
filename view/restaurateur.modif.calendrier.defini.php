@@ -43,10 +43,10 @@
 	echo $_SESSION['ID_RESTO_MODIF'];
 ?>
 <div id='regles'>
-	<h3>Les régles hebdomataires du calendrier</h3>
+	<h3>Définition du calendrier hebdomadaire des tranches horaires disponibles</h3>
 	<table id="reglelisthebdo" ><thead><tr>
 		<td>Jours</td>
-		<td>Horaire</td>
+		<td>Horaires</td>
 		<td>Tables</td>
 		<td></td><td><button class="btn creer regle" id="BtnAjoutRegleHebdo">Ajouter</button></td>
 		</tr></thead><tbody>
@@ -62,7 +62,7 @@
 		?>
 		</tbody>
 	</table>
-	<h3>Les régles exceptionnelles du calendrier</h3>
+	<h3>Définition des jours exceptionnels</h3>
 	<table id="reglelistexcep" ><thead><tr>
 		<td>Date</td>
 		<td>Horaire</td>
@@ -80,7 +80,7 @@
 		}?>
 		</tbody>
 	</table>
-	<a href="http://localhost/simply_resaversation/index.php?category=4">Retourner</a>
+	<a href="index.php?category=4">Retour menu</a>
 </div>
 
 <div id='calendar'>

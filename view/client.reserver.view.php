@@ -62,7 +62,7 @@
 	<!-- <button id='VldBtn'class='btn'  action='' >Valider la réservation</button> -->
 </div>
 
-<div ><p>Sélectionner votre date de consommation</p></div>
+<div ><p>Sélectionner votre date de réservation</p></div>
 <div id='calendar'></div>
 
 <div id='OrderDetailInput' >
@@ -70,7 +70,7 @@
 		<table id='HoraireList' >
 			<thead>
 				<tr>
-					<td>Choisir votre horaire</td>
+					<td>Sélectionner l'horaire de votre réservation</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -88,7 +88,7 @@
 		
 	</table>
 	</div>
-	<button id='CtnBtn' class='btn' style='display:none'>Continuer la réservation</button>
+	<button id='CtnBtn' class='btn' style='display:none'>Poursuivre la réservation</button>
 </div>
     
 <?php

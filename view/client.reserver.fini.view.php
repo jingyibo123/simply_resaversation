@@ -22,7 +22,7 @@
 
 <body>
 	<p>Votre réservation a été bien enregistrée </br>
-	vous reçevez aussi un mail dans lequel vous trouverez le lien pour modifier votre réservation </p>
+	Vous reçevrez un mail de confirmation dans lequel vous trouverez un lien pour modifier votre réservation </p>
 </body>
 
 

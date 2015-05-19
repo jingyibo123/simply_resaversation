@@ -811,6 +811,8 @@ class Bdd{
 			return 0;
 		}
 	}
+	
+	
 	public function get_calendar_specialrules($iIdresto){
 		$bdd = $this->bdd;
 		$specialrules = Array ();
@@ -826,6 +828,8 @@ class Bdd{
 			return 0;
 		}
 	}
+	
+	
 	public function delete_calendar_weeklyrules($iIdregle){
 		$bdd = $this->bdd;
 		$req = $bdd->prepare('DELETE FROM `calendrier_hebdo` WHERE `ID_REGLE_HEBDO` = ?');
@@ -837,6 +841,8 @@ class Bdd{
 			return 0;
 		}
 	}
+	
+	
 	public function delete_calendar_specialrules($iIdregle){
 		$bdd = $this->bdd;
 		$req = $bdd->prepare('DELETE FROM `calendrier_exception` WHERE `ID_REGLE_EXCEP` = ?');
@@ -876,6 +882,8 @@ class Bdd{
 			return 1;
 		}
 	}
+	
+	
 	public function update_calendar_weeklyrules($iIdregle,$iNbtables){
 		$bdd = $this->bdd;
 		$req = $bdd->prepare('UPDATE `calendrier_hebdo` SET `NB_TABLES`= ? WHERE `ID_REGLE_HEBDO` = ?');
@@ -887,6 +895,8 @@ class Bdd{
 			return 0;
 		}
 	}
+	
+	
 	public function update_calendar_specialrules($iIdregle,$iNbtables){
 		$bdd = $this->bdd;
 		$req = $bdd->prepare('UPDATE `calendrier_exception` SET `NB_TABLES`= ? WHERE `ID_REGLE_EXCEP` = ?');
@@ -898,6 +908,8 @@ class Bdd{
 			return 0;
 		}
 	}
+	
+	
 	public function get_calendar_defined($iIdresto, $sStartDate, $sEndDate){
 		$bdd = $this->bdd;
 		$calendrier = Array ();
@@ -934,6 +946,8 @@ class Bdd{
 		}
 		return $calendrier;
 	}
+	
+	
 	public function get_calendar_available($iIdresto, $sStartDate, $sEndDate){
 		// eliminer les creneaux deja reserves par differentes offres d'un restaurant
 		$bdd = $this->bdd;

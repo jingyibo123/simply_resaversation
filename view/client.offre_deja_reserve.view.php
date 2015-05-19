@@ -21,7 +21,7 @@
 
 
 <body>
-	<p>Cet offre a déjà été réservé</p>
+	<p>Cette offre a déjà été réservée</p>
 </body>
 
 
