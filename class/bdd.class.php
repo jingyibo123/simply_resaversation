@@ -457,7 +457,7 @@ class Bdd{
 		echo 'TELEPHONE : '.$donnees['TELEPHONE'].'<br/>';
 		echo 'DESCRIPTIF : '.$donnees['DESCRIPTIF'].'<br/><br/>';
 		?> 
-		<a href="index.php?category=13&&id=<?php echo $donnees['ID_RESTO'];?>">Modifier</a>
+		<a href="index.php?category=13&&id=<?php echo $donnees['ID_RESTO'];?>">Modifier le detail de ce restaurant</a><p><a href =<?php echo  $_SERVER['PHP_SELF'].'?category=35'; ?>>Modifier le calendrier de ce restaurant</a></p>
 		<br><br>
 		<img src="images/<?php echo $donnees['IMAGE'];?>">
 		<a href="index.php?category=15&&id=<?php echo $donnees['ID_RESTO'];?>">Modifier Image</a>

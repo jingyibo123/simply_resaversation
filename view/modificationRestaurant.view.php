@@ -7,7 +7,7 @@ require_once 'class/bdd.class.php';
 
 $oBdd = new Bdd();
 $iId = $_GET['id'];
-$_SESSION['ID_RESTO_MODIF'] = $_GET['id'];
+
 $aRestaurant = $oBdd->restaurant_getData("$iId");
 ?>
 
@@ -21,7 +21,7 @@ $aRestaurant = $oBdd->restaurant_getData("$iId");
     <div>
         <p>Descriptif : </p><textarea name="modification[descriptif]" rows="7" cols="100"><?php echo ''.$aRestaurant['DESCRIPTIF']; ?></textarea> <?php if(isset($oRestaurant->aError['descriptif'])){echo $oRestaurant->aError['descriptif'];} ?>
     </div>
-	<p><a href="http://localhost/simply_resaversation/index.php?category=35">Modifier le calendrier de ce restaurant</a></p>
+	
 
     <p></br><input name="Modifier" value="Modifier" type="submit" /></p>
 </form>
