@@ -728,7 +728,7 @@ class Bdd{
 			}
 			else {
 				$this->aError = array();
-				$this->aError['Droit'] = 'Droit vaut ' . $iDroit . ' alors qu\'il devrait valloir 2 !';
+				$this->aError['Droit'] = 'Vous n\'avez pas accès à cette page';
 				return $iDroit;
 			}
 	}
@@ -864,7 +864,7 @@ class Bdd{
 			return 0;
 		}else{
 			if($req->errorInfo()[1] == 1062){
-				$_SESSION['msg_alert'] = 'Cette regle est deja definie, veuillez verifier';
+				$_SESSION['msg_alert'] = 'Cet horaire est déjà défini, veuillez vérifier votre modification';
 			}
 			$req->CloseCursor();
 			return 1;
@@ -878,7 +878,7 @@ class Bdd{
 			return 0;
 		}else{
 			if($req->errorInfo()[1] == 1062){
-				$_SESSION['msg_alert'] = 'Cette regle est deja definie, veuillez verifier';
+				$_SESSION['msg_alert'] = 'Cet horaire est déjà défini, veuillez vérifier votre modification';
 			}
 			$req->CloseCursor();
 			return 1;
