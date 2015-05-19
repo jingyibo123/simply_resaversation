@@ -526,7 +526,7 @@ class Bdd{
 
 			if ($dDateCurrent < $donnees['DATE_RESA']) {
 				
-					echo  'Le '.$donnees['DATE_RESA'].' : '.$donnees['NB_TABLES'].' table(s) pour '.$donnees['NB_PRS'].' personne(s) au nom de ';
+					echo  'Le '.$donnees['DATE_RESA'].' : Une réservation de '.$donnees['NB_PRS'].' personne(s) au nom de ';
 					echo $donnees['PRENOM'].' '.$donnees['NOM'].' (Email : '.$donnees['EMAIL_CLIENT'].')'?>
 					<a href="index.php?category=44&&id=<?php echo $donnees['ID_RESA']; ?>">Annuler la reservation</a><?php
 					echo '<br/><br/>';
