@@ -103,18 +103,7 @@
 			}
 			
 		break;
-		case 2:
-			//define('ROOTING', 'view/calendrier.view.php');
-			echo'calendrier';
-			/*if(!isset($_SESSION['id_user'])){
-				header('Location: index.php');
-			}*/
-
-		break;
-		case 3:
-			define('ROOTING', 'view/bienvenue.view.php');
-			
-		break;
+		
 		
 		case 4:
 			define('ROOTING', 'include/menu.inc.php');
