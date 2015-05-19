@@ -17,7 +17,8 @@ $(document).ready(function() {
     $('#calendar').fullCalendar({
         lang: 'fr',
         defaultDate: '2015-03-12',
-        editable: true,
+        editable: false,
+		disableDragging: true,
         selectable: false,
         eventLimit: false,
         timeFormat: 'H:mm',
