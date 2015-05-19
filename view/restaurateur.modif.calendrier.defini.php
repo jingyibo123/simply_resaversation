@@ -80,7 +80,7 @@
 		}?>
 		</tbody>
 	</table>
-	<a href="index.php?category=4">Retour menu</a>
+	<a href="index.php?category=9&&id=<?php echo $_SESSION['ID_RESTO_MODIF'];?>"> Retour</a>
 </div>
 
 <div id='calendar'>

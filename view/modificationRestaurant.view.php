@@ -24,6 +24,8 @@ $aRestaurant = $oBdd->restaurant_getData("$iId");
 	
 
     <p></br><input name="Modifier" value="Modifier" type="submit" /></p>
+	
+	<p><a href="index.php?category=9&&id=<?php echo $iId;?>"> Retour</a></p>
 </form>
 
 
