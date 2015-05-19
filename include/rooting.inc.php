@@ -68,6 +68,9 @@
 				}
 			}
 			}
+			else{
+				header('Location: index.php?category=0');
+			}
 		break;
 		
 		case 0:
