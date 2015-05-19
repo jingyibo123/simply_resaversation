@@ -261,7 +261,24 @@ class Bdd{
 	    }
 	}
 
-	
+	public function getOffresParRestaurateur($iId) {
+		$bdd = $this->bdd;
+		
+		$req = $bdd->prepare("SELECT * FROM OFFRE O INNER JOIN RESTAURANT R ON O.ID_RESTO = R.ID_RESTO WHERE R.ID_USER = $iId AND O.ACTIF=1");
+		$req->execute(array());
+		$aListe = $req->fetchAll();
+		
+		return $aListe;
+		/*echo "Liste des offres <br/><br/>";
+		while ($donnees = $req->fetch()) {
+			echo $donnees['DESCRIPTIF']; 
+			if ($_SESSION['droit']==1) {
+				?> <a href="index.php?category=21&&id=<?php echo $donnees['ID_OFFRE'];?>">Modifier Offre</a>
+				<a href="index.php?category=27&&id=<?php echo $donnees['ID_OFFRE'];?>" onclick="return confirm('Voulez-vous vraiment suprimer cette offre ?');">Supprimer Offre</a>
+				<?php }
+			echo '<br/>';
+		}*/
+	}
 	
 	
 	public function getOffresParRestaurant($iId) {

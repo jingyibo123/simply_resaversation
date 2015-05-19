@@ -583,6 +583,8 @@
 		break;
 		
 		case 41:
+			require_once 'class/bdd.class.php';
+			$oBdd = new Bdd();
 			define('ROOTING', 'view/ajoutProfil.view.php');
 		break;
 				
