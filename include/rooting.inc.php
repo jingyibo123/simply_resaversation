@@ -512,7 +512,7 @@
 				$oBdd = new Bdd();
 				$oBdd->reservation_putdata($_SESSION['id_offre'], $_POST['reservation']['EMAIL_CLIENT'],
 				$_POST['reservation']['NOM'], $_POST['reservation']['PRENOM'], $_POST['reservation']['DATE_RESA'],
-				$_POST['reservation']['NB_TABLES'], $_POST['reservation']['NB_PERSONNE'] );
+				1, $_POST['reservation']['NB_PERSONNE'] );
 				define('ROOTING', 'view/client.reserver.fini.view.php');	
 			}
 		break;	
