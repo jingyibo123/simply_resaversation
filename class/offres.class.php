@@ -65,9 +65,9 @@ class Offre {
 
 		
 		if($this->sDescriptif == ''){
-			$this->aError['descriptif'] = 'error_vide';
+			$this->aError['descriptif'] = 'Merci de remplir ce champ';
 		}elseif(strlen($this->sDescriptif) > 1000){
-			$this->aError['descriptif'] = 'error_trop_long';
+			$this->aError['descriptif'] = 'Merci de remplir ce champ';
 		}
 	}
 }

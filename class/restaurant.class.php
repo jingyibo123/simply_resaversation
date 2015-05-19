@@ -87,15 +87,15 @@ class Restaurant {
 		$this->aError = array();
 
 		if($this->sTelephone == ''){
-			$this->aError['telephone'] = 'error_vide';
+			$this->aError['telephone'] = 'Merci de remplir ce champ';
 		}elseif(strlen($this->sTelephone) > 20){
-			$this->aError['telephone'] = 'error_trop_long';
+			$this->aError['telephone'] = 'Numéro de téléphone trop long';
 		}
 		
 		if($this->sDescriptif == ''){
-			$this->aError['descriptif'] = 'error_vide';
+			$this->aError['descriptif'] = 'Merci de remplir ce champ';
 		}elseif(strlen($this->sDescriptif) > 1000){
-			$this->aError['descriptif'] = 'error_trop_long';
+			$this->aError['descriptif'] = 'Descriptif trop long';
 		}
 	}
 	
@@ -105,27 +105,27 @@ class Restaurant {
 		$this->aError = array();
 
 		if($this->sNom == ''){
-			$this->aError['nom'] = 'error_vide';
+			$this->aError['nom'] = 'Merci de remplir ce champ';
 		}elseif(strlen($this->sNom) > 50){
-			$this->aError['nom'] = 'error_trop_long';
+			$this->aError['nom'] = 'Nom trop long';
 		}
 		
 		if($this->sAdresse == ''){
-			$this->aError['adresse'] = 'error_vide';
+			$this->aError['adresse'] = 'Merci de remplir ce champ';
 		}elseif(strlen($this->sAdresse) > 500){
-			$this->aError['adresse'] = 'error_trop_long';
+			$this->aError['adresse'] = 'Adresse trop longue';
 		}
 
 		if($this->sTelephone == ''){
-			$this->aError['telephone'] = 'error_vide';
+			$this->aError['telephone'] = 'Merci de remplir ce champ';
 		}elseif(strlen($this->sTelephone) > 20){
-			$this->aError['telephone'] = 'error_trop_long';
+			$this->aError['telephone'] = 'Numéro de téléphone trop long';
 		}
 		
 		if($this->sDescriptif == ''){
-			$this->aError['descriptif'] = 'error_vide';
+			$this->aError['descriptif'] = 'Merci de remplir ce champ';
 		}elseif(strlen($this->sDescriptif) > 1000){
-			$this->aError['descriptif'] = 'error_trop_long';
+			$this->aError['descriptif'] = 'Descriptif trop long';
 		}
 	}
 

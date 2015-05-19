@@ -38,9 +38,9 @@ class Annulation {
 		$this->aError = array();
 
 		if($this->sMotif == ''){
-			$this->aError['motif'] = 'error_vide';
+			$this->aError['motif'] = 'Merci de remplir ce champ';
 		}elseif(strlen($this->sMotif) > 1000){
-			$this->aError['motif'] = 'error_trop_long';
+			$this->aError['motif'] = 'Motif trop long';
 		}
 	}
 }

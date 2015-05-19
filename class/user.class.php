@@ -132,23 +132,23 @@ class User
 		$this->aError = array();
 
 		if($this->sPrenom == ''){
-			$this->aError['prenom'] = 'error_vide';
+			$this->aError['prenom'] = 'Merci de remplir ce champ';
 		}elseif(strlen($this->sPrenom) > 50){
-			$this->aError['prenom'] = 'error_trop_long';
+			$this->aError['prenom'] = 'Prenom trop long';
 		}
 
 		if($this->sNom == ''){
-			$this->aError['nom'] = 'error_vide';
+			$this->aError['nom'] = 'Merci de remplir ce champ';
 		}elseif(strlen($this->sNom) > 50){
-			$this->aError['nom'] = 'error_trop_long';
+			$this->aError['nom'] = 'Nom trop long';
 		}
 
 		if($this->sEmail == ''){
-			$this->aError['email'] = 'error_vide';
+			$this->aError['email'] = 'Merci de remplir ce champ';
 		}elseif(strlen($this->sEmail) > 50){
-			$this->aError['email'] = 'error_trop_long';
+			$this->aError['email'] = 'Email trop long';
 		}elseif(!preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$#",$this->sEmail)){
-			$this->aError['email'] = 'error_invalide';
+			$this->aError['email'] = 'Adresse email invalide';
 		}
 		
 		
