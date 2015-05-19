@@ -16,7 +16,7 @@ $(document).ready(function() {
 				for(var key in window.calendrier[$(this).attr('data-date')]){
 					var str = '<tr><td><input type=\'radio\' name=\'horaire\' class=\'horaireboutton\' id=\'horaireboutton';
 					str = str + i;
-					str = str + '\' onclick=\'ShowTableTotalChooser(this)\' /><label for=\'horaireboutton';
+					str = str + '\' onclick=\'ShowContinueButton(this)\' /><label for=\'horaireboutton';
 					str = str + i;
 					str = str + '\'>'
 					str = str + key;
@@ -91,62 +91,39 @@ $(document).ready(function() {
 				sTime = $(this).next().html();
 			}
 		});
-		$('.tabletotalboutton').each(function(){
-			if(this.checked){
-				iNbtable = $(this).next().html();
-			}
-		});
+		// $('.tabletotalboutton').each(function(){
+			// if(this.checked){
+				// iNbtable = $(this).next().html();
+			// }
+		// });
 		$('#OrderDetailDateTime').val(sDate + ' ' + sTime);
 		$('#OrderDetailDateTime').attr("readonly","readonly");
-		$('#OrderDetailNbTable').val(iNbtable);
-		$('#OrderDetailNbTable').attr("readonly","readonly");
+		// $('#OrderDetailNbTable').val(iNbtable);
+		// $('#OrderDetailNbTable').attr("readonly","readonly");
 		$( '#DialogResa' ).dialog( 'open' );
 	});
-	
-	
-	// $('#VldBtn').click(function(){
-		// //verification des données
-		
-		// $.ajax({
-			// type: 'POST',
-			// cache: false,
-			// url: 'ajax/creer_reserver.php',
-			// data: {
-				 // DATE_RESA : $('#OrderDetailDateTime').val(), 
-				 // NB_TABLES : $('#OrderDetailNbTable').val(), 
-				 // NB_PERSONNE : $('#OrderDetailNbPrs').val(), 
-				 // NOM : $('#OrderDetailNom').val(),
-				 // PRENOM : $('#OrderDetailPrenom').val(), 
-				 // EMAIL_CLIENT : $('#OrderDetailEmail').val()
-			// },
-			// dataType: 'json',
-			// success: function(data){
-				// window.location.href="http://localhost/simply_resaversation/?category=33";
-			// }
-		 // });
-	// });
 });
 function ShowContinueButton(e){
 	$('#CtnBtn').fadeIn();
 }
-function ShowTableTotalChooser(e){
-	$('#CtnBtn').fadeOut();
-	var date;
-	$('.fc-day').each(function(index){
-		if($(this).css('background-color') == 'rgb(0, 128, 0)'){
-			date = $(this).attr('data-date');
-		}
-	});//trouver le date choisi maintenant
-	$('#TableTotalDiv').children('table').children('tbody').children().remove();
-	for(var i = 1; i <= window.calendrier[date][$(e).next().html()] ;i++){
-		var str = '<tr><td><input type=\'radio\' name=\'tabletotal\' class=\'tabletotalboutton\' id=\'tabletotalboutton';
-		str = str + i;
-		str = str + '\'  onclick=\'ShowContinueButton(this)\'/><label for=\'tabletotalboutton';
-		str = str + i;
-		str = str + '\'>'
-		str = str + i
-		str = str + '</label></td></tr>';
-		$('#TableTotalDiv').children('table').children('tbody').append(str);
-	}
-	$('#TableTotalDiv').fadeIn();
-}
+// function ShowTableTotalChooser(e){
+	// $('#CtnBtn').fadeOut();
+	// var date;
+	// $('.fc-day').each(function(index){
+		// if($(this).css('background-color') == 'rgb(0, 128, 0)'){
+			// date = $(this).attr('data-date');
+		// }
+	// });//trouver le date choisi maintenant
+	// $('#TableTotalDiv').children('table').children('tbody').children().remove();
+	// for(var i = 1; i <= window.calendrier[date][$(e).next().html()] ;i++){
+		// var str = '<tr><td><input type=\'radio\' name=\'tabletotal\' class=\'tabletotalboutton\' id=\'tabletotalboutton';
+		// str = str + i;
+		// str = str + '\'  onclick=\'ShowContinueButton(this)\'/><label for=\'tabletotalboutton';
+		// str = str + i;
+		// str = str + '\'>'
+		// str = str + i
+		// str = str + '</label></td></tr>';
+		// $('#TableTotalDiv').children('table').children('tbody').append(str);
+	// }
+	// $('#TableTotalDiv').fadeIn();
+// }

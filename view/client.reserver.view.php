@@ -41,9 +41,6 @@
 		<td><label for='OrderDetailDateTime'>Date</label></td>
 		<td><input name="reservation[DATE_RESA]" type='text' id='OrderDetailDateTime' /></td></tr>
 	<tr>
-		<td><label for='OrderDetailNbTable'>Nombre de Tables</label></td>
-		<td><input name="reservation[NB_TABLES]" type='text' id='OrderDetailNbTable' /></td></tr>
-	<tr>
 		<td><label for='OrderDetailNbPrs'>Nombre de Personnes</label></td>
 		<td><input name="reservation[NB_PERSONNE]" type='text' id='OrderDetailNbPrs' /></td></tr>
 	<tr>
@@ -77,16 +74,6 @@
 			</tbody>
 		</table>
 	</div>
-	<div id='TableTotalDiv' style='display:none'>
-	<table id='TableTotal' >
-		<thead>
-			<tr>
-				<td>Nombre de tables</td>
-			</tr>
-		</thead>
-		<tbody></tbody>
-		
-	</table>
 	</div>
 	<button id='CtnBtn' class='btn' style='display:none'>Poursuivre la réservation</button>
 </div>

@@ -45,7 +45,7 @@ $("button#btnsavecalendar").click(function(){
 			nbtables: nbtables
 		},
 		success: function() {
-			alert("votre calendrier a été bien enregistré");
+			alert("Votre calendrier a été bien enregistré");
 			window.location.href="index.php?category=4";
 		}
 	});
