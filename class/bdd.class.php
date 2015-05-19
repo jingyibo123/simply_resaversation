@@ -262,42 +262,12 @@ class Bdd{
 	}
 
 	
-	//Liste des offres vu par le restaurateur
-	public function getOffresParRestaurateur($iId){
-		$bdd1 = $this->bdd;
-
-		$req1 = $bdd1->prepare("SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = :id_user AND RESTAURANT.ACTIF=1");
-		$aListe1 = $req1->execute(array('id_user' => $iId));
-		
-
-		
-		while ($donnees1 = $req1->fetch()) {
-			echo 'Liste des offres du restaurant '.$donnees1['NOM_RESTO'].' : <br /><br />'; 
-			
-			$bdd2 = $this->bdd;
-			$req2 = $bdd2->prepare("SELECT ID_OFFRE, DESCRIPTIF FROM OFFRE WHERE OFFRE.ID_RESTO = :id AND ACTIF=1");
-			$aListe2 = $req2->execute(array('id' => $donnees1['ID_RESTO'] ));
-		
-			while ($donnees2 = $req2->fetch()) {
-				echo $donnees2['DESCRIPTIF'];
-				if ($_SESSION['droit']==1) {
-					?> <a href="index.php?category=21&&id=<?php echo $donnees2['ID_OFFRE'];?>">Modifier Offre</a><?php }
-				echo '<br/>';
-			}
-			echo '<br /><br />';
-			
-			$req2->closeCursor();
-		}
-	
-		$req1->closeCursor();
-		
-	}
 	
 	
 	public function getOffresParRestaurant($iId) {
 		$bdd = $this->bdd;
 		
-		$req = $bdd->prepare("SELECT * FROM OFFRE WHERE ID_RESTO = $iId");
+		$req = $bdd->prepare("SELECT * FROM OFFRE WHERE ID_RESTO = $iId AND OFFRE.ACTIF=1");
 		$aListe = $req->execute(array());
 		
 		echo "Liste des offres <br/><br/>";
