@@ -9,6 +9,7 @@ class Restaurant {
    	private $sImage; 
 
 	public $aError;
+//	public $aErrorAjout;
 
 
    	function Restaurant($aTableau=''){
@@ -81,7 +82,7 @@ class Restaurant {
 	}
 
 
-	public function validation(){
+	public function validationModification(){
 
 		$this->aError = array();
 
@@ -97,6 +98,37 @@ class Restaurant {
 			$this->aError['descriptif'] = 'error_trop_long';
 		}
 	}
+	
+	
+	public function validationAjout(){
+
+		$this->aError = array();
+
+		if($this->sNom == ''){
+			$this->aError['nom'] = 'error_vide';
+		}elseif(strlen($this->sNom) > 50){
+			$this->aError['nom'] = 'error_trop_long';
+		}
+		
+		if($this->sAdresse == ''){
+			$this->aError['adresse'] = 'error_vide';
+		}elseif(strlen($this->sAdresse) > 500){
+			$this->aError['adresse'] = 'error_trop_long';
+		}
+
+		if($this->sTelephone == ''){
+			$this->aError['telephone'] = 'error_vide';
+		}elseif(strlen($this->sTelephone) > 20){
+			$this->aError['telephone'] = 'error_trop_long';
+		}
+		
+		if($this->sDescriptif == ''){
+			$this->aError['descriptif'] = 'error_vide';
+		}elseif(strlen($this->sDescriptif) > 1000){
+			$this->aError['descriptif'] = 'error_trop_long';
+		}
+	}
+
 	
 	
 	// fonction de REDIMENSIONNEMENT physique "proportionnel" et ENREGISTREMENT

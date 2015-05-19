@@ -208,7 +208,7 @@
 				$oRestaurant->setTelephone($sTelephone);
 				$oRestaurant->setDescriptif($sDescriptif);
 				
-				$oRestaurant->validation();
+				$oRestaurant->validationModification();
 				
 				if (empty($oRestaurant->aError)) {
 					$oBdd = new Bdd();
@@ -376,7 +376,7 @@
 				$oRestaurant->setTelephone($_POST['ajoutResto']['telephone']);
 				$oRestaurant->setDescriptif($_POST['ajoutResto']['descriptif']);
 
-				$oRestaurant->validation();
+				$oRestaurant->validationAjout();
 				
 				require_once 'class/bdd.class.php';
 
