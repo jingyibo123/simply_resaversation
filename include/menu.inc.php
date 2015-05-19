@@ -42,7 +42,7 @@ $sPrenom = $aMembre['PRENOM'];
 						<li><a href="index.php?category=7"> Restaurateurs </a></li>
 						<li><a href="index.php?category=5"> Restaurants </a></li>
 						<li><a href="index.php?category=30"> Notifications</a></li>
-						<li><a href="index.php?category=41"> Inscrire un restaurateur</a></li>
+						<li><a href="index.php?category=1"> Inscrire un restaurateur</a></li>
 						<li><a href="index.php?category=100" onclick="return confirm('Voulez-vous vraiment vous deconnecter ?');">Deconnexion</a></li>
 					<?php break;
 					

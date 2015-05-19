@@ -15,8 +15,8 @@
     //Si il y a besoin de rajouter du code javascript pour cette vue
     $sScript="";
 	
-	$sScript .= isset($sAlert) && $sAlert != "" ? '<script> alert(sAlert); </script>" : "";
-
+	
+	
     include 'include/header.inc.php';
 
 ?>
@@ -28,7 +28,6 @@
     <div>
         <label for="type">Type utilisateur :</label>
         <select name="inscription[droit]">
-            <option value='1'>Administrateur</option>
             <option value='2'>Restaurateur</option>
         </select>
     </div>
@@ -38,6 +37,13 @@
     </div>
     <div>
         <label for="prenom">Prénom :</label><input type="text" name="inscription[prenom]" /><?php if(isset($oUser->aError['prenom'])){echo $oUser->aError['prenom'];} ?>
+    </div>
+	<div>
+		<label for="type">Sexe :</label>
+        <select name="sexe">
+		<option value="Femme">Femme</option>
+		<option value="Homme">Homme</option>
+		</select>
     </div>
     <div>
         <label for="email">Email :</label> <input type="text" name="inscription[email]" /><?php if(isset($oUser->aError['email'])){echo $oUser->aError['email'];} ?>

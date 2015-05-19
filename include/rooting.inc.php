@@ -38,9 +38,10 @@
 				
 				// si les deux mots de passes ne sont pas identiques
 				if($_POST['inscription']['confirm'] != $oUser->getMdp() ){
-					$sAlert = htmlspecialchars('Les mots de passe indiqués ne sont pas les mêmes, veuillez remplir le formulaire à nouveau', ENT_QUOTES);
-					//<script>alert("<?php echo htmlspecialchars('Les mots de passe indiqués ne sont pas les mêmes, veuillez remplir le formulaire à nouveau', ENT_QUOTES);")</script>
-					
+					//$sAlert = htmlspecialchars('Les mots de passe indiqués ne sont pas les mêmes, veuillez remplir le formulaire à nouveau', ENT_QUOTES);
+					?>
+					<script>alert("<?php echo htmlspecialchars('Les mots de passe indiqués ne sont pas les mêmes, veuillez remplir le formulaire à nouveau', ENT_QUOTES); ?>")</script>
+					<?php
 				}
 				
 				
