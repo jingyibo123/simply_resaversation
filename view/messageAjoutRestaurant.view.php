@@ -25,9 +25,10 @@
     <label><input class="jourcheckbox" name="selecjour" id="selecjour6" type="checkbox" value="" />Samedi</label> 
     <label><input class="jourcheckbox" name="selecjour" id="selecjour7" type="checkbox" value="" />Dimanche</label> 
     <br/><br/><br/>
-    <label for="selechoraire">Selectionner les horaires de votre restaurant:</label><br/>
-	<label><input type="checkbox" value="" id="selecthoraire1" name="selecthoraire" class="horairecheckbox">1:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire2" name="selecthoraire" class="horairecheckbox">2:00:00</label>
+    <label for="selechoraire">Selectionner les tranches horaires de votre restaurant:</label><br/>
+	<!-- 11--17  1730--24 -->
+	<label><input type="checkbox" value="" id="selecthoraire1" name="selecthoraire" class="horairecheckbox">11:00:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire2" name="selecthoraire" class="horairecheckbox">11:00:00</label>
 	<label><input type="checkbox" value="" id="selecthoraire3" name="selecthoraire" class="horairecheckbox">3:00:00</label>
 	<label><input type="checkbox" value="" id="selecthoraire4" name="selecthoraire" class="horairecheckbox">4:00:00</label>
 	<label><input type="checkbox" value="" id="selecthoraire5" name="selecthoraire" class="horairecheckbox">5:00:00</label>

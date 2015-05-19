@@ -157,6 +157,7 @@
 
 			$oBdd = new Bdd();
 			$iId = $_GET['id'];
+			$_SESSION['ID_RESTO_MODIF'] = $_GET['id'];
 			$aListeRestaurants = $oBdd->getDetailRestaurant($iId);
 		break;
 		
