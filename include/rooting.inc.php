@@ -210,6 +210,7 @@
 					$aModifResto = $oBdd->updateRestaurant($iId, $sTelephone, $sDescriptif, $dCurrentDate);
 						
 					if(!empty($aModifResto) ){
+						unset($_SESSION['ID_RESTO_MODIF']);
 						header('Location: index.php?category=14');
 					}
 					else{
@@ -541,7 +542,7 @@
 							$_SESSION['msg_alert'] = 'Veuillez entrer le nombre de tables';
 						}
 						else{
-							$oBdd->put_calendar_weeklyrules(1,$_POST['selecjour'],$_POST['selecthorairehebdo'].':00:00',$_POST['nbtables']);
+							$oBdd->put_calendar_weeklyrules($_SESSION['ID_RESTO_MODIF'],$_POST['selecjour'],$_POST['selecthorairehebdo'].':00:00',$_POST['nbtables']);
 						}
 						header('Location: '.$_SERVER['PHP_SELF'].'?category=35');
 						exit;
@@ -554,7 +555,7 @@
 							$_SESSION['msg_alert'] = 'Veuillez choisir le date exceptionnel';
 						}
 						else{
-							$oBdd->put_calendar_specialrules(1,$_POST['dateexcepcree'],$_POST['selecthoraireexcep'].':00:00',$_POST['nbtables']);
+							$oBdd->put_calendar_specialrules($_SESSION['ID_RESTO_MODIF'],$_POST['dateexcepcree'],$_POST['selecthoraireexcep'].':00:00',$_POST['nbtables']);
 						}
 						header('Location: '.$_SERVER['PHP_SELF'].'?category=35');
 						exit;

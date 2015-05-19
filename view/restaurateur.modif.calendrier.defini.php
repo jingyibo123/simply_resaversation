@@ -38,8 +38,9 @@
 		echo '<script>alert("'.$_SESSION['msg_alert'].'")</script>';
 		unset($_SESSION['msg_alert']);
 	}
-	$regles_special = $oBdd->get_calendar_specialrules(1);
-	$regles_hebdos = $oBdd->get_calendar_weeklyrules(1);
+	$regles_special = $oBdd->get_calendar_specialrules($_SESSION['ID_RESTO_MODIF']);
+	$regles_hebdos = $oBdd->get_calendar_weeklyrules($_SESSION['ID_RESTO_MODIF']);
+	echo $_SESSION['ID_RESTO_MODIF'];
 ?>
 <div id='regles'>
 	<h3>Les régles hebdomataires du calendrier</h3>
@@ -79,6 +80,7 @@
 		}?>
 		</tbody>
 	</table>
+	<a href="http://localhost/simply_resaversation/index.php?category=13">Retourner</a>
 </div>
 
 <div id='calendar'>
@@ -142,7 +144,7 @@
 			}?>
 		</select><br/>
 		<label for="nbtablescreeexcep">Nombre de tables possibles :</label><br/>
-		<input type="number" name="nbtables" id="nbtablescreeexcep" min="1" max="30"><br/>
+		<input type="number" name="nbtables" id="nbtablescreeexcep" min="0" max="30"><br/>
 		<input type="submit" value="Sauvegarder cette régle" />
 	</form>
 </div> 
