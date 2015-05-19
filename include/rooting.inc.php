@@ -15,6 +15,7 @@
 	switch($iCategory){
 		
 		case 1:
+			if($_SESSION['droit']==1){
 			define('ROOTING', 'view/inscription.view.php');
 
 			if(isset($_POST['inscription']) && !empty($_POST['inscription'])){
@@ -65,6 +66,7 @@
 						header('Location: index.php?category=1');
 					}	
 				}
+			}
 			}
 		break;
 		
