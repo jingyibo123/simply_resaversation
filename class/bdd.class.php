@@ -176,8 +176,10 @@ class Bdd{
 		while ($donnees = $req->fetch()) {
 			echo  ucwords(strtolower($donnees['NOM_RESTO'])).' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>">Details</a><?php
 			echo '  ';?>
-			<a href="index.php?category=20&&id=<?php echo $donnees['ID_RESTO']; ?>">Offres</a>
-			<a href="index.php?category=46&&id=<?php echo $donnees['ID_RESTO'];?>" onclick="return confirm('Voulez-vous vraiment suprimer ce restaurant ?');">Supprimer Restaurant</a><?php
+			<a href="index.php?category=20&&id=<?php echo $donnees['ID_RESTO']; ?>">Offres</a> <?php
+			if ($_SESSION['droit']==1) {?>
+				<a href="index.php?category=46&&id=<?php echo $donnees['ID_RESTO'];?>" onclick="return confirm('Voulez-vous vraiment suprimer ce restaurant ?');">Supprimer Restaurant</a><?php
+			}
 			echo'<br />';  
 		}
 		

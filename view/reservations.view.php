@@ -10,7 +10,7 @@ include 'include/header.inc.php';
 		<title>Mes reservations</title> 
 	</head> 
 	<body>
-		<p><a href="index.php?category=4">Retour au menu</a></p>
+		<p><a href="index.php?category=4">Retour</a></p>
 	</body>
 
 </html>

@@ -20,7 +20,7 @@
 	<br>
 		<button><a href="index.php?category=47&&id=<?php echo $_SESSION['id_user']; ?>">Modifier mot de passe</a></button>
 		<br><br>
-		<p><a href="index.php?category=4"> Retour au menu</a></p>
+		<p><a href="index.php?category=4"> Retour</a></p>
 	</body>
 </html>
 
