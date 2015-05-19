@@ -14,6 +14,8 @@
 
     //Si il y a besoin de rajouter du code javascript pour cette vue
     $sScript="";
+	
+	$sScript .= isset($sAlert) && $sAlert != "" ? '<script> alert(sAlert); </script>" : "";
 
     include 'include/header.inc.php';
 

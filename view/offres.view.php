@@ -11,7 +11,20 @@ include 'include/header.inc.php';
 		<title>Mes offres</title> 
 	</head> 
 	<body>
-		<?php if($_SESSION['droit']==1){
+		<?php 
+		
+		echo "Liste des offres <br/><br/>";
+		
+		foreach($aListeOffres as $k=>$v){
+			echo $v['DESCRIPTIF']; 
+			if ($_SESSION['droit']==1) {
+				?> <a href="index.php?category=21&&id=<?php echo $v['ID_OFFRE'];?>">Modifier Offre</a>
+				<a href="index.php?category=27&&id=<?php echo $v['ID_OFFRE'];?>" onclick="return confirm('Voulez-vous vraiment suprimer cette offre ?');">Supprimer Offre</a>
+				<?php }
+			echo '<br/>';
+		}
+		
+		if($_SESSION['droit']==1){
 			?><p><a href="index.php?category=18&&id=<?php echo $_GET['id'];?>"> Ajouter une offre</a></p><?php
 		}
 		?>

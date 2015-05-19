@@ -268,9 +268,11 @@ class Bdd{
 		$bdd = $this->bdd;
 		
 		$req = $bdd->prepare("SELECT * FROM OFFRE WHERE ID_RESTO = $iId AND OFFRE.ACTIF=1");
-		$aListe = $req->execute(array());
+		$req->execute(array());
+		$aListe = $req->fetchAll();
 		
-		echo "Liste des offres <br/><br/>";
+		return $aListe;
+		/*echo "Liste des offres <br/><br/>";
 		while ($donnees = $req->fetch()) {
 			echo $donnees['DESCRIPTIF']; 
 			if ($_SESSION['droit']==1) {
@@ -278,7 +280,7 @@ class Bdd{
 				<a href="index.php?category=27&&id=<?php echo $donnees['ID_OFFRE'];?>" onclick="return confirm('Voulez-vous vraiment suprimer cette offre ?');">Supprimer Offre</a>
 				<?php }
 			echo '<br/>';
-		}
+		}*/
 	}
 	
 	
