@@ -27,29 +27,34 @@
     <br/><br/><br/>
     <label for="selechoraire">Selectionner les tranches horaires de votre restaurant:</label><br/>
 	<!-- 11--17  1730--24 -->
+	<p>Midi</p>
 	<label><input type="checkbox" value="" id="selecthoraire1" name="selecthoraire" class="horairecheckbox">11:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire2" name="selecthoraire" class="horairecheckbox">11:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire3" name="selecthoraire" class="horairecheckbox">3:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire4" name="selecthoraire" class="horairecheckbox">4:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire5" name="selecthoraire" class="horairecheckbox">5:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire6" name="selecthoraire" class="horairecheckbox">6:00:00</label><br>
-	<label><input type="checkbox" value="" id="selecthoraire7" name="selecthoraire" class="horairecheckbox">7:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire8" name="selecthoraire" class="horairecheckbox">8:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire9" name="selecthoraire" class="horairecheckbox">9:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire10" name="selecthoraire" class="horairecheckbox">10:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire11" name="selecthoraire" class="horairecheckbox">11:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire12" name="selecthoraire" class="horairecheckbox">12:00:00</label><br>
-	<label><input type="checkbox" value="" id="selecthoraire13" name="selecthoraire" class="horairecheckbox">13:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire14" name="selecthoraire" class="horairecheckbox">14:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire15" name="selecthoraire" class="horairecheckbox">15:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire16" name="selecthoraire" class="horairecheckbox">16:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire17" name="selecthoraire" class="horairecheckbox">17:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire18" name="selecthoraire" class="horairecheckbox">18:00:00</label><br>
-	<label><input type="checkbox" value="" id="selecthoraire19" name="selecthoraire" class="horairecheckbox">19:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire20" name="selecthoraire" class="horairecheckbox">20:00:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire2" name="selecthoraire" class="horairecheckbox">11:30:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire3" name="selecthoraire" class="horairecheckbox">12:00:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire4" name="selecthoraire" class="horairecheckbox">12:30:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire5" name="selecthoraire" class="horairecheckbox">13:00:00</label><br>
+	<label><input type="checkbox" value="" id="selecthoraire6" name="selecthoraire" class="horairecheckbox">13:30:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire7" name="selecthoraire" class="horairecheckbox">14:00:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire8" name="selecthoraire" class="horairecheckbox">14:30:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire9" name="selecthoraire" class="horairecheckbox">15:00:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire10" name="selecthoraire" class="horairecheckbox">15:30:00</label><br>
+	<label><input type="checkbox" value="" id="selecthoraire11" name="selecthoraire" class="horairecheckbox">16:00:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire12" name="selecthoraire" class="horairecheckbox">16:30:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire13" name="selecthoraire" class="horairecheckbox">17:00:00</label>
+	<p>Après midi</p><br>
+	<label><input type="checkbox" value="" id="selecthoraire14" name="selecthoraire" class="horairecheckbox">17:30:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire15" name="selecthoraire" class="horairecheckbox">18:00:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire16" name="selecthoraire" class="horairecheckbox">18:30:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire17" name="selecthoraire" class="horairecheckbox">19:00:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire18" name="selecthoraire" class="horairecheckbox">19:30:00</label><br>
+	<label><input type="checkbox" value="" id="selecthoraire19" name="selecthoraire" class="horairecheckbox">20:00:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire20" name="selecthoraire" class="horairecheckbox">20:30:00</label>
 	<label><input type="checkbox" value="" id="selecthoraire21" name="selecthoraire" class="horairecheckbox">21:00:00</label>
-	<label><input type="checkbox" value="" id="selecthoraire22" name="selecthoraire" class="horairecheckbox">22:00:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire22" name="selecthoraire" class="horairecheckbox">21:30:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire23" name="selecthoraire" class="horairecheckbox">22:00:00</label><br>
+	<label><input type="checkbox" value="" id="selecthoraire23" name="selecthoraire" class="horairecheckbox">22:30:00</label>
 	<label><input type="checkbox" value="" id="selecthoraire23" name="selecthoraire" class="horairecheckbox">23:00:00</label>
+	<label><input type="checkbox" value="" id="selecthoraire23" name="selecthoraire" class="horairecheckbox">23:30:00</label>
 	<label><input type="checkbox" value="" id="selecthoraire24" name="selecthoraire" class="horairecheckbox">24:00:00</label><br><br>
 	
 	
