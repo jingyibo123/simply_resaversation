@@ -22,7 +22,7 @@ $("button#btnsavecalendar").click(function(){
     });
 	$("input.horairecheckbox").each(function(){
         if(this.checked){
-            horaires.push(this.nextSibling.data);
+            horaires.push($(this).val());
         }
     });
 	if(jours.length == 0&&horaires.length == 0){
