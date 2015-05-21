@@ -17,7 +17,7 @@ $iId = $_GET['id'];
 
 <html>
 <body>
-	<p><a href="index.php?category=9&&id=<?php echo $iId;?>"> Retour</a></p>
+	<p><a href="javascript:history.back()"> Retour</a></p>
 </body>
 </html>
 

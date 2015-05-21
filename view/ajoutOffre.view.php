@@ -23,7 +23,7 @@ $iId = $_GET['id'];
 	
 	
 </form>
-<p><a href="index.php?category=4"> Retour au menu</a></p>
+<p><a href="javascript:history.back()"> Retour </a></p>
 
 <?php
 include 'include/footer.inc.php';

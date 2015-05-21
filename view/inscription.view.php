@@ -61,7 +61,7 @@
 </form>
 
 <body>
-	<p><a href="index.php?category=4">Retour au menu</a></p>
+	<p><a href="javascript:history.back()">Retour</a></p>
 </body>
 
 

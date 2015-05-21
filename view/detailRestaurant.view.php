@@ -10,7 +10,7 @@ include 'include/header.inc.php';
 		<title>Details Restaurant</title> 
 	</head> 
 	<body>
-		<p><a href="index.php?category=4">Retour Menu</a></p>
+		<p><a href="javascript:history.back()">Retour</a></p>
 	</body>
 </html>
 

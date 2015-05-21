@@ -67,7 +67,7 @@
 		<table id='HoraireList' >
 			<thead>
 				<tr>
-					<td>Sélectionner l'horaire de votre réservation</td>
+					<td>Sélectionner l'heure de votre réservation</td>
 				</tr>
 			</thead>
 			<tbody>

@@ -19,6 +19,8 @@ $aOffre = $oBdd->offre_getData("$iId");
     </div>
 
     <p></br><input name="Modifier" value="Modifier" type="submit" /></p>
+	
+	<p><a href="javascript:history.back()"> Retour</a></p>
 </form>
 
 

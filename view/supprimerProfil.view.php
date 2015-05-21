@@ -23,7 +23,7 @@
 	<body>
 		<input type="button" onclick="confirmation()" value="Supprimer"
 		action="<?php echo $_SERVER['PHP_SELF'].'?category=43&&id='.$_GET['id']; ?>">
-		<p><a href="index.php?category=4"> Retour au menu</a></p>
+		<p><a href="javascript:history.back()"> Retour</a></p>
 		<script type="text/javascript">
 		function confirmation()
 		 {
