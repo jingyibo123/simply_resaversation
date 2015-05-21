@@ -23,12 +23,12 @@ include 'include/header.inc.php';
 					<?php }
 				echo '<br/>';
 			}
-		}
+		}*/
 		
 		if($_SESSION['droit']==1){
 			?><p><a href="index.php?category=18&&id=<?php echo $_GET['id'];?>"> Ajouter une offre</a></p><?php
 		}
-		*/?>
+		?>
 		<p><a href="index.php?category=4"> Retour</a></p>
 		
 	</body>
