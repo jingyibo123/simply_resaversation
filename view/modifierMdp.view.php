@@ -40,7 +40,7 @@
 		   }
 		   else if (element1.value!=element2.value)
 		   {
-			alert("ERREUR : Les deux mots de passe ne condordent pas.")
+			alert("ERREUR : Les deux mots de passe ne sont pas identiques.")
 			element2.select()
 		   }
 		   else
