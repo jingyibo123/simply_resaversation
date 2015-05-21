@@ -264,14 +264,42 @@ class Bdd{
 	}
 
 	public function getOffresParRestaurateur($iId) {
-		$bdd = $this->bdd;
+	
+		$bdd1 = $this->bdd;
+
+		$req1 = $bdd1->prepare("SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = :id_user AND RESTAURANT.ACTIF=1");
+		$aListe1 = $req1->execute(array('id_user' => $iId));
+		
+
+		
+		while ($donnees1 = $req1->fetch()) {
+			echo 'Liste des offres du restaurant '.$donnees1['NOM_RESTO'].' : <br /><br />'; 
+			
+			$bdd2 = $this->bdd;
+			$req2 = $bdd2->prepare("SELECT ID_OFFRE, DESCRIPTIF FROM OFFRE WHERE OFFRE.ID_RESTO = :id AND ACTIF=1");
+			$aListe2 = $req2->execute(array('id' => $donnees1['ID_RESTO'] ));
+		
+			while ($donnees2 = $req2->fetch()) {
+				echo $donnees2['DESCRIPTIF'];
+				if ($_SESSION['droit']==1) {
+					?> <a href="index.php?category=21&&id=<?php echo $donnees2['ID_OFFRE'];?>">Modifier Offre</a><?php }
+				echo '<br/>';
+			}
+			echo '<br /><br />';
+			
+			$req2->closeCursor();
+		}
+		
+		$req1->closeCursor();
+
+		/*$bdd = $this->bdd;
 		
 		$req = $bdd->prepare("SELECT * FROM OFFRE O INNER JOIN RESTAURANT R ON O.ID_RESTO = R.ID_RESTO WHERE R.ID_USER = $iId AND O.ACTIF=1");
 		$req->execute(array());
 		$aListe = $req->fetchAll();
 		
 		return $aListe;
-		/*echo "Liste des offres <br/><br/>";
+		echo "Liste des offres <br/><br/>";
 		while ($donnees = $req->fetch()) {
 			echo $donnees['DESCRIPTIF']; 
 			if ($_SESSION['droit']==1) {
