@@ -522,7 +522,7 @@ class Bdd{
 	public function getRestaurantsRestaurateur($iId) {
 		$bdd = $this->bdd;
 
-		$req = $bdd->prepare("SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = $iId");
+		$req = $bdd->prepare("SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = $iId AND ACTIF=1");
 		$aListe = $req->execute(array());
 		
 		echo "La liste de mes restaurants <br/><br/>";

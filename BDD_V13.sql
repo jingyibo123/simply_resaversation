@@ -106,19 +106,35 @@ CREATE TABLE NOTIFICATIONS_RESTO (
 
 
 INSERT INTO `MEMBRE`(`ID_USER`,`EMAIL`,`PRENOM`,`NOM`,`SEXE`, `MDP`, `DROIT`, `ACTIF`) VALUES
- ('','David11313@yahoo.fr','David','ROBERT','Homme','7581f38742fbcc46d3f3a56f47b987fa', 2,1),/*MDP: minesnantes */ 
- ('','josephchutin@gmail.com','Joseph','Chutin','Homme','3594cfc4c0384af96c5a56954b580776', 2,1),/*MDP: vivelafrance */ 
- ('','paul19830611@hotmail.com','Paul','DUVAL','Homme','ddb2ae308bb0d4bb02d778516d215c18', 1,1), /*MDP: simpleCE */
- ('','baptisterobert@gmail.com','Baptiste','ROBERT','Autre','482c811da5d5b4bc6d497ffa98491e38',1,1);  /*MDP: password123 */
+ ('','david@yahoo.fr','David','Smith','Homme','8a511f205dcfb340abe41c37d4f08ad1', 1,1),/*MDP: simply */ 
+ ('','lea@yahoo.fr','Lea','Comose','Femme','8a511f205dcfb340abe41c37d4f08ad1', 2,1),/*MDP: simply */
+ ('','melanie@yahoo.fr','Mélanie','Macret','Femme','8a511f205dcfb340abe41c37d4f08ad1', 2,1),/*MDP: simply */
+ ('','joseph@yahoo.fr','Joseph','Ninja','Homme','8a511f205dcfb340abe41c37d4f08ad1', 2,1),/*MDP: simply */
+ ('','helene@yahoo.fr','Helene','Fleur','Femme','8a511f205dcfb340abe41c37d4f08ad1', 2,1),/*MDP: simply */
+ ('','emma@yahoo.fr','Emma','Miret','Femme','8a511f205dcfb340abe41c37d4f08ad1', 2,1),/*MDP: simply */
+ ('','patrick@yahoo.fr','Patrick','Master','Homme','8a511f205dcfb340abe41c37d4f08ad1', 2,1),/*MDP: simply */
+ ('','pedro@yahoo.fr','Pedro','Maestro','Homme','8a511f205dcfb340abe41c37d4f08ad1', 2,1),/*MDP: simply */
+ ('','mylene@yahoo.fr','Mylène','Teratu','Femme','8a511f205dcfb340abe41c37d4f08ad1', 2,1),/*MDP: simply */
+ ('','edouard@yahoo.fr','Edouard','Berthe','Homme','8a511f205dcfb340abe41c37d4f08ad1', 2,1),/*MDP: simply */
+ ('','etienne@yahoo.fr','Etienne','Piris','Homme','8a511f205dcfb340abe41c37d4f08ad1', 2,1);/*MDP: simply */
 
+ 
 INSERT INTO `RESTAURANT`(`ID_RESTO`, `ID_USER`,`NOM_RESTO`, `ADRESSE`, `TELEPHONE`, `DESCRIPTIF`, `IMAGE`, `DATE_DERNIERE_MODIF`,`ACTIF`) VALUES
- ('',1,'La Bonne franquette','4 Allée Jean 44400 Nantes','+33 02 51 92 37 22','Très bonne','pomme.jpg', '2015-4-11 12:00:00',1),
- ('',1,'Le ventre plein','7 Place Royal 44400 Nantes','+33 02 19 64 87 34','Moyenne ...','gateau.jpg', '2015-4-13 13:00:00',1);
+ ('',1,'Les petits parapluies','7 route de rome 44300 Nantes','02 51 92 37 22','Ambiance familiale. Des plats pour tous.','restaurant1.jpg', '2015-4-11 12:00:00',1),
+ ('',2,'La bonne franquette','4 rue des monuments 44300 Nantes','02 51 92 37 22','Tapas à volonté.','restaurant2.jpg', '2015-4-11 12:00:00',1),
+ ('',3,'Au temps des cerises','13 rue du Luxembourg 44300 Nantes','02 51 92 37 22','Cuisine typiquement française.','restaurant3.jpg', '2015-4-11 12:00:00',1),
+ ('',4,'Créperie Bretonne','6 Allée Jean Baptiste Fourier 44300 Nantes','02 51 92 37 22','Crèpes sucrées et salées.','restaurant4.jpg', '2015-4-11 12:00:00',1),
+ ('',5,'Le Goéland','10 avenue des peupliers Fourier 44300 Nantes','02 51 92 37 22','Cuisine rapide et simple.','restaurant5.jpg', '2015-4-11 12:00:00',1),
+ ('',6,'Le bouquet Garni','1 route de paris 44300 Nantes','02 51 92 37 22','Tables rafinées, ambience soignée.','restaurant6.jpg', '2015-4-11 12:00:00',1),
+ ('',7,'Cocotte','24 avenue du louvres 44300 Nantes','02 51 92 37 22','Restaurant chinois.','restaurant7.jpg', '2015-4-11 12:00:00',1),
+ ('',8,'Anatolia','9 rue des béliers 44300 Nantes','02 51 92 37 22','Restaurant japonais.','restaurant8.jpg', '2015-4-11 12:00:00',1),
+ ('',9,'L\'instinct Gourmand','35 boulevard de république 44300 Nantes','02 51 92 37 22','Buffet à volonté, bon rapport qualité/prix.','restaurant9.jpg', '2015-4-11 12:00:00',1),
+ ('',10,'Pizzeria dell\'etna','157 route des coquelicots 44300 Nantes','02 51 92 37 22','Ambiance italienne. Pizza cuites au feu de bois.','restaurant10.jpg', '2015-4-11 12:00:00',1);
 
 INSERT INTO `CALENDRIER_HEBDO`(`ID_REGLE_HEBDO`, `ID_RESTO`, `JOUR`, `HORAIRE`, `NB_TABLES`, `ACTIF`) VALUES
- ('',1,1,'11:00:00',2,1),
- ('',1,1,'13:00:00',2,1),
- ('',1,1,'15:00:00',3,1),
+ ('',1,1,'11:00:00',2,1), 
+ ('',1,1,'13:00:00',2,1), 
+ ('',1,1,'15:00:00',3,1), 
  ('',1,2,'12:00:00',2,1),
  ('',1,2,'14:00:00',2,1),
  ('',1,2,'16:00:00',3,1),
@@ -133,14 +149,14 @@ INSERT INTO `CALENDRIER_HEBDO`(`ID_REGLE_HEBDO`, `ID_RESTO`, `JOUR`, `HORAIRE`, 
  ('',1,6,'18:30:00',2,1);
 
 INSERT INTO `CALENDRIER_EXCEPTION`(`ID_REGLE_EXCEP`, `ID_RESTO`, `DATE_EXCEPTION`, `HORAIRE`, `NB_TABLES`, `ACTIF`) VALUES
- ('',1,'2015-3-18','15:00:00',0,1),
+ ('',1,'2015-3-18','15:00:00',0,1), 
  ('',1,'2015-3-18','21:00:00',1,1),
  ('',1,'2015-3-22','15:00:00',1,1);
 
 INSERT INTO `OFFRE`(`ID_OFFRE`, `ID_RESTO`, `DESCRIPTIF`, `ACTIF`) VALUES
- ('','1','15% de remise sur les menus',1),
- ('','1','un dessert gratuit',1),
- ('','2','10% de remise sur tous les entrées',1);
+ ('','1','-50% sur les menus -12ans.',1),
+ ('','1','-10% sur le pat du jour',1),
+ ('','2','1 bouteille de vin achetée, 1 bouteille offerte',1);
 
 INSERT INTO `CONNEXION_CLIENT`(`ID_OFFRE`, `IP`, `URL`, `VISITE`) VALUES
  (1,'53.164.48.166','','2015-3-16 14:30:16'),
@@ -158,7 +174,7 @@ INSERT INTO `CONNEXION_ERRONEE`(`IP`, `URL`, `VISITE`) VALUES
  ('202.106.196.115', '' ,'2015-4-16 11:15:44');
 
 INSERT INTO `RESERVATION`(`ID_RESA`, `ID_OFFRE`, `EMAIL_CLIENT`, `NOM`, `PRENOM`, `DATE_RESA`, `NB_TABLES`, `NB_PRS` , `DATE_CREER`,`ACTIF`) VALUES
- ('',1,'johndoe@webmail.com','Doe','JOHN','2015-6-11 12:00:00', 1,2, '2015-6-11 12:00:00',1),
- ('',2,'julie1442@yahoo.fr','Julie','DGL','2015-5-09 19:00:00', 1,3, '2015-4-4 19:00:00',1),
- ('',2,'poisson@rouge.com','Edouard','Dutronc','2015-6-03 19:00:00', 1,3,'2015-5-12 09:00:00',1),
- ('',3,'clementespaze@webmail.com','Clement','ESPAZE','2015-4-11 17:00:00', 2,6,'2015-6-13 17:00:00',1);
+ ('',1,'john@yahoo.fr','John','Ford','2015-5-23 12:30:00', 1,2, '2015-6-11 12:00:00',1),
+ ('',2,'julia@yahoo.fr','Julia','Dubois','2015-5-25 19:00:00', 1,4, '2015-4-4 19:00:00',1),
+ ('',2,'paul@yahoo.fr','Paul','Dutronc','2015-6-01 19:30:00', 1,3,'2015-5-12 09:00:00',1),
+ ('',3,'marine@yahoo.fr','Marine','Fosset','2015-5-03 13:00:00', 1,1,'2015-6-13 17:00:00',1);
