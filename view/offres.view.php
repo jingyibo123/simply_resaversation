@@ -30,8 +30,6 @@ include 'include/header.inc.php';
 		}
 		?>
 
-		<p><a href="index.php?category=4"> Retour</a></p>
-
 		<p><a href="javascript:history.back()"> Retour</a></p>
 
 		
