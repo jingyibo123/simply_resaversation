@@ -602,7 +602,7 @@ class Bdd{
 				echo $donnees['PRENOM'].' '.$donnees['NOM'].' a annule sa reservation du '.$donnees['DATE_RESA'].' pour '.$donnees['NB_PRS'].' personne(s).<br/>';
 				echo 'Motif : '.$donnees['MOTIF'].'<br/>';
 				echo 'Cliquez '?> <a href="index.php?category=49&&id=<?php echo $donnees['ID_USER'];?>">ici</a><?php 
-				echo ' pour acceder profil du restaurateur.<br/>';
+				echo ' pour acceder profil du restaurateur.<br/><br/>';
 			}
 		}
 		
