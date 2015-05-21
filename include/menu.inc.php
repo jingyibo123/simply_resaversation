@@ -28,7 +28,7 @@ $sPrenom = $aMembre['PRENOM'];
 					case "2": // Restaurateur : A créer
 					?>
 						<h2>Compte restaurateur : Bienvenue <?php echo $sPrenom.' '.$sNom;?> ! </h2>
-						<li><a href="index.php?category=28&&id=<?php echo $_SESSION['id_user']; ?>"> Modifier le mot de passe </a></li>
+						<li><a href="index.php?category=28&&id=<?php echo $_SESSION['id_user']; ?>"> Modifier mon mot de passe </a></li>
 						<li><a href="index.php?category=10"> Mes Restaurants </a></li>
 						<li><a href="index.php?category=12"> Mes Offres </a></li>
 						<li><a href="index.php?category=11"> Mes Reservations </a></li>
@@ -38,7 +38,7 @@ $sPrenom = $aMembre['PRENOM'];
 					case "1": // Administrateur : A créer
 					?>
 						<h2>Compte administrateur : Bienvenue <?php echo $sPrenom.' '.$sNom;?> ! </h2>
-						<li><a href="index.php?category=28&&id=<?php echo $_SESSION['id_user']; ?>"> Modifier le mot de passe </a></li>
+						<li><a href="index.php?category=28&&id=<?php echo $_SESSION['id_user']; ?>"> Modifier mon mot de passe </a></li>
 						<li><a href="index.php?category=7"> Restaurateurs </a></li>
 						<li><a href="index.php?category=5"> Restaurants </a></li>
 						<li><a href="index.php?category=30"> Notifications</a></li>

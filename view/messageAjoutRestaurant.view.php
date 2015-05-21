@@ -16,7 +16,7 @@
 	</br>Veuillez cliquer ici pour définir le calendrier de votre restaurant(obligatoire)</h3>
 	
 
-    <label for="selecjour">Selectionner les jours que votre restaurant est ouvert:</label><br/>
+    <label for="selecjour">Sélectionner les jours durant lesquels vos offres sont valables :</label><br/>
     <label><input class="jourcheckbox" name="selecjour" id="selecjour1" type="checkbox" value="" />Lundi</label> 
     <label><input class="jourcheckbox" name="selecjour" id="selecjour2" type="checkbox" value="" />Mardi</label> 
     <label><input class="jourcheckbox" name="selecjour" id="selecjour3" type="checkbox" value="" />Mercredi</label> 
@@ -25,7 +25,7 @@
     <label><input class="jourcheckbox" name="selecjour" id="selecjour6" type="checkbox" value="" />Samedi</label> 
     <label><input class="jourcheckbox" name="selecjour" id="selecjour7" type="checkbox" value="" />Dimanche</label> 
     <br/><br/><br/>
-    <label for="selechoraire">Selectionner les tranches horaires de votre restaurant:</label><br/>
+    <label for="selechoraire">Sélectionner les horaires auxquels les bénéficiaires de l'offre pourront réserver :</label><br/>
 	<!-- 11--17  1730--24 -->
 	<p>Midi</p>
 	<label><input type="checkbox" value="11:00:00" name="selecthoraire" class="horairecheckbox">11h00</label>
@@ -41,7 +41,7 @@
 	<label><input type="checkbox" value="16:00:00" name="selecthoraire" class="horairecheckbox">16h00</label>
 	<label><input type="checkbox" value="16:30:00" name="selecthoraire" class="horairecheckbox">16h30</label>
 	<label><input type="checkbox" value="17:00:00" name="selecthoraire" class="horairecheckbox">17h00</label>
-	<p>Après midi</p><br>
+	<p>Soir</p><br>
 	<label><input type="checkbox" value="17:30:00" name="selecthoraire" class="horairecheckbox">17h30</label>
 	<label><input type="checkbox" value="18:00:00" name="selecthoraire" class="horairecheckbox">18h00</label>
 	<label><input type="checkbox" value="18:30:00" name="selecthoraire" class="horairecheckbox">18h30</label>
@@ -60,10 +60,10 @@
 	
 	
     
-    <label for="saisirnbtable">Nombre de tables par défaut pour un offre:</label>
+    <label for="saisirnbtable">Nombre de tables par défaut pour une offre:</label>
 	<input type="number" name = "nbtables" class="nbtables" id="nbtables" min="1" max="30">
     <button class="btn calendar initialise save" id="btnsavecalendar" action="" >Sauvegarder</button><br/>
-	<h4>Pour modifier votre calendrier restaurant plus précisément, veuillez aller dans rubrique "Modification Restaurant"</h4>
+	<h4>Pour personnaliser ce calendrier, veuillez vous rendre dans la rubrique "Mes restaurants"</h4>
 
 </body>
 
