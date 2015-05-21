@@ -85,6 +85,20 @@ class Restaurant {
 	public function validationModification(){
 
 		$this->aError = array();
+		
+		if ($_SESSION['droit']==1) {
+			if($this->sNom == ''){
+				$this->aError['nom'] = 'Merci de remplir ce champ';
+			}elseif(strlen($this->sNom) > 30){
+				$this->aError['nom'] = 'Numéro de téléphone trop long';
+			}
+
+			if($this->sAdresse == ''){
+				$this->aError['adresse'] = 'Merci de remplir ce champ';
+			}elseif(strlen($this->sAdresse) > 1000){
+				$this->aError['adresse'] = 'Numéro de téléphone trop long';
+			}
+		}
 
 		if($this->sTelephone == ''){
 			$this->aError['telephone'] = 'Merci de remplir ce champ';

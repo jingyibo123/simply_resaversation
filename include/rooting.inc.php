@@ -201,12 +201,23 @@
 			
 			if(isset($_POST['modification']) && !empty($_POST['modification'])){
 
+				if ($_SESSION['droit'] == 1) {
+					$sNom = $_POST['modification']['nom'];
+					$sAdresse = $_POST['modification']['adresse'];
+				} else {
+					$sNom = '';
+					$sAdresse = '';
+				}
 				$sTelephone = $_POST['modification']['telephone'];
 				$sDescriptif = $_POST['modification']['descriptif'];
 				$iId = $_GET['id'];
 				$dCurrentDate = date('Y-m-d H:i:s');
 				
 				$oRestaurant = new Restaurant();
+				if ($_SESSION['droit'] ==1) {
+					$oRestaurant->setNom($sNom);
+					$oRestaurant->setAdresse($sAdresse);
+				}
 				$oRestaurant->setTelephone($sTelephone);
 				$oRestaurant->setDescriptif($sDescriptif);
 				
@@ -215,7 +226,7 @@
 				if (empty($oRestaurant->aError)) {
 					$oBdd = new Bdd();
 					
-					$aModifResto = $oBdd->updateRestaurant($iId, $sTelephone, $sDescriptif, $dCurrentDate);
+					$aModifResto = $oBdd->updateRestaurant($iId, $sNom, $sAdresse, $sTelephone, $sDescriptif, $dCurrentDate);
 						
 					if(!empty($aModifResto) ){
 						unset($_SESSION['ID_RESTO_MODIF']);

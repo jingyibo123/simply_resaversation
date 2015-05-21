@@ -652,14 +652,17 @@ class Bdd{
 	
 	
 	// Modification restaurant
-	public function updateRestaurant($iId, $sTelephone, $sDescriptif, $dDateModif) {
+	public function updateRestaurant($iId, $sNom, $sAdresse, $sTelephone, $sDescriptif, $dDateModif) {
 		$bdd = $this->bdd;
 
-		$req1 = $bdd->prepare("UPDATE RESTAURANT SET TELEPHONE = '$sTelephone', DESCRIPTIF = '$sDescriptif', DATE_DERNIERE_MODIF = '$dDateModif' WHERE ID_RESTO = '$iId'");
-	    $bReturn1 = $req1->execute();
-	    $req1->CloseCursor();
-
-		if ($_SESSION['droit'] == 2) {
+		if ($_SESSION['droit']==1) {
+			$req1 = $bdd->prepare("UPDATE RESTAURANT SET NOM_RESTO = '$sNom', ADRESSE = '$sAdresse', TELEPHONE = '$sTelephone', DESCRIPTIF = '$sDescriptif', DATE_DERNIERE_MODIF = '$dDateModif' WHERE ID_RESTO = '$iId'");
+			$bReturn1 = $req1->execute();
+			$req1->CloseCursor();
+		} else {
+			$req1 = $bdd->prepare("UPDATE RESTAURANT SET TELEPHONE = '$sTelephone', DESCRIPTIF = '$sDescriptif', DATE_DERNIERE_MODIF = '$dDateModif' WHERE ID_RESTO = '$iId'");
+			$bReturn1 = $req1->execute();
+			$req1->CloseCursor();
 			$req2 = $bdd->prepare("INSERT INTO NOTIFICATIONS_RESTO (ID_RESTO, DATE_MODIF) VALUES ('$iId', '$dDateModif')");
 			$bReturn2 = $req2->execute();
 			$req2->CloseCursor();
