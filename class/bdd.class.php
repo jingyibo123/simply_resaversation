@@ -267,7 +267,7 @@ class Bdd{
 	
 		$bdd1 = $this->bdd;
 
-		$req1 = $bdd1->prepare("SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = :id_user AND RESTAURANT.ACTIF=1");
+		$req1 = $bdd1->prepare("SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE RESTAURANT.ID_USER = :id_user AND ACTIF=1");
 		$aListe1 = $req1->execute(array('id_user' => $iId));
 		
 
@@ -276,7 +276,7 @@ class Bdd{
 			echo 'Liste des offres du restaurant '.$donnees1['NOM_RESTO'].' : <br /><br />'; 
 			
 			$bdd2 = $this->bdd;
-			$req2 = $bdd2->prepare("SELECT ID_OFFRE, DESCRIPTIF FROM OFFRE WHERE OFFRE.ID_RESTO = :id AND ACTIF=1");
+			$req2 = $bdd2->prepare("SELECT ID_OFFRE, DESCRIPTIF FROM OFFRE WHERE OFFRE.ID_RESTO = :id AND OFFRE.ACTIF=1");
 			$aListe2 = $req2->execute(array('id' => $donnees1['ID_RESTO'] ));
 		
 			while ($donnees2 = $req2->fetch()) {
@@ -316,10 +316,10 @@ class Bdd{
 		
 		$req = $bdd->prepare("SELECT * FROM OFFRE WHERE ID_RESTO = $iId AND OFFRE.ACTIF=1");
 		$req->execute(array());
-		$aListe = $req->fetchAll();
+/*		$aListe = $req->fetchAll();
 		
-		return $aListe;
-		/*echo "Liste des offres <br/><br/>";
+		return $aListe;**/
+		echo "Liste des offres <br/><br/>";
 		while ($donnees = $req->fetch()) {
 			echo $donnees['DESCRIPTIF']; 
 			if ($_SESSION['droit']==1) {
@@ -327,7 +327,7 @@ class Bdd{
 				<a href="index.php?category=27&&id=<?php echo $donnees['ID_OFFRE'];?>" onclick="return confirm('Voulez-vous vraiment suprimer cette offre ?');">Supprimer Offre</a>
 				<?php }
 			echo '<br/>';
-		}*/
+		}
 	}
 	
 	

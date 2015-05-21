@@ -12,7 +12,7 @@ $iId = $_GET['id'];
 	</head> 
 	<body>
 		<p><a href="index.php?category=25&&id=<?php echo $iId; ?>">Ajouter un restaurant</a></p>
-		<p><a href="index.php?category=7">Retour</a></p>
+		<p><a href="javascript:history.back()"> Retour</a></p>
 	</body>
 
 </html>

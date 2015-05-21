@@ -13,7 +13,7 @@
 
 <body>
 	<h3>Le restaurant a bien été ajouté</br>
-	</br>Veuillez cliquer ici pour définir le calendrier de votre restaurant(obligatoire)</h3>
+	</br>Veuillez cliquer ici pour définir le calendrier de votre restaurant (obligatoire)</h3>
 	
 
     <label for="selecjour">Sélectionner les jours durant lesquels vos offres sont valables :</label><br/>
@@ -64,7 +64,7 @@
 	<input type="number" name = "nbtables" class="nbtables" id="nbtables" min="1" max="30">
     <button class="btn calendar initialise save" id="btnsavecalendar" action="" >Sauvegarder</button><br/>
 	<h4>Pour personnaliser ce calendrier, veuillez vous rendre dans la rubrique "Mes restaurants"</h4>
-
+	
 </body>
 
 

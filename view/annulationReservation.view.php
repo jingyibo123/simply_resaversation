@@ -15,7 +15,7 @@ $iId = $_GET['id'];
     </div>
 	<p>Etes-vous sur de vouloir annuler cette reservation ?</p>
     <p></br><input name="Annuler" value="Oui, j'annule" type="submit" /></p>
-	<p><a href="index.php?category=4">Non : Retour au menu</a></p>
+	<p><a href="javascript:history.back()">Non : Retour</a></p>
 </form>
 
 

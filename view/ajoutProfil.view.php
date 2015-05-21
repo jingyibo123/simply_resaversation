@@ -91,7 +91,7 @@
 		<input type="submit" value="Confirmer"/>
 	</form>
 	<br></br>
-	<p><a href="index.php?category=4"> Retour</a></p>
+	<p><a href="javascript:history.back()"> Retour</a></p>
 
 <?php
 	include 'include/footer.inc.php';

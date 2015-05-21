@@ -18,9 +18,9 @@
 
 	<body>
 	<br>
-		<button><a href="index.php?category=47&&id=<?php echo $_SESSION['id_user']; ?>">Modifier mot de passe</a></button>
+		<button><a href="index.php?category=47&&id=<?php echo $_SESSION['id_user']; ?>">Modifier mon mot de passe</a></button>
 		<br><br>
-		<p><a href="index.php?category=4"> Retour</a></p>
+		<p><a href="javascript:history.back()"> Retour</a></p>
 	</body>
 </html>
 
