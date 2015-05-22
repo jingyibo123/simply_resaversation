@@ -29,6 +29,13 @@
 		max-width: 500px;
 		margin: 0 auto;
 	}
+	div#footer{ 
+		position: fixed;  bottom: 0; /* 关键 */  
+		left:0; /* IE下一定要记得 */  
+		height: 40px;         /* footer的高度一定要是固定值*/  
+		text-align:center;
+		width: 100%;
+    }  
 
 </style>
 
@@ -74,9 +81,9 @@
 			</tbody>
 		</table>
 	</div>
-	</div>
-	<button id='CtnBtn' class='btn' style='display:none'>Poursuivre la réservation</button>
 </div>
+	<button id='CtnBtn' class='btn' style='display:none'>Poursuivre la réservation</button>
+
     
 <?php
     include 'include/footer.inc.php';
