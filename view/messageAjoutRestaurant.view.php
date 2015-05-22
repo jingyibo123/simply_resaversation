@@ -6,6 +6,7 @@
 		<script src='view/messageAjoutRestaurant.view.js'></script>
     ";
     include 'include/header.inc.php';
+	
 ?>
 <?php
 	$_SESSION['id_nouveau_resto'] = $_GET['idresto'];

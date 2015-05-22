@@ -1,21 +1,29 @@
-<!DOCTYPE html> 
-
-<?php
-	include '../include/header.inc.php';
-?>
 
 <!-- L'utilisateur n'est pas connecté et souhaite s'enregistrer sur le site.-->
+<?php
+//echo $_SESSION['test'];
+/* ------------------------------------------------------------------------- /
+                        
+    Ce fichier est une vue, elle affiche se que l'utilisateur voit.
+    Ici se trouve le strict minimum, du code html et un peu de php
+    pour les traitements des erreurs par exemple.
 
-<html>
-	<meta charset="utf-8" />
-    <head> 
-		<title>Modifier votre profil</title> 
-	</head> 
-	<header> Quel champ souhaitez-vous modifier ? </header>
+    Si la page necessite du javascript ou du css, il faudra le rentré 
+    dans la variable $sScript.  
+
+/ ------------------------------------------------------------------------- */
+
+
+    //Si il y a besoin de rajouter du code javascript pour cette vue
+    $sScript="";
+    include 'include/header.inc.php';
+	include 'include/menu.inc.php';
+?>
+	<p> Quel champ souhaitez-vous modifier ? </p>
 	<!-- Le menu -->
 	<!--php include ("../include/menu.inc.php");-->
 	<!-- Le corps de la page -->
-	<body>
+
 
 	<form method="post" action="recapitulatifProfil.view.php" onSubmit="return verifyInfo(this.nom, this.prenom, this.debutAdresse, this.domaineAdresse, this.localAdresse, this.mdp1, this.mdp2)"> 
 		Nom :
@@ -79,8 +87,7 @@
 		<br>
 		<input type="submit" value="Confirmer"/>
 	</form>
-	</body>
-</html>
+
 
 <?php
 	include '../include/footer.inc.php';

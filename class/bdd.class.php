@@ -62,7 +62,7 @@ class Bdd{
 	    $aListe = $req->execute(array());
 
 		$donnees = $req->fetch();
-		echo 'Informations personnelles :<br /><br />';
+		echo '</br></br>Informations personnelles :<br /><br />';
 		if ($donnees['SEXE'] == "Homme") {
 			echo 'Monsieur ';
 		}
@@ -172,9 +172,9 @@ class Bdd{
 		$req = $bdd->prepare('SELECT NOM_RESTO, ID_RESTO FROM RESTAURANT WHERE ACTIF = 1');
 		$aListe = $req->execute(array());
 		
-		echo "Liste des restaurants </br></br>";
+		echo "</br></br>Liste des restaurants </br></br>";
 		while ($donnees = $req->fetch()) {
-			echo  ucwords(strtolower($donnees['NOM_RESTO'])).' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>">Details</a><?php
+			echo  '<br/><br/>'.ucwords(strtolower($donnees['NOM_RESTO'])).' ' ?> <a href="index.php?category=9&&id=<?php echo $donnees['ID_RESTO']; ?>">Details</a><?php
 			echo '  ';?>
 			<a href="index.php?category=20&&id=<?php echo $donnees['ID_RESTO']; ?>">Offres</a> <?php
 			if ($_SESSION['droit']==1) {?>
@@ -194,7 +194,7 @@ class Bdd{
 		$req = $bdd->prepare('SELECT ID_USER, NOM, PRENOM, ACTIF FROM MEMBRE WHERE MEMBRE.DROIT = 2 GROUP BY NOM');
 		$aListe = $req->execute(array());
 		
-		echo "Liste des restaurateurs </br></br></br>";
+		echo "</br></br>Liste des restaurateurs </br></br></br>";
 		while ($donnees = $req->fetch()) {
 			if($donnees['ACTIF'] == 1) {
 			echo  strtoupper($donnees['NOM']).' '.ucfirst($donnees['PRENOM']) ?>

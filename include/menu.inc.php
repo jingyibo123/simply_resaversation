@@ -1,5 +1,3 @@
-
-<!DOCTYPE html>
 <?php
 require_once 'class/bdd.class.php';
 $oBdd = new Bdd();
@@ -7,10 +5,10 @@ $aMembre = $oBdd->user_getData($_SESSION['id_user']);
 $sNom = $aMembre['NOM'];
 $sPrenom = $aMembre['PRENOM'];
 ?>
-<html>
-	<nav id="menu">
-		<div class="element_menu">
-			<ul id="onglets">
+
+	<div id="menu">
+		<nav>
+			<ul>
 				<?php
 				
 				if (!empty($_SESSION['droit'])){
@@ -27,7 +25,7 @@ $sPrenom = $aMembre['PRENOM'];
 					
 					case "2": // Restaurateur : A créer
 					?>
-						<h2>Compte restaurateur : Bienvenue <?php echo $sPrenom.' '.$sNom;?> ! </h2>
+						
 						<li><a href="index.php?category=28&&id=<?php echo $_SESSION['id_user']; ?>"> Modifier mon mot de passe </a></li>
 						<li><a href="index.php?category=10"> Mes Restaurants </a></li>
 						<li><a href="index.php?category=12"> Mes Offres </a></li>
@@ -37,7 +35,7 @@ $sPrenom = $aMembre['PRENOM'];
 					
 					case "1": // Administrateur : A créer
 					?>
-						<h2>Compte administrateur : Bienvenue <?php echo $sPrenom.' '.$sNom;?> ! </h2>
+						
 						<li><a href="index.php?category=28&&id=<?php echo $_SESSION['id_user']; ?>"> Modifier mon mot de passe </a></li>
 						<li><a href="index.php?category=7"> Restaurateurs </a></li>
 						<li><a href="index.php?category=5"> Restaurants </a></li>
@@ -52,6 +50,6 @@ $sPrenom = $aMembre['PRENOM'];
 				}
 				?>
 			</ul>
-		</div>
 	</nav>
-</html>
+	</div></br>
+	

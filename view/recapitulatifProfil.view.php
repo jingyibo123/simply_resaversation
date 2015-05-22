@@ -1,16 +1,25 @@
-<!DOCTYPE html> 
-
-<?php
-	include 'include/header.inc.php';
-?>
 
 <!-- L'utilisateur a rempli le formulaire et visualise les informations remplies.-->
 
-<html>
-    <head>
-		<meta charset="utf-8" /> 
-		<title>Récapitulatif Inscription</title> 
-	</head> 
+<?php
+//echo $_SESSION['test'];
+/* ------------------------------------------------------------------------- /
+                        
+    Ce fichier est une vue, elle affiche se que l'utilisateur voit.
+    Ici se trouve le strict minimum, du code html et un peu de php
+    pour les traitements des erreurs par exemple.
+
+    Si la page necessite du javascript ou du css, il faudra le rentré 
+    dans la variable $sScript.  
+
+/ ------------------------------------------------------------------------- */
+
+
+    //Si il y a besoin de rajouter du code javascript pour cette vue
+    $sScript="";
+    include 'include/header.inc.php';
+	include 'include/menu.inc.php';
+?>
 	<!-- Le menu -->
 	<!--php include ("Menu.php"); -->
 	<!-- Le corps de la page -->
@@ -47,8 +56,7 @@
 	?>
 	<br></br>
 	<p><a href="javascript:history.back()"> Retour</a></p>
-</body>
-</html>
+
 
 <?php
 	include 'include/footer.inc.php';

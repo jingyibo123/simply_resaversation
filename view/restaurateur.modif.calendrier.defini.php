@@ -12,6 +12,7 @@
 		<script src='view/restaurateur.modif.calendrier.defini.js'></script>
     ";
     include 'include/header.inc.php';
+	include 'include/menu.inc.php';
 ?>
 <style>
 	body {

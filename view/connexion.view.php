@@ -21,9 +21,7 @@
 
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
-    <h1>Bienvenue sur le site de réservation SimplyCE</h1>
-	
-	<h2>Connexion</h2>
+    <h2>Bienvenue sur le site de réservation SimplyCE</h2>
 
 
   

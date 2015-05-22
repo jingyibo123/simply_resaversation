@@ -18,7 +18,7 @@
 	
 	
     include 'include/header.inc.php';
-
+	include 'include/menu.inc.php';
 ?>
 
 <form action="<?php echo $_SERVER['PHP_SELF'].'?category=1'; ?>" method="post">

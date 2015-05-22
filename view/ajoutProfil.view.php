@@ -46,7 +46,7 @@
 	';
 
 	include 'include/header.inc.php';
-	
+	include 'include/menu.inc.php';
 	/*require_once 'class/bdd.class.php';
 
 	$oBdd = new Bdd();*/

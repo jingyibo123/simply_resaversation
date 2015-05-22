@@ -113,16 +113,13 @@
 		
 		
 		case 4:
-			define('ROOTING', 'include/menu.inc.php');
+			define('ROOTING', 'view/bienvenue.view.php');
 			
 		break;
 		
 		case 5:
 			define('ROOTING', 'view/restaurants.view.php');
-			require_once 'class/bdd.class.php';
-			$oBdd = new Bdd();
 			
-				$aListeRestaurants = $oBdd->getRestaurants();
 				
 		break;
 		
@@ -135,62 +132,37 @@
 		case 7:
 			define('ROOTING', 'view/restaurateurs.view.php');
 			
-			require_once 'class/bdd.class.php';
-
-			$oBdd = new Bdd();
 			
-			$aListeRestaurateurs = $oBdd->getRestaurateurs();
 		break;
 		
 		case 8:
 			define('ROOTING', 'view/restoParRestaurateur.view.php');
 			
-			require_once 'class/bdd.class.php';
-
-			$oBdd = new Bdd();
-			$iId = $_GET['id'];
-			$aListeRestaurants = $oBdd->getRestaurantParRestaurateur($iId);
+			
 		break;
 		
 		case 9:
 			define('ROOTING', 'view/detailRestaurant.view.php');
 			
-			require_once 'class/bdd.class.php';
-
-			$oBdd = new Bdd();
-			$iId = $_GET['id'];
-			$_SESSION['ID_RESTO_MODIF'] = $_GET['id'];
-			$aListeRestaurants = $oBdd->getDetailRestaurant($iId);
+			
 		break;
 		
 		case 10:
 			define('ROOTING', 'view/restaurantsRestaurateur.view.php');
 			
-			require_once 'class/bdd.class.php';
 			
-			$oBdd = new Bdd();
-			$iId = $_SESSION['id_user'];
-			$aListeRestaurants = $oBdd->getRestaurantsRestaurateur($iId);
 		break;
 		
 		case 11:
 			define('ROOTING', 'view/reservations.view.php');
 			
-			require_once 'class/bdd.class.php';
 			
-			$oBdd = new Bdd();
-			$iId = $_SESSION['id_user'];
-			$aListeRestaurants = $oBdd->getReservations($iId);
 		break;
 		
 		case 12:
 			define('ROOTING', 'view/offres.view.php');
 			
-			require_once 'class/bdd.class.php';
 			
-			$oBdd = new Bdd();
-			$iId = $_SESSION['id_user'];
-			$aListeOffres = $oBdd->getOffresParRestaurateur($iId);
 		break;
 		
 		case 13: 
@@ -261,10 +233,7 @@
 		case 17:
 			define('ROOTING', 'view/offres.view.php');
 			
-			require_once 'class/bdd.class.php';
 			
-			$oBdd = new Bdd();
-			$aListeOffres = $oBdd->getOffresParAdministrateur();
 		break;
 		
 		case 18: 
@@ -307,21 +276,12 @@
 		case 19:
 			define('ROOTING', 'view/offres.view.php');
 			
-			require_once 'class/bdd.class.php';
 			
-			$oBdd = new Bdd();
-			$iId = $_GET['id'];
-			$aListeOffres = $oBdd->getOffresParRestaurateur($iId);
 		break;
 		
 		case 20:
 			define('ROOTING', 'view/offres.view.php');
 			
-			require_once 'class/bdd.class.php';
-			
-			$oBdd = new Bdd();
-			$iId = $_GET['id'];
-			$aListeOffres = $oBdd->getOffresParRestaurant($iId);
 		break;
 		
 		case 21:
@@ -363,11 +323,8 @@
 		case 23:
 			define('ROOTING', 'view/offres.view.php');
 			
-			require_once 'class/bdd.class.php';
 			
-			$oBdd = new Bdd();
-			$iId = $_GET['id'];
-			$aListeOffres = $oBdd->getOffresParRestaurateur($iId);
+			
 		break;
 
 		case 24:
@@ -426,11 +383,7 @@
 		
 		case 28 : 
 			define('ROOTING', 'view/consultationProfil.view.php');
-			require_once 'class/bdd.class.php';
-
-			$oBdd = new Bdd();
-			$iId = $_GET['id'];
-			$aDetails = $oBdd->user_getDetails($iId);
+			
 		break;
 			
 		case 29:
@@ -479,13 +432,7 @@
 		
 		case 30:
 			define('ROOTING', 'view/notifications.view.php');
-			require_once 'class/bdd.class.php';
-			$dDateCurrent = date('Y-m-d H:i:s');
-			$oBdd = new Bdd();
-			echo 'ANNULATIONS RESERVATIONS CLIENTS :<br/><br/>';
-			$aListeNotifsResa = $oBdd->notifAnnulationResa($dDateCurrent);
-			echo '<br/><br/>MODIFICATIONS PROFILS RESTAURANTS :<br/><br/>';
-			$aListeNotifsResto = $oBdd->notifUpdateRestaurant($dDateCurrent);
+			
 		break;
 
 
