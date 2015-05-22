@@ -174,7 +174,7 @@ INSERT INTO `CONNEXION_ERRONEE`(`IP`, `URL`, `VISITE`) VALUES
  ('202.106.196.115', '' ,'2015-4-16 11:15:44');
 
 INSERT INTO `RESERVATION`(`ID_RESA`, `ID_OFFRE`, `EMAIL_CLIENT`, `NOM`, `PRENOM`, `DATE_RESA`, `NB_TABLES`, `NB_PRS` , `DATE_CREER`,`ACTIF`) VALUES
- ('',1,'john@yahoo.fr','John','Ford','2015-5-23 12:30:00', 1,2, '2015-6-11 12:00:00',1),
- ('',2,'julia@yahoo.fr','Julia','Dubois','2015-5-25 19:00:00', 1,4, '2015-4-4 19:00:00',1),
- ('',2,'paul@yahoo.fr','Paul','Dutronc','2015-6-01 19:30:00', 1,3,'2015-5-12 09:00:00',1),
- ('',3,'marine@yahoo.fr','Marine','Fosset','2015-5-03 13:00:00', 1,1,'2015-6-13 17:00:00',1);
+
+ ('',2,'julia@yahoo.fr','Julia','Dubois','2015-5-25 11:00:00', 1,4, '2015-4-4 19:00:00',1),
+ ('',2,'paul@yahoo.fr','Paul','Dutronc','2015-6-01 13:00:00', 1,3,'2015-5-12 09:00:00',1),
+ ('',3,'marine@yahoo.fr','Marine','Fosset','2015-5-05 14:00:00', 1,1,'2015-6-13 17:00:00',1);

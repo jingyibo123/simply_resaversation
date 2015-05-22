@@ -12,7 +12,7 @@
 	$_SESSION['id_nouveau_resto'] = $_GET['idresto'];
 ?>
 
-<body>
+
 	<h3>Le restaurant a bien été ajouté</br>
 	</br>Veuillez cliquer ici pour définir le calendrier de votre restaurant (obligatoire)</h3>
 	
@@ -66,7 +66,7 @@
     <button class="btn calendar initialise save" id="btnsavecalendar" action="" >Sauvegarder</button><br/>
 	<h4>Pour personnaliser ce calendrier, veuillez vous rendre dans la rubrique "Mes restaurants"</h4>
 	
-</body>
+
 
 
 <?php
