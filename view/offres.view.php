@@ -55,14 +55,14 @@
 			$iId = $_GET['id'];
 			$aListeOffres = $oBdd->getOffresParRestaurateur($iId);
 		}
-			$oBdd = new Bdd();
-			$iId = $_SESSION['id_user'];
-			if($_SESSION['droit']==1){
-				$aListeOffres = $oBdd->getOffresParAdministrateur();
+		$oBdd = new Bdd();
+		$iId = $_SESSION['id_user'];
+		if($_SESSION['droit']==1){
+			$aListeOffres = $oBdd->getOffresParAdministrateur();
+		}
+		elseif($_SESSION['droit']==2){
+			$aListeOffres = $oBdd->getOffresParRestaurateur($iId);
 			}
-			elseif($_SESSION['droit']==2)
-				$aListeOffres = $oBdd->getOffresParRestaurateur($iId);
-				}
 			
 		?>
 

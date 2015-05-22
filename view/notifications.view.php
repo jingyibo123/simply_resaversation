@@ -19,7 +19,7 @@
 	require_once 'class/bdd.class.php';
 			$dDateCurrent = date('Y-m-d H:i:s');
 			$oBdd = new Bdd();
-			echo 'ANNULATIONS RESERVATIONS CLIENTS :<br/><br/>';
+			echo '<br/><br/>ANNULATIONS RESERVATIONS CLIENTS :<br/><br/>';
 			$aListeNotifsResa = $oBdd->notifAnnulationResa($dDateCurrent);
 			echo '<br/><br/>MODIFICATIONS PROFILS RESTAURANTS :<br/><br/>';
 			$aListeNotifsResto = $oBdd->notifUpdateRestaurant($dDateCurrent);
