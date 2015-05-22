@@ -11,7 +11,6 @@ $(document).ready(function() {
 	$ ("input#nbtablesrange").change (function (){
 		$ ("input#nbtables").val($ ("input#nbtablesrange").val());
 	});
-	alert("merde");
 
 	$("button#btnsavecalendar").click(function(){
 		var jours = new Array();
